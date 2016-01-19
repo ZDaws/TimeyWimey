@@ -28,13 +28,13 @@
                                     <navigationItem title="Events" id="yY9-YE-GMm">
                                         <leftBarButtonItems>
                                             <barButtonItem title="Export" id="eIj-DE-Prt"/>
-                                            <barButtonItem systemItem="trash" id="XUq-jg-Nci"/>
+                                            <barButtonItem systemItem="trash" id="TVh-vV-JAp"/>
                                         </leftBarButtonItems>
                                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="e8j-og-FcJ"/>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zc2-YH-9mY">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zc2-YH-9mY">
                                 <rect key="frame" x="0.0" y="60" width="600" height="540"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
@@ -50,8 +50,6 @@
                             <constraint firstItem="zc2-YH-9mY" firstAttribute="top" secondItem="30i-cx-saX" secondAttribute="bottom" id="lKI-of-c0z"/>
                         </constraints>
                     </view>
-                    <toolbarItems/>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
