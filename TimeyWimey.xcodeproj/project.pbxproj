@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		563540741C4E9F990070F43E /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563540731C4E9F980070F43E /* MainScreen.swift */; };
 		AB651EE71C4E9D760037AA33 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB651EE61C4E9D760037AA33 /* AppDelegate.swift */; };
-		AB651EE91C4E9D760037AA33 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB651EE81C4E9D760037AA33 /* ViewController.swift */; };
 		AB651EEC1C4E9D760037AA33 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB651EEA1C4E9D760037AA33 /* Main.storyboard */; };
 		AB651EEE1C4E9D760037AA33 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB651EED1C4E9D760037AA33 /* Assets.xcassets */; };
 		AB651EF11C4E9D760037AA33 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB651EEF1C4E9D760037AA33 /* LaunchScreen.storyboard */; };
@@ -34,9 +34,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		563540731C4E9F980070F43E /* MainScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
 		AB651EE31C4E9D760037AA33 /* TimeyWimey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeyWimey.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB651EE61C4E9D760037AA33 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		AB651EE81C4E9D760037AA33 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		AB651EEB1C4E9D760037AA33 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AB651EED1C4E9D760037AA33 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AB651EF01C4E9D760037AA33 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -98,7 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				AB651EE61C4E9D760037AA33 /* AppDelegate.swift */,
-				AB651EE81C4E9D760037AA33 /* ViewController.swift */,
+				563540731C4E9F980070F43E /* MainScreen.swift */,
 				AB651EEA1C4E9D760037AA33 /* Main.storyboard */,
 				AB651EED1C4E9D760037AA33 /* Assets.xcassets */,
 				AB651EEF1C4E9D760037AA33 /* LaunchScreen.storyboard */,
@@ -259,7 +259,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB651EE91C4E9D760037AA33 /* ViewController.swift in Sources */,
+				563540741C4E9F990070F43E /* MainScreen.swift in Sources */,
 				AB651EE71C4E9D760037AA33 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -407,6 +407,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Frands.TimeyWimey;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -419,6 +420,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Frands.TimeyWimey;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -489,6 +491,7 @@
 				AB651F0D1C4E9D760037AA33 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AB651F0E1C4E9D760037AA33 /* Build configuration list for PBXNativeTarget "TimeyWimeyTests" */ = {
 			isa = XCConfigurationList;
@@ -497,6 +500,7 @@
 				AB651F101C4E9D760037AA33 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AB651F111C4E9D760037AA33 /* Build configuration list for PBXNativeTarget "TimeyWimeyUITests" */ = {
 			isa = XCConfigurationList;
@@ -505,6 +509,7 @@
 				AB651F131C4E9D760037AA33 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
