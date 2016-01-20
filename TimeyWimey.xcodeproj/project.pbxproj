@@ -14,6 +14,7 @@
 		AB651EF11C4E9D760037AA33 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB651EEF1C4E9D760037AA33 /* LaunchScreen.storyboard */; };
 		AB651EFC1C4E9D760037AA33 /* TimeyWimeyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB651EFB1C4E9D760037AA33 /* TimeyWimeyTests.swift */; };
 		AB651F071C4E9D760037AA33 /* TimeyWimeyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB651F061C4E9D760037AA33 /* TimeyWimeyUITests.swift */; };
+		ABCE3C4A1C4FEDE40022B62C /* RunnerClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCE3C491C4FEDE40022B62C /* RunnerClass.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		AB651F021C4E9D760037AA33 /* TimeyWimeyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TimeyWimeyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB651F061C4E9D760037AA33 /* TimeyWimeyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeyWimeyUITests.swift; sourceTree = "<group>"; };
 		AB651F081C4E9D760037AA33 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ABCE3C491C4FEDE40022B62C /* RunnerClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunnerClass.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 			children = (
 				AB651EE61C4E9D760037AA33 /* AppDelegate.swift */,
 				563540731C4E9F980070F43E /* MainScreen.swift */,
+				ABCE3C491C4FEDE40022B62C /* RunnerClass.swift */,
 				AB651EEA1C4E9D760037AA33 /* Main.storyboard */,
 				AB651EED1C4E9D760037AA33 /* Assets.xcassets */,
 				AB651EEF1C4E9D760037AA33 /* LaunchScreen.storyboard */,
@@ -261,6 +264,7 @@
 			files = (
 				563540741C4E9F990070F43E /* MainScreen.swift in Sources */,
 				AB651EE71C4E9D760037AA33 /* AppDelegate.swift in Sources */,
+				ABCE3C4A1C4FEDE40022B62C /* RunnerClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
