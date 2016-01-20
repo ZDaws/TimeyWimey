@@ -107,8 +107,24 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate {
     * Have a popup window that asks the user if they are sure they want to delete all events
     */
     
+    let alertTitle = "Are you sure you want to delete all events?"
+    let message = "You won't be able to get them back!"
+    let okText = "OK"
+    let cancelText = "Cancel"
+    
+    let reset = { (action:UIAlertAction!) -> Void in
+        //global.events = []
+        //global.events.reloadData()
+    }
+    
     @IBAction func deleteAll(sender: UIBarButtonItem) {
+        let alert = UIAlertController(title: alertTitle, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        let cancelButton = UIAlertAction(title: cancelText, style: UIAlertActionStyle.Cancel, handler: nil) //cancels
+        alert.addAction(cancelButton)
+        let okButton = UIAlertAction(title: okText, style: UIAlertActionStyle.Destructive, handler: reset) //calls
+        alert.addAction(okButton)
         
+        presentViewController(alert, animated: true, completion: nil)
     }
 
     
