@@ -8,9 +8,15 @@
 
 import Foundation
 
-
-Class EventClass {
+class EventClass {
+    
+    //instance variables
+    var EventName: String
+    var RegisterArray: [Runner] = []
     
     
+    //functions
+    
+    init(name: String,
     
 }

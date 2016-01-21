@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import UIKit
 
 class Runner {
     //Instance Variables 
@@ -39,6 +39,12 @@ class Runner {
         endTime = et
         lapArray = la
     }
+    
+    
+    
+    
+    
+    
     
     //INTRUCTIONS
     //changes each lap from a time stamp to its proper duration for that lap
