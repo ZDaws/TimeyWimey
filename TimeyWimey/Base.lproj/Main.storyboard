@@ -27,16 +27,42 @@
                                 <items>
                                     <navigationItem title="Events" id="yY9-YE-GMm">
                                         <leftBarButtonItems>
-                                            <barButtonItem title="Export" id="eIj-DE-Prt"/>
-                                            <barButtonItem systemItem="trash" id="TVh-vV-JAp"/>
+                                            <barButtonItem title="Export" id="eIj-DE-Prt">
+                                                <connections>
+                                                    <action selector="export:" destination="BYZ-38-t0r" id="ALv-bR-KbV"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem systemItem="trash" id="TVh-vV-JAp">
+                                                <connections>
+                                                    <action selector="deleteAll:" destination="BYZ-38-t0r" id="8hN-yi-45J"/>
+                                                </connections>
+                                            </barButtonItem>
                                         </leftBarButtonItems>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="e8j-og-FcJ"/>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="e8j-og-FcJ">
+                                            <connections>
+                                                <action selector="addEvent:" destination="BYZ-38-t0r" id="5Fr-vH-blq"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zc2-YH-9mY">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zc2-YH-9mY">
                                 <rect key="frame" x="0.0" y="60" width="600" height="540"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="prototype1" rowHeight="80" id="B8S-eE-YZy">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="80"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="B8S-eE-YZy" id="Occ-jG-Kkh">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="79"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="e0o-SJ-64a"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="LBL-do-str"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -50,6 +76,9 @@
                             <constraint firstItem="zc2-YH-9mY" firstAttribute="top" secondItem="30i-cx-saX" secondAttribute="bottom" id="lKI-of-c0z"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="eventsTableView" destination="zc2-YH-9mY" id="9Fa-eG-7Vk"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
