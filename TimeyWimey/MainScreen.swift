@@ -68,22 +68,27 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate {
     * Make a popup window appear and display the option to create a relay or open event
     * Then segue to the save screen and append a relay or open event object to our event array
     */
+    
+    var alertTitle1 = "Select an Event"
+    var message1 = ""
+    let openText = "Open"
+    let relayText = "Relay"
+    let relay = { (action:UIAlertAction!) -> Void in
+        //Create a relay event with 4 runners.  Each runner's default name will be “New Runner”
+
+    }
+    let open = { (action:UIAlertAction!) -> Void in
+        //Create a relay event with 10 runners.  Each runner's default name will be "New Runner"
+    }
+    
     @IBAction func addEvent(sender: UIBarButtonItem) {
+        let alert = UIAlertController(title: alertTitle1, message: message1, preferredStyle: UIAlertControllerStyle.Alert)
+        let openButton = UIAlertAction(title: openText, style: UIAlertActionStyle.Default, handler: open)
+        alert.addAction(openButton)
+        let relayButton = UIAlertAction(title: relayText, style: UIAlertActionStyle.Default, handler: relay)
+        alert.addAction(relayButton)
         
-        
-        //if relay
-        //{
-            /*
-            * Create a relay event with 4 runners.  Each runner's default name will be “New Runner”
-            */
-        //}
-        //else
-        //{
-            /*
-            * Create a relay event with 10 runners.  Each runner's default name will be
-            * “New Runner”
-            */
-        //}
+        presentViewController(alert, animated: true, completion: nil)
     }
     
    
@@ -107,8 +112,8 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate {
     * Have a popup window that asks the user if they are sure they want to delete all events
     */
     
-    let alertTitle = "Are you sure you want to delete all events?"
-    let message = "You won't be able to get them back!"
+    let alertTitle2 = "Are you sure you want to delete all events?"
+    let message2 = "You won't be able to get them back!"
     let okText = "OK"
     let cancelText = "Cancel"
     
@@ -118,7 +123,7 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate {
     }
     
     @IBAction func deleteAll(sender: UIBarButtonItem) {
-        let alert = UIAlertController(title: alertTitle, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        let alert = UIAlertController(title: alertTitle2, message: message2, preferredStyle: UIAlertControllerStyle.Alert)
         let cancelButton = UIAlertAction(title: cancelText, style: UIAlertActionStyle.Cancel, handler: nil) //cancels
         alert.addAction(cancelButton)
         let okButton = UIAlertAction(title: okText, style: UIAlertActionStyle.Destructive, handler: reset) //calls

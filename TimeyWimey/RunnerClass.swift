@@ -52,7 +52,7 @@ class Runner {
     
     func lapDur() {
         for var i = 0 ; i < lapArray.count - 1; i++ {
-            if i = 0 {
+            if i == 0 {
                 lapArray[i] = laps[i]
             }
             else{
