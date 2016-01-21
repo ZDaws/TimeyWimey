@@ -66,6 +66,10 @@ class EditScreen: UIViewController {
     * the text inside should be saved to that runner's name.  If “New Runner” or “” is in the text field
     * save that runner’s name as nil.  To link each text field to this function we need to call
     * .addTarget(self, action: "textFieldUnselected:", forControlEvents: .EditingDidEnd)
+    *To find which textField was selected create a CustomTextField class and add one instance variable that represents which
+    * text field was selected.
+    * Then use sender.num to select where the text will be saved  
+    * (ex: Global.events[currentEvent].runners[sender.num] = sender.text
     */
     
     func textFieldUnselected(sender: UITextField) {
@@ -74,14 +78,7 @@ class EditScreen: UIViewController {
     }
     
     
-    /*Text field selected
-    * We need to find which number textfield was selected but idk how we will do that #############################
-    */
-    
-    func textFieldSelected(sender: UITextField) {
-
-        
-    }
+   
 
 
 
