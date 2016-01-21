@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class EventClass {
     
@@ -17,6 +18,6 @@ class EventClass {
     
     //functions
     
-    init(name: String,
+    init(name: String, 
     
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		44B0BAD41C51468E00ED5841 /* RunnerClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCE3C491C4FEDE40022B62C /* RunnerClass.swift */; };
 		44FE81391C4FEE1D005FF1AD /* EventClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FE81381C4FEE1D005FF1AD /* EventClass.swift */; };
 		563540741C4E9F990070F43E /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563540731C4E9F980070F43E /* MainScreen.swift */; };
 		AB651EE71C4E9D760037AA33 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB651EE61C4E9D760037AA33 /* AppDelegate.swift */; };
@@ -15,7 +16,6 @@
 		AB651EF11C4E9D760037AA33 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB651EEF1C4E9D760037AA33 /* LaunchScreen.storyboard */; };
 		AB651EFC1C4E9D760037AA33 /* TimeyWimeyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB651EFB1C4E9D760037AA33 /* TimeyWimeyTests.swift */; };
 		AB651F071C4E9D760037AA33 /* TimeyWimeyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB651F061C4E9D760037AA33 /* TimeyWimeyUITests.swift */; };
-		ABCE3C4A1C4FEDE40022B62C /* RunnerClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCE3C491C4FEDE40022B62C /* RunnerClass.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -265,6 +265,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44B0BAD41C51468E00ED5841 /* RunnerClass.swift in Sources */,
 				563540741C4E9F990070F43E /* MainScreen.swift in Sources */,
 				AB651EE71C4E9D760037AA33 /* AppDelegate.swift in Sources */,
 				44FE81391C4FEE1D005FF1AD /* EventClass.swift in Sources */,
