@@ -18,6 +18,6 @@ class EventClass {
     
     //functions
     
-    init(name: String, 
+    init(name: String,
     
 }
