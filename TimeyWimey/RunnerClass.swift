@@ -59,14 +59,14 @@ class Runner {
     func lapDur() {
         for var i = 0 ; i < lapArray.count - 1; i++ {
             if i == 0 {
-                lapArray[i] = laps[i]
+                //lapArray[i] = laps[i]
             }
             else{
-                let newTime = toDate(laps[i])
-                let lastTime = toDate(laps[i+1])
-                let finalTime = toDate(endTime)
-                let lap = newTime - lastTime
-                lapArray[i] = toString(lap)
+                //let newTime = toDate(laps[i])
+                //let lastTime = toDate(laps[i+1])
+                //let finalTime = toDate(endTime)
+                //let lap = newTime - lastTime
+                //lapArray[i] = toString(lap)
             }
         }
         
