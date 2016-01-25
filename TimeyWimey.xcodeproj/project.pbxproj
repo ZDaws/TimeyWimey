@@ -10,6 +10,7 @@
 		44B0BAD41C51468E00ED5841 /* RunnerClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCE3C491C4FEDE40022B62C /* RunnerClass.swift */; };
 		44FE81391C4FEE1D005FF1AD /* EventClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FE81381C4FEE1D005FF1AD /* EventClass.swift */; };
 		563540741C4E9F990070F43E /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563540731C4E9F980070F43E /* MainScreen.swift */; };
+		861F60941C56890300008878 /* Logo.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 861F60931C56890300008878 /* Logo.pdf */; };
 		AB651EE71C4E9D760037AA33 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB651EE61C4E9D760037AA33 /* AppDelegate.swift */; };
 		AB651EEC1C4E9D760037AA33 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB651EEA1C4E9D760037AA33 /* Main.storyboard */; };
 		AB651EEE1C4E9D760037AA33 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB651EED1C4E9D760037AA33 /* Assets.xcassets */; };
@@ -38,6 +39,7 @@
 /* Begin PBXFileReference section */
 		44FE81381C4FEE1D005FF1AD /* EventClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventClass.swift; sourceTree = "<group>"; };
 		563540731C4E9F980070F43E /* MainScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
+		861F60931C56890300008878 /* Logo.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = Logo.pdf; path = ../../Desktop/Logo.pdf; sourceTree = "<group>"; };
 		AB651EE31C4E9D760037AA33 /* TimeyWimey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeyWimey.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB651EE61C4E9D760037AA33 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AB651EEB1C4E9D760037AA33 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 		AB651EDA1C4E9D760037AA33 = {
 			isa = PBXGroup;
 			children = (
+				861F60931C56890300008878 /* Logo.pdf */,
 				AB651EE51C4E9D760037AA33 /* TimeyWimey */,
 				AB651EFA1C4E9D760037AA33 /* TimeyWimeyTests */,
 				AB651F051C4E9D760037AA33 /* TimeyWimeyUITests */,
@@ -239,6 +242,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB651EF11C4E9D760037AA33 /* LaunchScreen.storyboard in Resources */,
+				861F60941C56890300008878 /* Logo.pdf in Resources */,
 				AB651EEE1C4E9D760037AA33 /* Assets.xcassets in Resources */,
 				AB651EEC1C4E9D760037AA33 /* Main.storyboard in Resources */,
 			);
