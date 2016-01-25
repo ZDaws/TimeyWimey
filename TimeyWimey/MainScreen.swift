@@ -13,6 +13,9 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     
     
+    
+    
+    
     //Our tableview
     @IBOutlet weak var eventsTableView: UITableView!
     
@@ -40,6 +43,8 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate {
     */
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = eventsTableView.dequeueReusableCellWithIdentifier("prototype1", forIndexPath: indexPath)
+        
+        //just a test what prints on each cell
         cell.textLabel?.text = "\(indexPath.row)"
         
         return cell

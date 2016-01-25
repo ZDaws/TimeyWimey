@@ -84,5 +84,23 @@
             </objects>
             <point key="canvasLocation" x="305" y="427"/>
         </scene>
+        <!--Edit Screen-->
+        <scene sceneID="Bmn-Sv-sMT">
+            <objects>
+                <viewController id="XuH-lM-FOg" customClass="EditScreen" customModule="TimeyWimey" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="0at-lk-f1g"/>
+                        <viewControllerLayoutGuide type="bottom" id="f2P-Ti-OZj"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="FU1-sg-fUX">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2oj-xe-tNO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="305" y="1147"/>
+        </scene>
     </scenes>
 </document>
