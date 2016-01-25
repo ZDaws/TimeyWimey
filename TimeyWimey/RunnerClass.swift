@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import UIKit
 
 class Runner {
     //Instance Variables 
@@ -40,6 +40,12 @@ class Runner {
         lapArray = la
     }
     
+    
+    
+    
+    
+    
+    
     //INTRUCTIONS
     //changes each lap from a time stamp to its proper duration for that lap
     //to reference this modified array it will be in its normal array format just with the new values in their appropriate indexes
@@ -52,7 +58,7 @@ class Runner {
     
     func lapDur() {
         for var i = 0 ; i < lapArray.count - 1; i++ {
-            if i = 0 {
+            if i == 0 {
                 lapArray[i] = laps[i]
             }
             else{
