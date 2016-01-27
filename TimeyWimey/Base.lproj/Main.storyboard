@@ -59,6 +59,7 @@
                                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="e8j-og-FcJ">
                                             <connections>
                                                 <action selector="addEvent:" destination="BYZ-38-t0r" id="5Fr-vH-blq"/>
+                                                <segue destination="XuH-lM-FOg" kind="show" identifier="addNewEventSegue" id="nFu-Wg-Orc"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
