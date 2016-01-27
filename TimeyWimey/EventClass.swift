@@ -12,12 +12,12 @@ import UIKit
 class EventClass {
     
     //instance variables
-    var EventName: String
+    var EventName: String = ""
     var RegisterArray: [Runner] = []
     
     
     //functions
     
-    init(name: String,
+    //init(name: String,
     
 }
