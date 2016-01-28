@@ -15,6 +15,9 @@ class Runner {
     var endTime: String
     var lapArray: [String]
     
+    //temp variable used in lapDur
+    var laps: [String]
+    
     //This is the function that I use to change the strings that we get from the stopwatch to change them into NSDates
     func toDate(time: String) -> NSDate{
         let DateFormatter = NSDateFormatter()
@@ -34,10 +37,10 @@ class Runner {
     
     var csv = "" //Single string used to export into CSV file
     
-    init(n: String, et: String, la: [String])  {
+    init(n: String)  {
         name = n
-        endTime = et
-        lapArray = la
+        endTime = " 0:00:00"
+        
     }
     
     
@@ -65,7 +68,7 @@ class Runner {
                 let newTime = toDate(laps[i])
                 let lastTime = toDate(laps[i+1])
                 let finalTime = toDate(endTime)
-                let lap = newTime - lastTime
+                let lap = newTime.timeIntervalSinceDate(lastTime)
                 lapArray[i] = toString(lap)
             }
         }
