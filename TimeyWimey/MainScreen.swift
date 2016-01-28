@@ -13,6 +13,9 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     
     
+    
+    
+    
     //Our tableview
     @IBOutlet weak var eventsTableView: UITableView!
     
@@ -40,6 +43,8 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate {
     */
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = eventsTableView.dequeueReusableCellWithIdentifier("prototype1", forIndexPath: indexPath)
+        
+        //just a test what prints on each cell
         cell.textLabel?.text = "\(indexPath.row)"
         
         return cell
@@ -73,19 +78,12 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var message1 = ""
     let openText = "Open"
     let relayText = "Relay"
-    let relay = { (action:UIAlertAction!) -> Void in
-        //Create a relay event with 4 runners.  Each runner's default name will be “New Runner”
-
-    }
-    let open = { (action:UIAlertAction!) -> Void in
-        //Create a relay event with 10 runners.  Each runner's default name will be "New Runner"
-    }
     
     @IBAction func addEvent(sender: UIBarButtonItem) {
         let alert = UIAlertController(title: alertTitle1, message: message1, preferredStyle: UIAlertControllerStyle.Alert)
-        let openButton = UIAlertAction(title: openText, style: UIAlertActionStyle.Default, handler: open)
+        let openButton = UIAlertAction(title: openText, style: UIAlertActionStyle.Default, handler: { action in self.performSegueWithIdentifier("addNewEventSegue", sender: self) })
         alert.addAction(openButton)
-        let relayButton = UIAlertAction(title: relayText, style: UIAlertActionStyle.Default, handler: relay)
+        let relayButton = UIAlertAction(title: relayText, style: UIAlertActionStyle.Default, handler: { action in self.performSegueWithIdentifier("addNewEventSegue", sender: self) })
         alert.addAction(relayButton)
         
         presentViewController(alert, animated: true, completion: nil)

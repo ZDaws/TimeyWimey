@@ -12,7 +12,7 @@ import UIKit
 class Event {
     
     //instance variables
-    var EventName: String
+    var EventName: String = ""
     var RegisterArray: [Runner] = []
     var isOpen: Bool //if this boolean is read in as a true boolean then the event is an open race
     
