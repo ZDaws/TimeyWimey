@@ -59,7 +59,6 @@
                                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="e8j-og-FcJ">
                                             <connections>
                                                 <action selector="addEvent:" destination="BYZ-38-t0r" id="5Fr-vH-blq"/>
-                                                <segue destination="XuH-lM-FOg" kind="show" identifier="addNewEventSegue" id="nFu-Wg-Orc"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -79,6 +78,7 @@
                     </view>
                     <connections>
                         <outlet property="eventsTableView" destination="zc2-YH-9mY" id="9Fa-eG-7Vk"/>
+                        <segue destination="XuH-lM-FOg" kind="show" identifier="addNewEventSegue" id="9uF-68-anw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -99,6 +99,9 @@
                         <subviews>
                             <navigationBar contentMode="scaleToFill" placeholderIntrinsicWidth="600" placeholderIntrinsicHeight="60" translatesAutoresizingMaskIntoConstraints="NO" id="pDV-a6-jeY">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="fAP-hh-5oG"/>
+                                </constraints>
                                 <items>
                                     <navigationItem title="Edit Event" id="w94-sc-HgD">
                                         <barButtonItem key="rightBarButtonItem" title="Save" id="txP-dX-yxX"/>
