@@ -111,11 +111,11 @@
 				563540731C4E9F980070F43E /* MainScreen.swift */,
 				56E1930E1C4FF324002D979B /* EditScreen.swift */,
 				561A99F01C568AD300116701 /* TimerScreen.swift */,
-				ABCE3C491C4FEDE40022B62C /* RunnerClass.swift */,
 				AB651EEA1C4E9D760037AA33 /* Main.storyboard */,
 				AB651EED1C4E9D760037AA33 /* Assets.xcassets */,
 				AB651EEF1C4E9D760037AA33 /* LaunchScreen.storyboard */,
 				AB651EF21C4E9D760037AA33 /* Info.plist */,
+				ABCE3C491C4FEDE40022B62C /* RunnerClass.swift */,
 				44FE81381C4FEE1D005FF1AD /* EventClass.swift */,
 				5610700C1C5FBDFE00219F77 /* GlobalData.swift */,
 			);

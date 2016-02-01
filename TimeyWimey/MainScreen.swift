@@ -71,6 +71,9 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate {
     * This function is called when the user presses the add event button.  It needs to be connected to the UIBarButton on
     * the navigation bar.
     * Make a popup window appear and display the option to create a relay or open event
+    * If open event is picked append a new open event to the global events array
+    * If relay event is picked append a new relay event to the global events array
+    
     * Then segue to the save screen and append a relay or open event object to our event array
     */
     
@@ -81,9 +84,15 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBAction func addEvent(sender: UIBarButtonItem) {
         let alert = UIAlertController(title: alertTitle1, message: message1, preferredStyle: UIAlertControllerStyle.Alert)
-        let openButton = UIAlertAction(title: openText, style: UIAlertActionStyle.Default, handler: { action in self.performSegueWithIdentifier("addNewEventSegue", sender: self) })
+        let openButton = UIAlertAction(title: openText, style: UIAlertActionStyle.Default, handler: {
+            action in self.performSegueWithIdentifier("addNewEventSegue", sender: self)
+            Global.events.append(Event(name: "New Event", typeOpen: true))
+        })
         alert.addAction(openButton)
-        let relayButton = UIAlertAction(title: relayText, style: UIAlertActionStyle.Default, handler: { action in self.performSegueWithIdentifier("addNewEventSegue", sender: self) })
+        let relayButton = UIAlertAction(title: relayText, style: UIAlertActionStyle.Default, handler: {
+            action in self.performSegueWithIdentifier("addNewEventSegue", sender: self)
+            Global.events.append(Event(name: "New Event", typeOpen: false))
+        })
         alert.addAction(relayButton)
         
         presentViewController(alert, animated: true, completion: nil)
