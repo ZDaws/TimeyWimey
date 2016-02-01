@@ -13,7 +13,9 @@ class Runner {
     //Instance Variables 
     var name: String
     var endTime: String
-    var lapArray: [String]
+    var lapArray: [String] = []
+    
+
     
     //This is the function that I use to change the strings that we get from the stopwatch to change them into NSDates
     func toDate(time: String) -> NSDate{
@@ -34,10 +36,9 @@ class Runner {
     
     var csv = "" //Single string used to export into CSV file
     
-    init(n: String, et: String, la: [String])  {
+    init(n: String)  {
         name = n
-        endTime = et
-        lapArray = la
+        endTime = " 0:00:00"
     }
     
     
@@ -55,24 +56,26 @@ class Runner {
     //-test to see how many laps are in the array
         //if more than one entry in lapArray then take each value and subtract it by the previous to get the difference in duration
     //remember that the last lap in the array will need to use the final end time in order to find its duration
+   
     
-    func lapDur() {
-        for var i = 0 ; i < lapArray.count - 1; i++ {
-            if i == 0 {
-                lapArray[i] = laps[i]
-            }
-            else{
-                let newTime = toDate(laps[i])
-                let lastTime = toDate(laps[i+1])
-                let finalTime = toDate(endTime)
-                let lap = newTime - lastTime
-                lapArray[i] = toString(lap)
-            }
-        }
-        
-        
-        
-    }
+//    func lapDur() {
+//        var laps: [String]
+//        for var i = 0 ; i < lapArray.count - 1; i++ {
+//            if i == 0 {
+//                //lapArray[i] = laps[i]
+//            }
+//            else{
+//                let newTime = toDate(laps[i])
+//                let lastTime = toDate(laps[i+1])
+//                let finalTime = toDate(endTime)
+//                let lap = newTime.timeIntervalSinceDate(lastTime)
+//                lapArray[i] = toString(lap)
+//            }
+//        }
+//        
+//        
+//        
+//    }
     
     func toCsv(){
         csv = name + "," + endTime + ","
