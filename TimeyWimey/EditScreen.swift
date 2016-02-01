@@ -2,7 +2,7 @@
 //  EditScreen.swift
 //  TimeyWimey
 //
-//  Created by HOLM, JOEL on 1/20/16.
+//  Created by KUSKE, JOEL on 2/1/16.
 //  Copyright © 2016 Frands. All rights reserved.
 //
 
@@ -18,7 +18,7 @@ class EditScreen: UIViewController {
     //var currentEvent: Int
     var myTextFields: [UITextField] = []
     var myLabels: [UILabel] = []
-
+    
     
     
     
@@ -44,22 +44,22 @@ class EditScreen: UIViewController {
         
         //If open event
         //{
-            /*
-            * Within the area laid out create 10 text fields with placeholder text of that runners
-            * name.  Every other text field will be light blue and green
-            */
+        /*
+        * Within the area laid out create 10 text fields with placeholder text of that runners
+        * name.  Every other text field will be light blue and green
+        */
         //}
-            //else relay event
-            //{
-                /*
-                * Within the area laid out create 4 text fields with placeholder text of that runner’s
-                * name.  Every other text field will be light blue and green
-                */
+        //else relay event
+        //{
+        /*
+        * Within the area laid out create 4 text fields with placeholder text of that runner’s
+        * name.  Every other text field will be light blue and green
+        */
         //}
-  
+        
         
     }
-
+    
     
     /*Text field Unselected
     * This function will be called when the user unselects a certain text field
@@ -68,7 +68,7 @@ class EditScreen: UIViewController {
     * .addTarget(self, action: "textFieldUnselected:", forControlEvents: .EditingDidEnd)
     *To find which textField was selected create a CustomTextField class and add one instance variable that represents which
     * text field was selected.
-    * Then use sender.num to select where the text will be saved  
+    * Then use sender.num to select where the text will be saved
     * (ex: Global.events[currentEvent].runners[sender.num] = sender.text
     */
     
@@ -78,12 +78,12 @@ class EditScreen: UIViewController {
     }
     
     
-   
-
-
-
-
-
+    
+    
+    
+    
+    
+    
     /*Touch to remove keyboard
     * When the keyboard is up this function will be called when the user touches outside of the
     * keyboard and the keyboard will disappear.
@@ -94,7 +94,7 @@ class EditScreen: UIViewController {
         self.view.endEditing(true)
         super.touchesBegan(touches, withEvent: event )
     }
-
+    
     
     
     
@@ -108,11 +108,6 @@ class EditScreen: UIViewController {
         return true
     }
 
-    
-    
-    
-    
-    
     
     
     
