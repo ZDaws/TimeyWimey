@@ -113,6 +113,28 @@ class EditScreen: UIViewController {
     
     
     
+    @IBAction func saveButton(sender: UIBarButtonItem) {
+    
+        
+        performSegueWithIdentifier("saveToTimerSegue", sender: self)
+    
+    
+    
+    
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 
 }
