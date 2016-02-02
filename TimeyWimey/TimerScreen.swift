@@ -86,5 +86,21 @@ class TimerScreen: UIViewController {
     
     
     
+    @IBAction func backToMain(sender: UIBarButtonItem) {
+        performSegueWithIdentifier("timerToMainSegue", sender: self)
+        
+    }
+    
+    
+    
+    @IBAction func editButton(sender: UIBarButtonItem) {
+        performSegueWithIdentifier("timerToSaveSegue", sender: self)
+        
+    }
+    
+    
+    
+    
+    
 
 }
