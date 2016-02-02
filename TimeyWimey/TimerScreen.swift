@@ -11,7 +11,8 @@ import UIKit
 class TimerScreen: UIViewController {
     
     //need one of these for every Runner
-    @IBOutlet var displayTimeLabel: UILabel!
+    
+    @IBOutlet weak var displayTimeLabel: UILabel!
     
     //Variables for finding the screen size
     var screenSize: CGRect = UIScreen.mainScreen().bounds
@@ -67,6 +68,9 @@ class TimerScreen: UIViewController {
         width = screenSize.width
         height = screenSize.height
         
+        //temporary testing
+        start()
+        //testing
         
         //Lay out all runners with lap and stop buttons from 120 pixels and down until 60 from the bottom
         

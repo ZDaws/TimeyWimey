@@ -157,6 +157,12 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="00:00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ceh-cv-ezo">
+                                <rect key="frame" x="264" y="289" width="72" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -165,6 +171,9 @@
                             <constraint firstItem="oYr-1w-DHn" firstAttribute="top" secondItem="2gr-9t-m99" secondAttribute="topMargin" id="q16-A2-I28"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="displayTimeLabel" destination="ceh-cv-ezo" id="WAk-Cs-e3N"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lat-on-65B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
