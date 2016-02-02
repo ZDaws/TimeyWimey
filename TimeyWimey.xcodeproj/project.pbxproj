@@ -109,8 +109,8 @@
 			children = (
 				AB651EE61C4E9D760037AA33 /* AppDelegate.swift */,
 				563540731C4E9F980070F43E /* MainScreen.swift */,
-				561A99F01C568AD300116701 /* TimerScreen.swift */,
 				5610700E1C5FC56900219F77 /* EditScreen.swift */,
+				561A99F01C568AD300116701 /* TimerScreen.swift */,
 				AB651EEA1C4E9D760037AA33 /* Main.storyboard */,
 				AB651EED1C4E9D760037AA33 /* Assets.xcassets */,
 				AB651EEF1C4E9D760037AA33 /* LaunchScreen.storyboard */,
