@@ -9,5 +9,6 @@
 import Foundation
 
 struct Global {
-    var events: [Event] = []
+    static var events: [Event] = []
+    static var currentEvent: Int = 0
 }
