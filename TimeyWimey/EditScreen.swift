@@ -21,6 +21,7 @@ class EditScreen: UIViewController {
     
     
     
+    @IBOutlet weak var testLabel: UILabel!
     
     
     
@@ -38,7 +39,7 @@ class EditScreen: UIViewController {
         width = screenSize.width
         height = screenSize.height
         
-        
+        testLabel.text = "\(Global.currentEvent)"
         
         
         

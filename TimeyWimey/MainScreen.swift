@@ -10,8 +10,8 @@ import UIKit
 
 class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    
-    
+    //Represents the number of current events
+    var rows:Int = 0
     
     
     
@@ -25,8 +25,8 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     
     override func viewDidLoad() {
-        //Do stuff
-        
+        //Set current # of rows to the number of current events
+        rows = Global.events.count
         
         
         
@@ -61,7 +61,7 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate {
         
         
         //return Global.events.count
-        return 4
+        return rows
     }
     
     
@@ -87,11 +87,13 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate {
         let openButton = UIAlertAction(title: openText, style: UIAlertActionStyle.Default, handler: {
             action in self.performSegueWithIdentifier("addNewEventSegue", sender: self)
             Global.events.append(Event(name: "New Event", typeOpen: true))
+            Global.currentEvent = self.rows
         })
         alert.addAction(openButton)
         let relayButton = UIAlertAction(title: relayText, style: UIAlertActionStyle.Default, handler: {
             action in self.performSegueWithIdentifier("addNewEventSegue", sender: self)
             Global.events.append(Event(name: "New Event", typeOpen: false))
+            Global.currentEvent = self.rows
         })
         alert.addAction(relayButton)
         
