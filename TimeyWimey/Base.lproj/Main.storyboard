@@ -79,11 +79,12 @@
                     <connections>
                         <outlet property="eventsTableView" destination="zc2-YH-9mY" id="9Fa-eG-7Vk"/>
                         <segue destination="XuH-lM-FOg" kind="show" identifier="addNewEventSegue" id="9uF-68-anw"/>
+                        <segue destination="Fax-HM-afL" kind="show" identifier="mainToTimerSegue" animates="NO" id="Y9k-0b-uFL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="305" y="427"/>
+            <point key="canvasLocation" x="299" y="311"/>
         </scene>
         <!--Edit Screen-->
         <scene sceneID="Bmn-Sv-sMT">
@@ -104,7 +105,11 @@
                                 </constraints>
                                 <items>
                                     <navigationItem title="Edit Event" id="w94-sc-HgD">
-                                        <barButtonItem key="rightBarButtonItem" title="Save" id="txP-dX-yxX"/>
+                                        <barButtonItem key="rightBarButtonItem" title="Save" id="txP-dX-yxX">
+                                            <connections>
+                                                <action selector="saveButton:" destination="XuH-lM-FOg" id="5nS-OU-nIU"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -130,11 +135,12 @@
                     </view>
                     <connections>
                         <outlet property="testLabel" destination="69T-Ko-kdn" id="2I5-pk-8mM"/>
+                        <segue destination="Fax-HM-afL" kind="show" identifier="saveToTimerSegue" animates="NO" id="gkk-wx-I9P"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2oj-xe-tNO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="305" y="1147"/>
+            <point key="canvasLocation" x="319" y="1263"/>
         </scene>
         <!--Timer Screen-->
         <scene sceneID="x2E-cV-SDs">
@@ -150,6 +156,9 @@
                         <subviews>
                             <navigationBar contentMode="scaleToFill" placeholderIntrinsicWidth="600" placeholderIntrinsicHeight="60" translatesAutoresizingMaskIntoConstraints="NO" id="oYr-1w-DHn">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="Stt-uL-WBj"/>
+                                </constraints>
                                 <items>
                                     <navigationItem title="Event Name" id="y9Q-Ci-VLk">
                                         <barButtonItem key="leftBarButtonItem" title="Back" id="7BU-Tg-sAt"/>
@@ -177,7 +186,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lat-on-65B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1118" y="1147"/>
+            <point key="canvasLocation" x="1178" y="1263"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="uSv-D6-srO"/>
+        <segue reference="gkk-wx-I9P"/>
+    </inferredMetricsTieBreakers>
 </document>
