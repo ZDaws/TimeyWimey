@@ -58,24 +58,47 @@ class Runner {
     //remember that the last lap in the array will need to use the final end time in order to find its duration
    
     
-//    func lapDur() {
-//        var laps: [String]
-//        for var i = 0 ; i < lapArray.count - 1; i++ {
-//            if i == 0 {
-//                //lapArray[i] = laps[i]
-//            }
-//            else{
-//                let newTime = toDate(laps[i])
-//                let lastTime = toDate(laps[i+1])
-//                let finalTime = toDate(endTime)
-//                let lap = newTime.timeIntervalSinceDate(lastTime)
-//                lapArray[i] = toString(lap)
-//            }
-//        }
-//        
-//        
-//        
-//    }
+    
+    
+    
+    
+    func lapDur() {
+        //necessary variables for the NSDate and NSDateComponents arithmetic 
+        let userCalendar = NSCalendar.currentCalendar()
+        let minCalendarUnit: NSCalendarUnit = [.Minute]
+
+        var laps: [String] = []
+        
+        //loop to go through the array to allow us to do arithmetic with it 
+        for var i = 0 ; i < lapArray.count - 1; i++ {
+            if i == 0 {
+                lapArray[i] = laps[i]
+            }
+                //for the indexes in the array that will do the subractions with other elements of the array
+            else if i < lapArray.count - 2 {
+                let newTime = toDate(laps[i])
+                let lastTime = toDate(laps[i+1])
+                
+                //this does the arithmetic to find the time in minutes followed by seconds between the two variables and 
+                //adjusting for sign difference to keep it positive even with the backwards order
+                let lap = userCalendar.components(minCalendarUnit, fromDate: newTime, toDate: lastTime, options: [])
+                let finalDate = userCalendar.dateFromComponents(lap)
+                
+                lapArray[i] = toString(finalDate!)
+            }
+                //does the subtraction for the last index and the final end time to get the last indexes difference in time
+            else {
+                let lastTime = toDate(laps[i+1])
+                let finalTime = toDate(endTime)
+                let lap = userCalendar.components(minCalendarUnit, fromDate: lastTime, toDate: finalTime, options: [])
+                let finalDate = userCalendar.dateFromComponents(lap)
+                lapArray[i] = toString(finalDate!)
+            }
+        }
+        
+        
+        
+    }
     
     func toCsv(){
         csv = name + "," + endTime + ","
