@@ -68,9 +68,6 @@ class TimerScreen: UIViewController {
         width = screenSize.width
         height = screenSize.height
         
-        //temporary testing
-        start()
-        //testing
         
         //Lay out all runners with lap and stop buttons from 120 pixels and down until 60 from the bottom
         
