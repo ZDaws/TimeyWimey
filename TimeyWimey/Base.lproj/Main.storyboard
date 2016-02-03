@@ -161,8 +161,16 @@
                                 </constraints>
                                 <items>
                                     <navigationItem title="Event Name" id="y9Q-Ci-VLk">
-                                        <barButtonItem key="leftBarButtonItem" title="Back" id="7BU-Tg-sAt"/>
-                                        <barButtonItem key="rightBarButtonItem" title="Edit" id="RGK-0a-Blm"/>
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="7BU-Tg-sAt">
+                                            <connections>
+                                                <action selector="backToMain:" destination="Fax-HM-afL" id="uCu-du-uKB"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Edit" id="RGK-0a-Blm">
+                                            <connections>
+                                                <action selector="editButton:" destination="Fax-HM-afL" id="uN3-aD-QFe"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -185,7 +193,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="Y9k-0b-uFL"/>
         <segue reference="uSv-D6-srO"/>
-        <segue reference="gkk-wx-I9P"/>
     </inferredMetricsTieBreakers>
 </document>
