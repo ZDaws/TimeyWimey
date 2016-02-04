@@ -27,7 +27,7 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate {
     override func viewDidLoad() {
         //Set current # of rows to the number of current events
         rows = Global.events.count
-        
+        print("\(Global.events.count)")
         
         
         
@@ -73,7 +73,6 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate {
     * Make a popup window appear and display the option to create a relay or open event
     * If open event is picked append a new open event to the global events array
     * If relay event is picked append a new relay event to the global events array
-    
     * Then segue to the save screen and append a relay or open event object to our event array
     */
     
@@ -85,15 +84,17 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBAction func addEvent(sender: UIBarButtonItem) {
         let alert = UIAlertController(title: alertTitle1, message: message1, preferredStyle: UIAlertControllerStyle.Alert)
         let openButton = UIAlertAction(title: openText, style: UIAlertActionStyle.Default, handler: {
-            action in self.performSegueWithIdentifier("addNewEventSegue", sender: self)
+            action in
             Global.events.append(Event(name: "New Event", typeOpen: true))
             Global.currentEvent = self.rows
+            self.performSegueWithIdentifier("addNewEventSegue", sender: self)
         })
         alert.addAction(openButton)
         let relayButton = UIAlertAction(title: relayText, style: UIAlertActionStyle.Default, handler: {
-            action in self.performSegueWithIdentifier("addNewEventSegue", sender: self)
+            action in
             Global.events.append(Event(name: "New Event", typeOpen: false))
             Global.currentEvent = self.rows
+            self.performSegueWithIdentifier("addNewEventSegue", sender: self)
         })
         alert.addAction(relayButton)
         

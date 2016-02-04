@@ -18,13 +18,20 @@ class EditScreen: UIViewController {
     //var currentEvent: Int
     var myTextFields: [UITextField] = []
     var myLabels: [UILabel] = []
-    
-    
-    
-    @IBOutlet weak var testLabel: UILabel!
-    
-    
-    
+    //Navigaiton bar height
+    let NavBar: CGFloat = 60
+    //horizontal spacing between nav bar and text fields
+    let Horz: CGFloat = 20
+    //vertical spacing between nav bar and text fields
+    let Vert: CGFloat = 20
+    //current event
+    let event: Int = Global.currentEvent
+    //label height
+    var labelH: CGFloat = 0
+    //Tiny spacing
+    var space: CGFloat = 1
+    //Useable frame
+    var frame = CGRect()
     
     
     /* Load View
@@ -39,24 +46,46 @@ class EditScreen: UIViewController {
         width = screenSize.width
         height = screenSize.height
         
-        testLabel.text = "\(Global.currentEvent)"
+        
+        
+        if Global.events[event].isOpen == true  {
+            //create 10 labels and textfields
+            for x in 0...9 {
+                labelH = (height - (NavBar + Vert * 2)) / 10
+                
+                myLabels.append(UILabel(frame: CGRect(x: Horz, y: (NavBar + Vert) + labelH * CGFloat(x), width: width - 2 * Horz, height: labelH)))
+                if x % 2 == 0   {
+                    myLabels[x].backgroundColor = UIColor.blueColor()
+                } else {
+                    myLabels[x].backgroundColor = UIColor.greenColor()
+                }
+                self.view.addSubview(myLabels[x])
+                
+                
+                
+                
+            
+            }
+ 
+            
+        }
+        else    {
+            //Create 4 labels and text fields
+            
+            
+            
+            
+            
+            
+            
+        }
         
         
         
-        //If open event
-        //{
-        /*
-        * Within the area laid out create 10 text fields with placeholder text of that runners
-        * name.  Every other text field will be light blue and green
-        */
-        //}
-        //else relay event
-        //{
-        /*
-        * Within the area laid out create 4 text fields with placeholder text of that runner’s
-        * name.  Every other text field will be light blue and green
-        */
-        //}
+        
+        
+        
+        
         
         
     }

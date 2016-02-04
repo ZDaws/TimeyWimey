@@ -113,28 +113,15 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="69T-Ko-kdn">
-                                <rect key="frame" x="258" y="277" width="85" height="46"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="85" id="ho7-fb-Wdq"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="pDV-a6-jeY" secondAttribute="trailing" constant="-20" id="2uZ-hP-Ree"/>
                             <constraint firstItem="pDV-a6-jeY" firstAttribute="top" secondItem="FU1-sg-fUX" secondAttribute="topMargin" id="Nsm-uP-jIR"/>
-                            <constraint firstItem="f2P-Ti-OZj" firstAttribute="top" secondItem="69T-Ko-kdn" secondAttribute="bottom" constant="277" id="Soi-Ki-Nha"/>
-                            <constraint firstItem="69T-Ko-kdn" firstAttribute="centerY" secondItem="FU1-sg-fUX" secondAttribute="centerY" id="Vw3-Hd-d75"/>
                             <constraint firstItem="pDV-a6-jeY" firstAttribute="leading" secondItem="FU1-sg-fUX" secondAttribute="leadingMargin" constant="-20" id="kQk-9m-2Fj"/>
-                            <constraint firstItem="69T-Ko-kdn" firstAttribute="centerX" secondItem="pDV-a6-jeY" secondAttribute="centerX" id="lXi-9O-yew"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="testLabel" destination="69T-Ko-kdn" id="2I5-pk-8mM"/>
                         <segue destination="Fax-HM-afL" kind="show" identifier="saveToTimerSegue" animates="NO" id="gkk-wx-I9P"/>
                     </connections>
                 </viewController>
@@ -194,6 +181,6 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="Y9k-0b-uFL"/>
-        <segue reference="uSv-D6-srO"/>
+        <segue reference="9uF-68-anw"/>
     </inferredMetricsTieBreakers>
 </document>
