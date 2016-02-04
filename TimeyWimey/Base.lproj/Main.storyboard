@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1605" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -7,10 +7,10 @@
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Main Screen-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="TimeyWimey" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MainScreen" customModule="TimeyWimey" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -59,7 +59,6 @@
                                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="e8j-og-FcJ">
                                             <connections>
                                                 <action selector="addEvent:" destination="BYZ-38-t0r" id="5Fr-vH-blq"/>
-                                                <segue destination="XuH-lM-FOg" kind="show" identifier="addNewEventSegue" id="nFu-Wg-Orc"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -79,11 +78,13 @@
                     </view>
                     <connections>
                         <outlet property="eventsTableView" destination="zc2-YH-9mY" id="9Fa-eG-7Vk"/>
+                        <segue destination="XuH-lM-FOg" kind="show" identifier="addNewEventSegue" id="9uF-68-anw"/>
+                        <segue destination="Fax-HM-afL" kind="show" identifier="mainToTimerSegue" animates="NO" id="Y9k-0b-uFL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="305" y="427"/>
+            <point key="canvasLocation" x="299" y="311"/>
         </scene>
         <!--Edit Screen-->
         <scene sceneID="Bmn-Sv-sMT">
@@ -99,24 +100,47 @@
                         <subviews>
                             <navigationBar contentMode="scaleToFill" placeholderIntrinsicWidth="600" placeholderIntrinsicHeight="60" translatesAutoresizingMaskIntoConstraints="NO" id="pDV-a6-jeY">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="fAP-hh-5oG"/>
+                                </constraints>
                                 <items>
                                     <navigationItem title="Edit Event" id="w94-sc-HgD">
-                                        <barButtonItem key="rightBarButtonItem" title="Save" id="txP-dX-yxX"/>
+                                        <barButtonItem key="rightBarButtonItem" title="Save" id="txP-dX-yxX">
+                                            <connections>
+                                                <action selector="saveButton:" destination="XuH-lM-FOg" id="5nS-OU-nIU"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="69T-Ko-kdn">
+                                <rect key="frame" x="258" y="277" width="85" height="46"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="85" id="ho7-fb-Wdq"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="pDV-a6-jeY" secondAttribute="trailing" constant="-20" id="2uZ-hP-Ree"/>
                             <constraint firstItem="pDV-a6-jeY" firstAttribute="top" secondItem="FU1-sg-fUX" secondAttribute="topMargin" id="Nsm-uP-jIR"/>
+                            <constraint firstItem="f2P-Ti-OZj" firstAttribute="top" secondItem="69T-Ko-kdn" secondAttribute="bottom" constant="277" id="Soi-Ki-Nha"/>
+                            <constraint firstItem="69T-Ko-kdn" firstAttribute="centerY" secondItem="FU1-sg-fUX" secondAttribute="centerY" id="Vw3-Hd-d75"/>
                             <constraint firstItem="pDV-a6-jeY" firstAttribute="leading" secondItem="FU1-sg-fUX" secondAttribute="leadingMargin" constant="-20" id="kQk-9m-2Fj"/>
+                            <constraint firstItem="69T-Ko-kdn" firstAttribute="centerX" secondItem="pDV-a6-jeY" secondAttribute="centerX" id="lXi-9O-yew"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="testLabel" destination="69T-Ko-kdn" id="2I5-pk-8mM"/>
+                        <segue destination="Fax-HM-afL" kind="show" identifier="saveToTimerSegue" animates="NO" id="gkk-wx-I9P"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2oj-xe-tNO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="305" y="1147"/>
+            <point key="canvasLocation" x="319" y="1263"/>
         </scene>
         <!--Timer Screen-->
         <scene sceneID="x2E-cV-SDs">
@@ -132,10 +156,21 @@
                         <subviews>
                             <navigationBar contentMode="scaleToFill" placeholderIntrinsicWidth="600" placeholderIntrinsicHeight="60" translatesAutoresizingMaskIntoConstraints="NO" id="oYr-1w-DHn">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="Stt-uL-WBj"/>
+                                </constraints>
                                 <items>
                                     <navigationItem title="Event Name" id="y9Q-Ci-VLk">
-                                        <barButtonItem key="leftBarButtonItem" title="Back" id="7BU-Tg-sAt"/>
-                                        <barButtonItem key="rightBarButtonItem" title="Edit" id="RGK-0a-Blm"/>
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="7BU-Tg-sAt">
+                                            <connections>
+                                                <action selector="backToMain:" destination="Fax-HM-afL" id="uCu-du-uKB"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Edit" id="RGK-0a-Blm">
+                                            <connections>
+                                                <action selector="editButton:" destination="Fax-HM-afL" id="uN3-aD-QFe"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -147,10 +182,18 @@
                             <constraint firstItem="oYr-1w-DHn" firstAttribute="top" secondItem="2gr-9t-m99" secondAttribute="topMargin" id="q16-A2-I28"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <segue destination="XuH-lM-FOg" kind="show" identifier="timerToSaveSegue" animates="NO" id="uSv-D6-srO"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="timerToMainSegue" animates="NO" id="AW6-hy-2IV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lat-on-65B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1118" y="1147"/>
+            <point key="canvasLocation" x="1178" y="1263"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="Y9k-0b-uFL"/>
+        <segue reference="uSv-D6-srO"/>
+    </inferredMetricsTieBreakers>
 </document>
