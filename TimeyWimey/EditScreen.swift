@@ -16,7 +16,7 @@ class EditScreen: UIViewController {
     var width: CGFloat = 0.0
     var height: CGFloat = 0.0
     //var currentEvent: Int
-    var myTextFields: [UITextField] = []
+    var myTextFields: [CustomTextField] = []
     var myLabels: [UILabel] = []
     
     
@@ -40,6 +40,11 @@ class EditScreen: UIViewController {
         height = screenSize.height
         
         testLabel.text = "\(Global.currentEvent)"
+        
+        //Create the event name textfield
+        //var eventTextField = CustomTextField(frame: <#T##CGRect#>, 0)
+        
+        
         
         
         
