@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		44B0BAD41C51468E00ED5841 /* RunnerClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCE3C491C4FEDE40022B62C /* RunnerClass.swift */; };
 		44FE81391C4FEE1D005FF1AD /* EventClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FE81381C4FEE1D005FF1AD /* EventClass.swift */; };
+		560A1FE51C6503E00083F017 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560A1FE41C6503E00083F017 /* CustomTextField.swift */; };
 		5610700D1C5FBDFE00219F77 /* GlobalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5610700C1C5FBDFE00219F77 /* GlobalData.swift */; };
 		5610700F1C5FC56900219F77 /* EditScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5610700E1C5FC56900219F77 /* EditScreen.swift */; };
 		561A99F11C568AD300116701 /* TimerScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 561A99F01C568AD300116701 /* TimerScreen.swift */; };
@@ -40,6 +41,7 @@
 
 /* Begin PBXFileReference section */
 		44FE81381C4FEE1D005FF1AD /* EventClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventClass.swift; sourceTree = "<group>"; };
+		560A1FE41C6503E00083F017 /* CustomTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		5610700C1C5FBDFE00219F77 /* GlobalData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalData.swift; sourceTree = "<group>"; };
 		5610700E1C5FC56900219F77 /* EditScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditScreen.swift; sourceTree = "<group>"; };
 		561A99F01C568AD300116701 /* TimerScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerScreen.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				ABCE3C491C4FEDE40022B62C /* RunnerClass.swift */,
 				44FE81381C4FEE1D005FF1AD /* EventClass.swift */,
 				5610700C1C5FBDFE00219F77 /* GlobalData.swift */,
+				560A1FE41C6503E00083F017 /* CustomTextField.swift */,
 			);
 			path = TimeyWimey;
 			sourceTree = "<group>";
@@ -278,6 +281,7 @@
 				5610700F1C5FC56900219F77 /* EditScreen.swift in Sources */,
 				561A99F11C568AD300116701 /* TimerScreen.swift in Sources */,
 				563540741C4E9F990070F43E /* MainScreen.swift in Sources */,
+				560A1FE51C6503E00083F017 /* CustomTextField.swift in Sources */,
 				5610700D1C5FBDFE00219F77 /* GlobalData.swift in Sources */,
 				AB651EE71C4E9D760037AA33 /* AppDelegate.swift in Sources */,
 				44FE81391C4FEE1D005FF1AD /* EventClass.swift in Sources */,

@@ -32,6 +32,9 @@ class EditScreen: UIViewController {
     var space: CGFloat = 1
     //Useable frame
     var frame = CGRect()
+    //Variable to represent the number of runners 4 for relay or 10 for open
+    var numRun: Int = 0
+    
     
     
     /* Load View
@@ -49,8 +52,16 @@ class EditScreen: UIViewController {
         
         
         if Global.events[event].isOpen == true  {
-            //create 10 labels and textfields
-            for x in 0...9 {
+            //Set number of runners to 10 - 1
+            numRun = 9
+        }
+        else    {
+            //Set number of runners to 4 - 1
+            numRun = 3
+            
+        }
+        
+        for x in 0...numRun {
                 labelH = (height - (NavBar + Vert * 2)) / 10
                 
                 myLabels.append(UILabel(frame: CGRect(x: Horz, y: (NavBar + Vert) + labelH * CGFloat(x), width: width - 2 * Horz, height: labelH)))
@@ -60,29 +71,8 @@ class EditScreen: UIViewController {
                     myLabels[x].backgroundColor = UIColor.greenColor()
                 }
                 self.view.addSubview(myLabels[x])
-                
-                
-                
-                
-            
-            }
- 
-            
+        
         }
-        else    {
-            //Create 4 labels and text fields
-            
-            
-            
-            
-            
-            
-            
-        }
-        
-        
-        
-        
         
         
         
