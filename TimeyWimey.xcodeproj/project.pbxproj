@@ -119,8 +119,8 @@
 				AB651EF21C4E9D760037AA33 /* Info.plist */,
 				ABCE3C491C4FEDE40022B62C /* RunnerClass.swift */,
 				44FE81381C4FEE1D005FF1AD /* EventClass.swift */,
-				5610700C1C5FBDFE00219F77 /* GlobalData.swift */,
 				560A1FE41C6503E00083F017 /* CustomTextField.swift */,
+				5610700C1C5FBDFE00219F77 /* GlobalData.swift */,
 			);
 			path = TimeyWimey;
 			sourceTree = "<group>";

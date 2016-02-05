@@ -16,7 +16,7 @@ class EditScreen: UIViewController {
     var width: CGFloat = 0.0
     var height: CGFloat = 0.0
     //var currentEvent: Int
-    var myTextFields: [UITextField] = []
+    var myTextFields: [CustomTextField] = []
     var myLabels: [UILabel] = []
     //Navigaiton bar height
     let NavBar: CGFloat = 60
@@ -31,9 +31,12 @@ class EditScreen: UIViewController {
     //Tiny spacing
     var space: CGFloat = 1
     //Useable frame
-    var frame = CGRect()
+    var frm = CGRect()
     //Variable to represent the number of runners 4 for relay or 10 for open
     var numRun: Int = 0
+    //Height of Event name
+    var eventH: CGFloat = 0
+    
     
     
     
@@ -50,7 +53,7 @@ class EditScreen: UIViewController {
         height = screenSize.height
         
         
-        
+        //Create and display textfields with backgrounds
         if Global.events[event].isOpen == true  {
             //Set number of runners to 10 - 1
             numRun = 9
@@ -62,17 +65,29 @@ class EditScreen: UIViewController {
         }
         
         for x in 0...numRun {
-                labelH = (height - (NavBar + Vert * 2)) / 10
-                
-                myLabels.append(UILabel(frame: CGRect(x: Horz, y: (NavBar + Vert) + labelH * CGFloat(x), width: width - 2 * Horz, height: labelH)))
+                labelH = (height - (eventH + NavBar + Vert * 2)) / 10
+                frm = CGRect(x: Horz, y: (NavBar + Vert + eventH) + labelH * CGFloat(x), width: width - 2 * Horz, height: labelH)
+                myLabels.append(UILabel(frame: frm ))
                 if x % 2 == 0   {
                     myLabels[x].backgroundColor = UIColor.blueColor()
                 } else {
                     myLabels[x].backgroundColor = UIColor.greenColor()
                 }
                 self.view.addSubview(myLabels[x])
+            
+                myTextFields.append(CustomTextField(frame: frm, x))
+                myTextFields[x].font = UIFont(name: myTextFields[x].font!.fontName, size: labelH)
+                myTextFields[x].text = Global.events[event].RegisterArray[x].name
+                myTextFields[x].textAlignment = NSTextAlignment.Center
+            
+                self.view.addSubview(myTextFields[x])
         
         }
+        
+        //Create the event name textfield
+        //var eventTextField = CustomTextField(frame: <#T##CGRect#>, 0)
+        
+        
         
         
         
