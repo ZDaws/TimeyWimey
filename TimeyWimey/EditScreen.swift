@@ -36,22 +36,24 @@ class EditScreen: UIViewController {
     var numRun: Int = 0
     //Height of Event name
     var eventH: CGFloat = 0
-    
-    
-    
+    //Length of the event textfield
+    var eventW: CGFloat = 0
+    //Event textfield and label
+    var eventTextField = CustomTextField(frame: CGRect(), 0)
+    var eventLabel = UILabel()
     
     /* Load View
     * The area in which the labels and buttons for runners will go will be in the bottom of the screen
-    * The margin will be around 1/16 of the screen width, with an extra 16th at the top for the name
-    * of the event
-    * At the top of the view place a text field with placeholder text “Event Name”
+    * At the top of the view place a text field with placeholder text of that events name
+    * Each runner will have a place holder text of their name
     */
     
     override func viewDidLoad() {
         //Set the screen size using variables screenSize, width, height
         width = screenSize.width
         height = screenSize.height
-        
+        eventH = (height - NavBar) / 10
+        eventW = width / 2
         
         //Create and display textfields with backgrounds
         if Global.events[event].isOpen == true  {
@@ -65,8 +67,8 @@ class EditScreen: UIViewController {
         }
         
         for x in 0...numRun {
-                labelH = (height - (eventH + NavBar + Vert * 2)) / 10
-                frm = CGRect(x: Horz, y: (NavBar + Vert + eventH) + labelH * CGFloat(x), width: width - 2 * Horz, height: labelH)
+                labelH = (height - (eventH + NavBar + Vert * 3)) / 10
+                frm = CGRect(x: Horz, y: (NavBar + (Vert * 2) + eventH) + (labelH * CGFloat(x)), width: width - 2 * Horz, height: labelH)
                 myLabels.append(UILabel(frame: frm ))
                 if x % 2 == 0   {
                     myLabels[x].backgroundColor = UIColor.blueColor()
@@ -76,18 +78,24 @@ class EditScreen: UIViewController {
                 self.view.addSubview(myLabels[x])
             
                 myTextFields.append(CustomTextField(frame: frm, x))
-                myTextFields[x].font = UIFont(name: myTextFields[x].font!.fontName, size: labelH)
+                myTextFields[x].font = UIFont(name: myTextFields[x].font!.fontName, size: (labelH * 2) / 3)
                 myTextFields[x].text = Global.events[event].RegisterArray[x].name
-                myTextFields[x].textAlignment = NSTextAlignment.Center
+            
             
                 self.view.addSubview(myTextFields[x])
         
         }
         
         //Create the event name textfield
-        //var eventTextField = CustomTextField(frame: <#T##CGRect#>, 0)
         
-        
+        frm = CGRect(x: width / 4 , y: NavBar + Vert, width: eventW, height: eventH)
+        eventTextField = CustomTextField(frame: frm , 20)
+        eventTextField.font = UIFont(name: eventTextField.font!.fontName, size: (eventH * 2) / 3)
+        eventTextField.text = Global.events[event].EventName
+        eventLabel = UILabel(frame: frm)
+        eventLabel.backgroundColor = UIColor.grayColor()
+        self.view.addSubview(eventLabel)
+        self.view.addSubview(eventTextField)
         
         
         
@@ -149,10 +157,18 @@ class EditScreen: UIViewController {
     
     @IBAction func saveButton(sender: UIBarButtonItem) {
     
+        //Save text in textfields to global data
+        for x in 0...numRun {
+            Global.events[event].RegisterArray[x].name = myTextFields[x].text!
+            
+        }
+        
+        
+        //save event name to global data
+        Global.events[event].EventName = eventTextField.text!
+        
         
         performSegueWithIdentifier("saveToTimerSegue", sender: self)
-    
-    
     
     
     }
