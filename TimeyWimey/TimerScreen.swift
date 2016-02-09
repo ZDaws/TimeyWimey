@@ -21,6 +21,41 @@ class TimerScreen: UIViewController {
     var timer: NSTimer = NSTimer()
     var startTime = NSTimeInterval()
     
+    
+    
+    
+    override func viewDidLoad() {
+        //Set the screen size using variables screenSize, width, height
+        width = screenSize.width
+        height = screenSize.height
+        
+        
+        
+        
+        
+        //Lay out all runners with lap and stop buttons from 120 pixels and down until 60 from the bottom
+        
+        
+        
+        //Add a master clock at the top
+        
+        
+        
+        //Add start button that will disapear when pressed at the bottom
+        
+        
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     func start(){
         let aSelector : Selector = "updateTime"
         //makes a new timer where the time updates every .01 seconds
@@ -63,25 +98,7 @@ class TimerScreen: UIViewController {
         displayTimeLabel.text = "\(strMinutes):\(strSeconds):\(strFraction)"
     }
     
-    override func viewDidLoad() {
-        //Set the screen size using variables screenSize, width, height
-        width = screenSize.width
-        height = screenSize.height
-        
-        
-        //Lay out all runners with lap and stop buttons from 120 pixels and down until 60 from the bottom
-        
-        
-        
-        //Add a master clock at the top 
-        
-        
-        
-        //Add start button that will disapear when pressed at the bottom
-        
-        
-        
-    }
+   
     
     
     
