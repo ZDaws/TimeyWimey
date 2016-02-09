@@ -152,10 +152,7 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate {
         return true
     }
     
-    
-    
-    
-    
+
     
     /* Swipe to delete
     * Create an editing style that allows the user to swipe and delete an event
@@ -168,6 +165,12 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate {
         }
     }
 
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        Global.currentEvent = indexPath.row
+        self.performSegueWithIdentifier("mainToTimerSegue", sender: self)
+    }
+    
+    
     
     
     
