@@ -42,6 +42,7 @@ class EditScreen: UIViewController {
     var eventTextField = CustomTextField(frame: CGRect(), 0)
     var eventLabel = UILabel()
     
+    
     /* Load View
     * The area in which the labels and buttons for runners will go will be in the bottom of the screen
     * At the top of the view place a text field with placeholder text of that events name
@@ -49,6 +50,19 @@ class EditScreen: UIViewController {
     */
     
     override func viewDidLoad() {
+        
+        //If open add new runners to the register array with names of "New Runner" until there are 10 runnners
+        if Global.events[event].isOpen {
+            while Global.events[event].RegisterArray.count < 10    {
+                Global.events[event].RegisterArray.append(Runner(n: "New Runner"))
+            }
+
+        }
+        
+        
+        
+        
+        
         //Set the screen size using variables screenSize, width, height
         width = screenSize.width
         height = screenSize.height
@@ -153,16 +167,34 @@ class EditScreen: UIViewController {
 
     
     
+    /*
+    *
+    * If open remove a runner from the Register array is their name is "New Event" or ""
+    */
     
+    var y: Int = 9
     
     @IBAction func saveButton(sender: UIBarButtonItem) {
     
+        y = numRun
+        
         //Save text in textfields to global data
         for x in 0...numRun {
             Global.events[event].RegisterArray[x].name = myTextFields[x].text!
-            
         }
+        //If a new runner hasn't been put in, remove that runner
         
+        if Global.events[event].isOpen {
+            while y >= 0    {
+            
+                if  Global.events[event].RegisterArray[y].name == "" ||
+                    Global.events[event].RegisterArray[y].name == "New Runner"    {
+                        Global.events[event].RegisterArray.removeAtIndex(y)
+                        
+                }
+                y = y - 1
+            }
+        }
         
         //save event name to global data
         Global.events[event].EventName = eventTextField.text!
