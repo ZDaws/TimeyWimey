@@ -29,9 +29,8 @@ class EditScreen: UIViewController {
     
     /* Load View
     * The area in which the labels and buttons for runners will go will be in the bottom of the screen
-    * The margin will be around 1/16 of the screen width, with an extra 16th at the top for the name
-    * of the event
-    * At the top of the view place a text field with placeholder text “Event Name”
+    * At the top of the view place a text field with placeholder text of that events name
+    * Each runner will have a place holder text of their name
     */
     
     override func viewDidLoad() {
@@ -42,9 +41,15 @@ class EditScreen: UIViewController {
         testLabel.text = "\(Global.currentEvent)"
         
         //Create the event name textfield
-        //var eventTextField = CustomTextField(frame: <#T##CGRect#>, 0)
         
-        
+        frm = CGRect(x: width / 4 , y: NavBar + Vert, width: eventW, height: eventH)
+        eventTextField = CustomTextField(frame: frm , 20)
+        eventTextField.font = UIFont(name: eventTextField.font!.fontName, size: (eventH * 2) / 3)
+        eventTextField.text = Global.events[event].EventName
+        eventLabel = UILabel(frame: frm)
+        eventLabel.backgroundColor = UIColor.grayColor()
+        self.view.addSubview(eventLabel)
+        self.view.addSubview(eventTextField)
         
         
         
@@ -120,10 +125,18 @@ class EditScreen: UIViewController {
     
     @IBAction func saveButton(sender: UIBarButtonItem) {
     
+        //Save text in textfields to global data
+        for x in 0...numRun {
+            Global.events[event].RegisterArray[x].name = myTextFields[x].text!
+            
+        }
+        
+        
+        //save event name to global data
+        Global.events[event].EventName = eventTextField.text!
+        
         
         performSegueWithIdentifier("saveToTimerSegue", sender: self)
-    
-    
     
     
     }
