@@ -45,7 +45,7 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate {
         let cell = eventsTableView.dequeueReusableCellWithIdentifier("prototype1", forIndexPath: indexPath)
         
         //just a test what prints on each cell
-        cell.textLabel?.text = "\(indexPath.row)"
+        cell.textLabel?.text = Global.events[indexPath.row].EventName
         
         return cell
     }
@@ -128,8 +128,9 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate {
     let cancelText = "Cancel"
     
     let reset = { (action:UIAlertAction!) -> Void in
-        //global.events = []
-        //global.events.reloadData()
+        Global.currentEvent = 0
+        Global.events = []
+        //eventsTableView.reloadData()
     }
     
     @IBAction func deleteAll(sender: UIBarButtonItem) {
