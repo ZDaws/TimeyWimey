@@ -103,11 +103,11 @@ class Runner {
     func toCsv(){
         csv = name + "," + endTime + ","
         
-        if lapArray.count > 1 {
-            csv = csv + lapArray[0] + ","
+        if fLapArray.count > 1 {
+            csv = csv + fLapArray[0] + ","
             
-            for var i = 1 ; i < lapArray.count - 1 ; i++ {
-                csv = csv + lapArray[i] + ","
+            for var i = 1 ; i < fLapArray.count - 1 ; i++ {
+                csv = csv + fLapArray[i] + ","
             }
             
             
