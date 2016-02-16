@@ -14,7 +14,8 @@ class Runner {
     var name: String
     var endTime: String
     var lapArray: [String] = []
-    
+    var fLapArray: [String] = [] //the final array with all the proper time duration values, use in toCsv function
+    var csv = "" //Single string used to export into CSV file
 
     
     //This is the function that I use to change the strings that we get from the stopwatch to change them into NSDates
@@ -34,7 +35,6 @@ class Runner {
         return DateFormatter.stringFromDate(date)
     }
     
-    var csv = "" //Single string used to export into CSV file
     
     init(n: String)  {
         name = n
@@ -72,7 +72,7 @@ class Runner {
         //loop to go through the array to allow us to do arithmetic with it 
         for var i = 0 ; i < lapArray.count - 1; i++ {
             if i == 0 {
-                lapArray[i] = laps[i]
+                laps[i] = lapArray[i]
             }
                 //for the indexes in the array that will do the subractions with other elements of the array
             else if i < lapArray.count - 2 {
@@ -84,7 +84,7 @@ class Runner {
                 let lap = userCalendar.components(minCalendarUnit, fromDate: newTime, toDate: lastTime, options: [])
                 let finalDate = userCalendar.dateFromComponents(lap)
                 
-                lapArray[i] = toString(finalDate!)
+                fLapArray[i] = toString(finalDate!)
             }
                 //does the subtraction for the last index and the final end time to get the last indexes difference in time
             else {
@@ -92,7 +92,7 @@ class Runner {
                 let finalTime = toDate(endTime)
                 let lap = userCalendar.components(minCalendarUnit, fromDate: lastTime, toDate: finalTime, options: [])
                 let finalDate = userCalendar.dateFromComponents(lap)
-                lapArray[i] = toString(finalDate!)
+                fLapArray[i] = toString(finalDate!)
             }
         }
         
