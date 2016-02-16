@@ -12,12 +12,41 @@ class TimerScreen: UIViewController {
     
     //need one of these for every Runner
     
-    @IBOutlet weak var displayTimeLabel: UILabel!
     
     //Variables for finding the screen size
     var screenSize: CGRect = UIScreen.mainScreen().bounds
     var width: CGFloat = 0.0
     var height: CGFloat = 0.0
+    //Navigaiton bar height
+    let navBar: CGFloat = 60
+    //horizontal spacing between nav bar and text fields
+    let horz: CGFloat = 20
+    //vertical spacing between nav bar and text fields
+    let vert: CGFloat = 20
+    //button length
+    var buttonL = CGFloat()
+    //Label length
+    var labelL = CGFloat()
+    //current event
+    let event: Int = Global.currentEvent
+    //Timer label
+    var displayTimeLabel = UILabel()
+    //Runner labels
+    var labels:[UILabel] = []
+    //Lap buttons
+    //var lapButtons:[LapButton] = []
+    //Stop buttons
+    //var stopButtons:[StopButton] = []
+    //Runner and Button label height
+    var labelH = CGFloat()
+    //Timer label height
+    var timerLabelH = CGFloat()
+    //Number of runners
+    var numRun: Int = Global.events[Global.currentEvent].RegisterArray.count
+    
+    
+    
+    
     var timer: NSTimer = NSTimer()
     var startTime = NSTimeInterval()
     
@@ -28,14 +57,26 @@ class TimerScreen: UIViewController {
         //Set the screen size using variables screenSize, width, height
         width = screenSize.width
         height = screenSize.height
+        labelH = (height - ((vert * 3) + navBar + timerLabelH)) / CGFloat(numRun)
+        labelL = (3 * width) / 4
+        buttonL = width - (4 * horz)
         
         
-        
-        
-        
-        //Lay out all runners with lap and stop buttons from 120 pixels and down until 60 from the bottom
-        
-        
+        //layout screen
+        for x in 0...numRun {
+            
+            labels.append(UILabel(frame: CGRect(x: <#T##CGFloat#>, y: <#T##CGFloat#>, width: <#T##CGFloat#>, height: <#T##CGFloat#>)))
+            if x % 2 == 0   {
+                labels[x].backgroundColor = UIColor.blueColor()
+            } else {
+                labels[x].backgroundColor = UIColor.greenColor()
+            }
+            
+            
+            
+            
+        }
+            
         
         //Add a master clock at the top
         
