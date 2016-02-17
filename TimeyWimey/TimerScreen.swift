@@ -20,9 +20,9 @@ class TimerScreen: UIViewController {
     //Navigaiton bar height
     let navBar: CGFloat = 60
     //horizontal spacing between nav bar and text fields
-    let horz: CGFloat = 20
+    var horz = CGFloat()
     //vertical spacing between nav bar and text fields
-    let vert: CGFloat = 20
+    var vert = CGFloat()
     //button length
     var buttonL = CGFloat()
     //Label length
@@ -42,7 +42,7 @@ class TimerScreen: UIViewController {
     //Timer label height
     var timerLabelH = CGFloat()
     //Number of runners
-    var numRun: Int = Global.events[Global.currentEvent].RegisterArray.count
+    var numRun = Int()
     
     
     
@@ -54,34 +54,46 @@ class TimerScreen: UIViewController {
     
     
     override func viewDidLoad() {
+        numRun = Global.events[Global.currentEvent].RegisterArray.count
         //Set the screen size using variables screenSize, width, height
         width = screenSize.width
         height = screenSize.height
+        //1/10 of the height
+        timerLabelH = (height - navBar) / 10
+        //1/2 the screen width
+        labelL = ( 7 * width) / 10
+        //1/5 the screen width
+        buttonL = ( 1 * width) / 10
+        horz = (width - (labelL + (buttonL * 2))) / 4
+        vert = horz
         labelH = (height - ((vert * 3) + navBar + timerLabelH)) / CGFloat(numRun)
-        labelL = (3 * width) / 4
-        buttonL = width - (4 * horz)
+        
         
         
         //layout screen
-        for x in 0...numRun {
+        for (var x = 0 ; x < numRun ; x++) {
             
-            labels.append(UILabel(frame: CGRect(x: <#T##CGFloat#>, y: <#T##CGFloat#>, width: <#T##CGFloat#>, height: <#T##CGFloat#>)))
+            labels.append(UILabel(frame: CGRect(x: 3 * horz + buttonL * 2, y: (vert * 2) + timerLabelH + navBar + (CGFloat(x) * labelH), width: labelL, height: labelH)))
             if x % 2 == 0   {
                 labels[x].backgroundColor = UIColor.blueColor()
             } else {
                 labels[x].backgroundColor = UIColor.greenColor()
             }
-            
-            
-            
+            labels[x].text = Global.events[event].RegisterArray[x].name
+            labels[x].font = UIFont(name: labels[x].font!.fontName, size: (labelH * 2) / 3)
+            self.view.addSubview(labels[x])
             
         }
             
         
         //Add a master clock at the top
-        
-        
-        
+        displayTimeLabel = UILabel(frame: CGRect(x: width / 4, y: navBar + vert, width: width / 2, height: timerLabelH))
+        displayTimeLabel.backgroundColor = UIColor.blackColor()
+        displayTimeLabel.textColor = UIColor.whiteColor()
+        displayTimeLabel.font = UIFont(name: displayTimeLabel.font!.fontName, size: (timerLabelH * 2) / 3)
+        displayTimeLabel.text = "00:00:00"
+        displayTimeLabel.textAlignment = .Center
+        self.view.addSubview(displayTimeLabel)
         //Add start button that will disapear when pressed at the bottom
         
         
