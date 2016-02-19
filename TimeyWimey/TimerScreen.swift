@@ -41,6 +41,10 @@ class TimerScreen: UIViewController {
     var labelH = CGFloat()
     //Timer label height
     var timerLabelH = CGFloat()
+    //Start button height
+    //start button
+    var startButton = UIButton()
+    var startH = CGFloat()
     //Number of runners
     var numRun = Int()
     
@@ -60,13 +64,14 @@ class TimerScreen: UIViewController {
         height = screenSize.height
         //1/10 of the height
         timerLabelH = (height - navBar) / 10
+        startH = timerLabelH
         //1/2 the screen width
         labelL = ( 7 * width) / 10
         //1/5 the screen width
         buttonL = ( 1 * width) / 10
         horz = (width - (labelL + (buttonL * 2))) / 4
         vert = horz
-        labelH = (height - ((vert * 3) + navBar + timerLabelH)) / CGFloat(numRun)
+        labelH = (height - ((vert * 4) + navBar + timerLabelH + startH)) / CGFloat(numRun)
         
         
         
@@ -96,7 +101,13 @@ class TimerScreen: UIViewController {
         self.view.addSubview(displayTimeLabel)
         //Add start button that will disapear when pressed at the bottom
         
-        
+        startButton = UIButton(frame: CGRect(x: width / 4, y: navBar + (vert * 3) + timerLabelH + (labelH * CGFloat(numRun)), width: width / 2, height: startH))
+        startButton.backgroundColor = UIColor.greenColor()
+        startButton.setTitle("Start", forState: .Normal)
+        startButton.layer.cornerRadius = 10.0
+        startButton.clipsToBounds = true
+        startButton.addTarget(self, action: "start:", forControlEvents: .TouchUpInside)
+        self.view.addSubview(startButton)
         
     }
     
@@ -109,14 +120,15 @@ class TimerScreen: UIViewController {
     
     
     
-    func start(){
+    func start(button: UIButton)   {
+        print("Started")
         let aSelector : Selector = "updateTime"
         //makes a new timer where the time updates every .01 seconds
         timer = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: aSelector, userInfo: nil, repeats: true)
         startTime = NSDate.timeIntervalSinceReferenceDate()
     }
     
-    func lap(){
+    func lap()  {
         
     }
     
