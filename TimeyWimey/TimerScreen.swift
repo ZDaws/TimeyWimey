@@ -34,9 +34,9 @@ class TimerScreen: UIViewController {
     //Runner labels
     var labels:[UILabel] = []
     //Lap buttons
-    //var lapButtons:[LapButton] = []
+    var lapButtons:[CustomButton] = []
     //Stop buttons
-    //var stopButtons:[StopButton] = []
+    var stopButtons:[CustomButton] = []
     //Runner and Button label height
     var labelH = CGFloat()
     //Timer label height

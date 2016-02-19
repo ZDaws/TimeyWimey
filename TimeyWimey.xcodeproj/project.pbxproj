@@ -14,6 +14,7 @@
 		5610700F1C5FC56900219F77 /* EditScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5610700E1C5FC56900219F77 /* EditScreen.swift */; };
 		561A99F11C568AD300116701 /* TimerScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 561A99F01C568AD300116701 /* TimerScreen.swift */; };
 		563540741C4E9F990070F43E /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563540731C4E9F980070F43E /* MainScreen.swift */; };
+		567FFAAE1C777A97007B74A2 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567FFAAD1C777A97007B74A2 /* CustomButton.swift */; };
 		AB651EE71C4E9D760037AA33 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB651EE61C4E9D760037AA33 /* AppDelegate.swift */; };
 		AB651EEC1C4E9D760037AA33 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB651EEA1C4E9D760037AA33 /* Main.storyboard */; };
 		AB651EEE1C4E9D760037AA33 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB651EED1C4E9D760037AA33 /* Assets.xcassets */; };
@@ -46,6 +47,7 @@
 		5610700E1C5FC56900219F77 /* EditScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditScreen.swift; sourceTree = "<group>"; };
 		561A99F01C568AD300116701 /* TimerScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerScreen.swift; sourceTree = "<group>"; };
 		563540731C4E9F980070F43E /* MainScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
+		567FFAAD1C777A97007B74A2 /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		AB651EE31C4E9D760037AA33 /* TimeyWimey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeyWimey.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB651EE61C4E9D760037AA33 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AB651EEB1C4E9D760037AA33 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 				ABCE3C491C4FEDE40022B62C /* RunnerClass.swift */,
 				44FE81381C4FEE1D005FF1AD /* EventClass.swift */,
 				560A1FE41C6503E00083F017 /* CustomTextField.swift */,
+				567FFAAD1C777A97007B74A2 /* CustomButton.swift */,
 				5610700C1C5FBDFE00219F77 /* GlobalData.swift */,
 			);
 			path = TimeyWimey;
@@ -279,6 +282,7 @@
 			files = (
 				44B0BAD41C51468E00ED5841 /* RunnerClass.swift in Sources */,
 				5610700F1C5FC56900219F77 /* EditScreen.swift in Sources */,
+				567FFAAE1C777A97007B74A2 /* CustomButton.swift in Sources */,
 				561A99F11C568AD300116701 /* TimerScreen.swift in Sources */,
 				563540741C4E9F990070F43E /* MainScreen.swift in Sources */,
 				560A1FE51C6503E00083F017 /* CustomTextField.swift in Sources */,
