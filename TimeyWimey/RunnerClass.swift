@@ -38,7 +38,7 @@ class Runner {
     
     init(n: String)  {
         name = n
-        endTime = " 0:00:00"
+        endTime = "00:00:00"
     }
     
     
