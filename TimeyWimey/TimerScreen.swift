@@ -47,7 +47,8 @@ class TimerScreen: UIViewController {
     var startH = CGFloat()
     //Number of runners
     var numRun = Int()
-    
+    //If the timer has started     ***Maybe make started a global instance variable for event class***
+    var started = false
     
     
     
@@ -77,7 +78,7 @@ class TimerScreen: UIViewController {
         
         //layout screen
         for (var x = 0 ; x < numRun ; x++) {
-            
+            //Layout runners
             labels.append(UILabel(frame: CGRect(x: 3 * horz + buttonL * 2, y: (vert * 2) + timerLabelH + navBar + (CGFloat(x) * labelH), width: labelL, height: labelH)))
             if x % 2 == 0   {
                 labels[x].backgroundColor = UIColor.blueColor()
@@ -87,6 +88,20 @@ class TimerScreen: UIViewController {
             labels[x].text = Global.events[event].RegisterArray[x].name
             labels[x].font = UIFont(name: labels[x].font!.fontName, size: (labelH * 2) / 3)
             self.view.addSubview(labels[x])
+            
+            
+            //Layout lap buttons
+            lapButtons.append(CustomButton(frame: CGRect(x: (horz * 2) + buttonL , y: (vert * 2) + timerLabelH + navBar + (CGFloat(x) * labelH), width: buttonL, height: labelH), x, false))
+            lapButtons[x].backgroundColor = UIColor.blueColor()
+            lapButtons[x].titleLabel!.font = UIFont(name: labels[x].font!.fontName, size: (labelH * 2) / 3)
+            lapButtons[x].setTitle("Lap", forState: .Normal)
+            lapButtons[x].layer.cornerRadius = 10.0
+            lapButtons[x].clipsToBounds = true
+            
+            self.view.addSubview(lapButtons[x])
+            
+            //Layout stop buttons
+            
             
         }
             
@@ -101,14 +116,15 @@ class TimerScreen: UIViewController {
         self.view.addSubview(displayTimeLabel)
         //Add start button that will disapear when pressed at the bottom
         
-        startButton = UIButton(frame: CGRect(x: width / 4, y: navBar + (vert * 3) + timerLabelH + (labelH * CGFloat(numRun)), width: width / 2, height: startH))
-        startButton.backgroundColor = UIColor.greenColor()
-        startButton.setTitle("Start", forState: .Normal)
-        startButton.layer.cornerRadius = 10.0
-        startButton.clipsToBounds = true
-        startButton.addTarget(self, action: "start:", forControlEvents: .TouchUpInside)
-        self.view.addSubview(startButton)
-        
+        if numRun > 0   {
+            startButton = UIButton(frame: CGRect(x: width / 4, y: navBar + (vert * 3) + timerLabelH + (labelH * CGFloat(numRun)), width: width / 2, height: startH))
+            startButton.backgroundColor = UIColor.greenColor()
+            startButton.setTitle("Start", forState: .Normal)
+            startButton.layer.cornerRadius = 10.0
+            startButton.clipsToBounds = true
+            startButton.addTarget(self, action: "start:", forControlEvents: .TouchUpInside)
+            self.view.addSubview(startButton)
+        }
     }
     
     
@@ -121,11 +137,13 @@ class TimerScreen: UIViewController {
     
     
     func start(button: UIButton)   {
-        print("Started")
-        let aSelector : Selector = "updateTime"
-        //makes a new timer where the time updates every .01 seconds
-        timer = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: aSelector, userInfo: nil, repeats: true)
-        startTime = NSDate.timeIntervalSinceReferenceDate()
+        if started == false {
+            let aSelector : Selector = "updateTime"
+            //makes a new timer where the time updates every .01 seconds
+            timer = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: aSelector, userInfo: nil, repeats: true)
+            startTime = NSDate.timeIntervalSinceReferenceDate()
+            started = true
+        }
     }
     
     func lap()  {
