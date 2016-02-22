@@ -92,7 +92,7 @@ class EditScreen: UIViewController {
                 self.view.addSubview(myLabels[x])
             
                 myTextFields.append(CustomTextField(frame: frm, x))
-                myTextFields[x].font = UIFont(name: myTextFields[x].font!.fontName, size: (labelH * 2) / 3)
+                myTextFields[x].font = UIFont(name: "Courier New", size: (labelH * 2) / 3)
                 myTextFields[x].text = Global.events[event].RegisterArray[x].name
             
             
@@ -104,7 +104,7 @@ class EditScreen: UIViewController {
         
         frm = CGRect(x: width / 4 , y: NavBar + Vert, width: eventW, height: eventH)
         eventTextField = CustomTextField(frame: frm , 20)
-        eventTextField.font = UIFont(name: eventTextField.font!.fontName, size: (eventH * 2) / 3)
+        eventTextField.font = UIFont(name: "Courier New", size: (eventH * 2) / 3)
         eventTextField.text = Global.events[event].EventName
         eventLabel = UILabel(frame: frm)
         eventLabel.backgroundColor = UIColor.grayColor()

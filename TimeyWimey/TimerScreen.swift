@@ -86,14 +86,14 @@ class TimerScreen: UIViewController {
                 labels[x].backgroundColor = UIColor.greenColor()
             }
             labels[x].text = Global.events[event].RegisterArray[x].name
-            labels[x].font = UIFont(name: labels[x].font!.fontName, size: (labelH * 2) / 3)
+            labels[x].font = UIFont(name: "Courier New", size: (labelH * 2) / 3)
             self.view.addSubview(labels[x])
             
             
             //Layout lap buttons
             lapButtons.append(CustomButton(frame: CGRect(x: (horz * 2) + buttonL , y: (vert * 2) + timerLabelH + navBar + (CGFloat(x) * labelH), width: buttonL, height: labelH), x, false))
             lapButtons[x].backgroundColor = UIColor.blueColor()
-            lapButtons[x].titleLabel!.font = UIFont(name: labels[x].font!.fontName, size: (labelH * 2) / 3)
+            lapButtons[x].titleLabel!.font = UIFont(name: "Courier New", size: (labelH * 2) / 3)
             lapButtons[x].setTitle("Lap", forState: .Normal)
             lapButtons[x].layer.cornerRadius = 10.0
             lapButtons[x].clipsToBounds = true
@@ -110,7 +110,7 @@ class TimerScreen: UIViewController {
         displayTimeLabel = UILabel(frame: CGRect(x: width / 4, y: navBar + vert, width: width / 2, height: timerLabelH))
         displayTimeLabel.backgroundColor = UIColor.blackColor()
         displayTimeLabel.textColor = UIColor.whiteColor()
-        displayTimeLabel.font = UIFont(name: displayTimeLabel.font!.fontName, size: (timerLabelH * 2) / 3)
+        displayTimeLabel.font = UIFont(name: "Courier New", size: (timerLabelH * 2) / 3)
         displayTimeLabel.text = "00:00:00"
         displayTimeLabel.textAlignment = .Center
         self.view.addSubview(displayTimeLabel)
@@ -121,6 +121,7 @@ class TimerScreen: UIViewController {
             startButton.backgroundColor = UIColor.greenColor()
             startButton.setTitle("Start", forState: .Normal)
             startButton.layer.cornerRadius = 10.0
+            startButton.titleLabel!.font = UIFont(name: "Courier New", size: (timerLabelH * 2) / 3)
             startButton.clipsToBounds = true
             startButton.addTarget(self, action: "start:", forControlEvents: .TouchUpInside)
             self.view.addSubview(startButton)
