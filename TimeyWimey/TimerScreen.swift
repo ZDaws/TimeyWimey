@@ -63,13 +63,12 @@ class TimerScreen: UIViewController {
         //Set the screen size using variables screenSize, width, height
         width = screenSize.width
         height = screenSize.height
-        //1/10 of the height
         timerLabelH = (height - navBar) / 10
         startH = timerLabelH
-        //1/2 the screen width
+        //7/10 the screen width   ***Make sure lableL + 2 * buttonL < 1***
         labelL = ( 7 * width) / 10
-        //1/5 the screen width
-        buttonL = ( 1 * width) / 10
+        //1/10 the screen width
+        buttonL = ( 1.25 * width) / 10
         horz = (width - (labelL + (buttonL * 2))) / 4
         vert = horz
         labelH = (height - ((vert * 4) + navBar + timerLabelH + startH)) / CGFloat(numRun)
@@ -91,7 +90,7 @@ class TimerScreen: UIViewController {
             
             
             //Layout lap buttons
-            lapButtons.append(CustomButton(frame: CGRect(x: (horz * 2) + buttonL , y: (vert * 2) + timerLabelH + navBar + (CGFloat(x) * labelH), width: buttonL, height: labelH), x, false))
+            lapButtons.append(CustomButton(frame: CGRect(x: (horz * 2) + buttonL , y: (vert / CGFloat(1 + numRun)) + (vert * 2) + timerLabelH + navBar + (CGFloat(x) * labelH), width: buttonL, height: labelH - ((vert * 2) / CGFloat(1 + numRun))), x, false))
             lapButtons[x].backgroundColor = UIColor.blueColor()
             lapButtons[x].titleLabel!.font = UIFont(name: "Courier New", size: (labelH * 2) / 3)
             lapButtons[x].setTitle("Lap", forState: .Normal)
@@ -101,8 +100,14 @@ class TimerScreen: UIViewController {
             self.view.addSubview(lapButtons[x])
             
             //Layout stop buttons
+            stopButtons.append(CustomButton(frame: CGRect(x: (horz ) , y: (vert / CGFloat(1 + numRun)) + (vert * 2) + timerLabelH + navBar + (CGFloat(x) * labelH), width: buttonL, height: labelH - ((vert * 2) / CGFloat(1 + numRun))), x, true))
+            stopButtons[x].backgroundColor = UIColor.redColor()
+            stopButtons[x].titleLabel!.font = UIFont(name: labels[x].font!.fontName, size: (labelH * 2) / 3)
+            stopButtons[x].setTitle("Stop", forState: .Normal)
+            stopButtons[x].layer.cornerRadius = 10.0
+            stopButtons[x].clipsToBounds = true
             
-            
+            self.view.addSubview(stopButtons[x])
         }
             
         
@@ -114,8 +119,8 @@ class TimerScreen: UIViewController {
         displayTimeLabel.text = "00:00:00"
         displayTimeLabel.textAlignment = .Center
         self.view.addSubview(displayTimeLabel)
-        //Add start button that will disapear when pressed at the bottom
         
+        //Add start button that will disapear when pressed at the bottom
         if numRun > 0   {
             startButton = UIButton(frame: CGRect(x: width / 4, y: navBar + (vert * 3) + timerLabelH + (labelH * CGFloat(numRun)), width: width / 2, height: startH))
             startButton.backgroundColor = UIColor.greenColor()
