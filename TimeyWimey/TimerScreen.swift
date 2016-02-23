@@ -175,6 +175,15 @@ class TimerScreen: UIViewController {
         print("Stoped runner #\(button.numRunner)")
         
         
+        //lay a label over the stop and lap buttons
+        let coverLabel = UILabel(frame: CGRect(x: horz, y: navBar + (vert * 2) + timerLabelH + (labelH * CGFloat(button.numRunner)), width: (buttonL * 2) + horz, height: labelH))
+        coverLabel.backgroundColor = UIColor.greenColor()
+        coverLabel.text = "\(displayTimeLabel.text!)"
+        coverLabel.font = UIFont(name: "Courier New", size: (timerLabelH * 2) / 3)
+        coverLabel.textAlignment = .Center
+        
+        self.view.addSubview(coverLabel)
+        
         //If all runners == stop then...
         //timer.invalidate()
     }
