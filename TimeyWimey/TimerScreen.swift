@@ -96,6 +96,7 @@ class TimerScreen: UIViewController {
             lapButtons[x].setTitle("Lap", forState: .Normal)
             lapButtons[x].layer.cornerRadius = 10.0
             lapButtons[x].clipsToBounds = true
+            lapButtons[x].addTarget(self, action: "lap:", forControlEvents: .TouchUpInside)
             
             self.view.addSubview(lapButtons[x])
             
@@ -106,6 +107,7 @@ class TimerScreen: UIViewController {
             stopButtons[x].setTitle("Stop", forState: .Normal)
             stopButtons[x].layer.cornerRadius = 10.0
             stopButtons[x].clipsToBounds = true
+            stopButtons[x].addTarget(self, action: "stop:", forControlEvents: .TouchUpInside)
             
             self.view.addSubview(stopButtons[x])
         }
@@ -140,8 +142,9 @@ class TimerScreen: UIViewController {
     
     
     
-    
-    
+    /*Start Button
+    *
+    */
     func start(button: UIButton)   {
         if started == false {
             let aSelector : Selector = "updateTime"
@@ -152,14 +155,34 @@ class TimerScreen: UIViewController {
         }
     }
     
-    func lap()  {
+    /*Lap Button
+    *
+    */
+    func lap(button: CustomButton)  {
+        
+        print("\(displayTimeLabel.text!)")
+        Global.events[event].RegisterArray[button.numRunner].lapArray.append(displayTimeLabel.text!)
+        
         
     }
     
-    //only call the stop function when all of the runners have finished
-    func stop(){
-        timer.invalidate()
+    
+    /*Stop Button
+    *
+    */
+    func stop(button: CustomButton){
+        
+        print("Stoped runner #\(button.numRunner)")
+        
+        
+        //If all runners == stop then...
+        //timer.invalidate()
     }
+    
+    
+    
+    
+    
     func updateTime() {
         let currentTime = NSDate.timeIntervalSinceReferenceDate()
         
