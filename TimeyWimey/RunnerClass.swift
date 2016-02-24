@@ -15,7 +15,7 @@ class Runner {
     var endTime: String
     var lapArray: [String] = []
     var fLapArray: [String] = [] //the final array with all the proper time duration values, use in toCsv function
-    var csv: String   //Single string used to export into CSV file
+    var csv: String = ""   //Single string used to export into CSV file
 
     
     //This is the function that I use to change the strings that we get from the stopwatch to change them into NSDates

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4467C8B21C74D6EF00DD70A1 /* CSV .swift in Sources */ = {isa = PBXBuildFile; fileRef = 4467C8B11C74D6EF00DD70A1 /* CSV .swift */; };
 		44B0BAD41C51468E00ED5841 /* RunnerClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCE3C491C4FEDE40022B62C /* RunnerClass.swift */; };
 		44FE81391C4FEE1D005FF1AD /* EventClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FE81381C4FEE1D005FF1AD /* EventClass.swift */; };
 		560A1FE51C6503E00083F017 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560A1FE41C6503E00083F017 /* CustomTextField.swift */; };
@@ -42,7 +41,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		4467C8B11C74D6EF00DD70A1 /* CSV .swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CSV .swift"; sourceTree = "<group>"; };
 		44FE81381C4FEE1D005FF1AD /* EventClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventClass.swift; sourceTree = "<group>"; };
 		560A1FE41C6503E00083F017 /* CustomTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		5610700C1C5FBDFE00219F77 /* GlobalData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalData.swift; sourceTree = "<group>"; };
@@ -119,7 +117,6 @@
 				561A99F01C568AD300116701 /* TimerScreen.swift */,
 				AB651EEA1C4E9D760037AA33 /* Main.storyboard */,
 				AB651EED1C4E9D760037AA33 /* Assets.xcassets */,
-				4467C8B11C74D6EF00DD70A1 /* CSV .swift */,
 				AB651EEF1C4E9D760037AA33 /* LaunchScreen.storyboard */,
 				AB651EF21C4E9D760037AA33 /* Info.plist */,
 				ABCE3C491C4FEDE40022B62C /* RunnerClass.swift */,
@@ -291,7 +288,6 @@
 				560A1FE51C6503E00083F017 /* CustomTextField.swift in Sources */,
 				5610700D1C5FBDFE00219F77 /* GlobalData.swift in Sources */,
 				AB651EE71C4E9D760037AA33 /* AppDelegate.swift in Sources */,
-				4467C8B21C74D6EF00DD70A1 /* CSV .swift in Sources */,
 				44FE81391C4FEE1D005FF1AD /* EventClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

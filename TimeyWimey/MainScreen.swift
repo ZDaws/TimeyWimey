@@ -115,6 +115,32 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate {
         
     }
     
+    //File creation for the exported file 
+    
+    //variables necessary to createFile()
+    let fileName = "Events.csv"
+    let StartString = "Name,End Time,Lap\n,"
+    let tmpDir: NSString = NSTemporaryDirectory()
+    let contentsOfFile: String = ""
+    
+    func createFile() {
+        
+        let path = tmpDir.stringByAppendingPathComponent(fileName)
+        
+        
+        do {
+            try contentsOfFile.writeToFile(path, atomically: true, encoding: NSUTF8StringEncoding)
+            print("File Events.csv created at tmp directory")
+        } catch {
+            
+            print("Failed to create file")
+            print("\(error)")
+        }
+        
+        
+    }
+
+    
     
     
     /* Delete All Bar Button
