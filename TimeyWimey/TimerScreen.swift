@@ -170,10 +170,11 @@ class TimerScreen: UIViewController {
     /*Stop Button
     *
     */
+    var count = 0
     func stop(button: CustomButton){
-        
+        count++
         print("Stoped runner #\(button.numRunner)")
-        
+        print(Global.events[event].RegisterArray[button.numRunner].lapArray)
         
         //lay a label over the stop and lap buttons
         let coverLabel = UILabel(frame: CGRect(x: horz, y: navBar + (vert * 2) + timerLabelH + (labelH * CGFloat(button.numRunner)), width: (buttonL * 2) + horz, height: labelH))
@@ -184,8 +185,14 @@ class TimerScreen: UIViewController {
         
         self.view.addSubview(coverLabel)
         
-        //If all runners == stop then...
-        //timer.invalidate()
+        stopButtons[button.numRunner].removeFromSuperview()
+        lapButtons[button.numRunner].removeFromSuperview()
+        
+        //When count is equal to the number of runners when the stop button is pressed, the timer stops.
+        if(count == numRun){
+            timer.invalidate()
+        }
+
     }
     
     
