@@ -92,7 +92,7 @@ class TimerScreen: UIViewController {
             //Layout lap buttons
             lapButtons.append(CustomButton(frame: CGRect(x: (horz * 2) + buttonL , y: (vert / CGFloat(1 + numRun)) + (vert * 2) + timerLabelH + navBar + (CGFloat(x) * labelH), width: buttonL, height: labelH - ((vert * 2) / CGFloat(1 + numRun))), x, false))
             lapButtons[x].backgroundColor = UIColor.blueColor()
-            lapButtons[x].titleLabel!.font = UIFont(name: "Courier New", size: (labelH * 2) / 3)
+            lapButtons[x].titleLabel!.font = UIFont(name: "Courier New", size: 25)
             lapButtons[x].setTitle("Lap", forState: .Normal)
             lapButtons[x].layer.cornerRadius = 10.0
             lapButtons[x].clipsToBounds = true
@@ -103,7 +103,7 @@ class TimerScreen: UIViewController {
             //Layout stop buttons
             stopButtons.append(CustomButton(frame: CGRect(x: (horz ) , y: (vert / CGFloat(1 + numRun)) + (vert * 2) + timerLabelH + navBar + (CGFloat(x) * labelH), width: buttonL, height: labelH - ((vert * 2) / CGFloat(1 + numRun))), x, true))
             stopButtons[x].backgroundColor = UIColor.redColor()
-            stopButtons[x].titleLabel!.font = UIFont(name: labels[x].font!.fontName, size: (labelH * 2) / 3)
+            stopButtons[x].titleLabel!.font = UIFont(name: labels[x].font!.fontName, size: 25)
             stopButtons[x].setTitle("Stop", forState: .Normal)
             stopButtons[x].layer.cornerRadius = 10.0
             stopButtons[x].clipsToBounds = true
