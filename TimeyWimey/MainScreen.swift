@@ -115,6 +115,32 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate {
         
     }
     
+    //File creation for the exported file 
+    
+    //variables necessary to createFile()
+    let fileName = "Events.csv"
+    let StartString = "Name,End Time,Lap\n,"
+    let tmpDir: NSString = NSTemporaryDirectory()
+    let contentsOfFile: String = ""
+    
+    func createFile() {
+        
+        let path = tmpDir.stringByAppendingPathComponent(fileName)
+        
+        
+        do {
+            try contentsOfFile.writeToFile(path, atomically: true, encoding: NSUTF8StringEncoding)
+            print("File Events.csv created at tmp directory")
+        } catch {
+            
+            print("Failed to create file")
+            print("\(error)")
+        }
+        
+        
+    }
+
+    
     
     
     /* Delete All Bar Button
@@ -156,12 +182,12 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     /* Swipe to delete
     * Create an editing style that allows the user to swipe and delete an event
-    * Make a popup window appear and ask the user if they are sure they want to delete an event
     */
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == UITableViewCellEditingStyle.Delete {
-        //    laps.removeAtIndex(indexPath.row)
-        //    eventsTableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+            Global.events.removeAtIndex(indexPath.row)
+            rows = rows - 1 //rows must be reset so that the path stays the same in eventsTableView
+            eventsTableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
         }
     }
 
