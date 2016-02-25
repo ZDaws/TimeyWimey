@@ -48,7 +48,7 @@ class TimerScreen: UIViewController {
     //Number of runners
     var numRun = Int()
     //If the timer has started     ***Maybe make started a global instance variable for event class***
-    var started = false
+    //var started = false
     
     
     
@@ -89,27 +89,46 @@ class TimerScreen: UIViewController {
             self.view.addSubview(labels[x])
             
             
-            //Layout lap buttons
-            lapButtons.append(CustomButton(frame: CGRect(x: (horz * 2) + buttonL , y: (vert / CGFloat(1 + numRun)) + (vert * 2) + timerLabelH + navBar + (CGFloat(x) * labelH), width: buttonL, height: labelH - ((vert * 2) / CGFloat(1 + numRun))), x, false))
-            lapButtons[x].backgroundColor = UIColor.blueColor()
-            lapButtons[x].titleLabel!.font = UIFont(name: "Courier New", size: (labelH * 2) / 3)
-            lapButtons[x].setTitle("Lap", forState: .Normal)
-            lapButtons[x].layer.cornerRadius = 10.0
-            lapButtons[x].clipsToBounds = true
-            lapButtons[x].addTarget(self, action: "lap:", forControlEvents: .TouchUpInside)
+            if Global.events[event].isDone == false  {
             
-            self.view.addSubview(lapButtons[x])
+                //Layout lap buttons
+                lapButtons.append(CustomButton(frame: CGRect(x: (horz * 2) + buttonL , y: (vert / CGFloat(1 + numRun)) + (vert * 2) + timerLabelH + navBar + (CGFloat(x)    * labelH), width: buttonL, height: labelH - ((vert * 2) / CGFloat(1 + numRun))), x, false))
+                lapButtons[x].backgroundColor = UIColor.blueColor()
+                lapButtons[x].titleLabel!.font = UIFont(name: "Courier New", size: (labelH * 2) / 3)
+                lapButtons[x].setTitle("Lap", forState: .Normal)
+                lapButtons[x].layer.cornerRadius = 10.0
+                lapButtons[x].clipsToBounds = true
+                lapButtons[x].addTarget(self, action: "lap:", forControlEvents: .TouchUpInside)
             
-            //Layout stop buttons
-            stopButtons.append(CustomButton(frame: CGRect(x: (horz ) , y: (vert / CGFloat(1 + numRun)) + (vert * 2) + timerLabelH + navBar + (CGFloat(x) * labelH), width: buttonL, height: labelH - ((vert * 2) / CGFloat(1 + numRun))), x, true))
-            stopButtons[x].backgroundColor = UIColor.redColor()
-            stopButtons[x].titleLabel!.font = UIFont(name: labels[x].font!.fontName, size: (labelH * 2) / 3)
-            stopButtons[x].setTitle("Stop", forState: .Normal)
-            stopButtons[x].layer.cornerRadius = 10.0
-            stopButtons[x].clipsToBounds = true
-            stopButtons[x].addTarget(self, action: "stop:", forControlEvents: .TouchUpInside)
+                self.view.addSubview(lapButtons[x])
             
-            self.view.addSubview(stopButtons[x])
+                //Layout stop buttons
+                stopButtons.append(CustomButton(frame: CGRect(x: (horz ) , y: (vert / CGFloat(1 + numRun)) + (vert * 2) + timerLabelH + navBar + (CGFloat(x) * labelH), width: buttonL, height: labelH - ((vert * 2) / CGFloat(1 + numRun))), x, true))
+                stopButtons[x].backgroundColor = UIColor.redColor()
+                stopButtons[x].titleLabel!.font = UIFont(name: labels[x].font!.fontName, size: (labelH * 2) / 3)
+                stopButtons[x].setTitle("Stop", forState: .Normal)
+                stopButtons[x].layer.cornerRadius = 10.0
+                stopButtons[x].clipsToBounds = true
+                stopButtons[x].addTarget(self, action: "stop:", forControlEvents: .TouchUpInside)
+            
+                self.view.addSubview(stopButtons[x])
+            
+            } else {       //If the event is already done
+                
+                //Lay out green final time buttons
+                
+                let coverLabel = UILabel(frame: CGRect(x: horz, y: navBar + (vert * 2) + timerLabelH + (labelH * CGFloat(x)), width: (buttonL * 2) + horz, height: labelH))
+                coverLabel.backgroundColor = UIColor.greenColor()
+                coverLabel.text = "\(Global.events[event].RegisterArray[x].endTime)"
+                coverLabel.font = UIFont(name: "Courier New", size: (timerLabelH * 2) / 3)
+                coverLabel.textAlignment = .Center
+                
+                self.view.addSubview(coverLabel)
+                
+               
+                
+            }
+            
         }
             
         
@@ -118,7 +137,7 @@ class TimerScreen: UIViewController {
         displayTimeLabel.backgroundColor = UIColor.blackColor()
         displayTimeLabel.textColor = UIColor.whiteColor()
         displayTimeLabel.font = UIFont(name: "Courier New", size: (timerLabelH * 2) / 3)
-        displayTimeLabel.text = "00:00:00"
+        displayTimeLabel.text = Global.events[event].finalTime
         displayTimeLabel.textAlignment = .Center
         self.view.addSubview(displayTimeLabel)
         
@@ -146,12 +165,13 @@ class TimerScreen: UIViewController {
     *
     */
     func start(button: UIButton)   {
-        if started == false {
+        if Global.events[event].isTiming == false && Global.events[event].isDone == false  {
             let aSelector : Selector = "updateTime"
             //makes a new timer where the time updates every .01 seconds
             timer = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: aSelector, userInfo: nil, repeats: true)
             startTime = NSDate.timeIntervalSinceReferenceDate()
-            started = true
+            Global.events[event].isTiming = true
+            
         }
     }
     
@@ -191,7 +211,12 @@ class TimerScreen: UIViewController {
         //When count is equal to the number of runners when the stop button is pressed, the timer stops.
         if(count == numRun){
             timer.invalidate()
+            Global.events[event].isDone = true
+            Global.events[event].isTiming = false
+            Global.events[event].finalTime = displayTimeLabel.text!
         }
+        
+        Global.events[event].RegisterArray[button.numRunner].endTime = "\(displayTimeLabel.text!)"
 
     }
     
@@ -240,8 +265,9 @@ class TimerScreen: UIViewController {
     
     
     @IBAction func editButton(sender: UIBarButtonItem) {
-        performSegueWithIdentifier("timerToSaveSegue", sender: self)
-        
+        if Global.events[event].isTiming == false  {
+            performSegueWithIdentifier("timerToSaveSegue", sender: self)
+        }
     }
     
     

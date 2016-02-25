@@ -15,13 +15,18 @@ class Event {
     var EventName: String = ""
     var RegisterArray: [Runner] = []
     var isOpen: Bool //if this boolean is read in as a true boolean then the event is an open race
-    
+    var isTiming: Bool
+    var isDone: Bool
+    var finalTime: String
     
     //functions
     
     init(name: String, typeOpen: Bool ) {
         EventName = "New Event"
         isOpen = typeOpen
+        isDone = false
+        isTiming = false
+        finalTime = "00:00:00"
         if isOpen == true {
             for var i = 0 ; i < 10 ; i++ {
                 RegisterArray.append(Runner(n: "New Runner"))
