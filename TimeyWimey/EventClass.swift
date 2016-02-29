@@ -18,6 +18,8 @@ class Event {
     var isTiming: Bool
     var isDone: Bool
     var finalTime: String
+    var timer: NSTimer = NSTimer()
+    var displayTimeLabel = UILabel()
     
     //functions
     
