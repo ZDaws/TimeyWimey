@@ -149,21 +149,27 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate {
     */
     
     let alertTitle2 = "Are you sure you want to delete all events?"
-    let message2 = "You won't be able to get them back!"
+    let message2 = "All ongoing events will be stopped"
     let okText = "OK"
     let cancelText = "Cancel"
     
-    let reset = { (action:UIAlertAction!) -> Void in
-        Global.currentEvent = 0
-        Global.events = []
-        //eventsTableView.reloadData()
-    }
     
     @IBAction func deleteAll(sender: UIBarButtonItem) {
         let alert = UIAlertController(title: alertTitle2, message: message2, preferredStyle: UIAlertControllerStyle.Alert)
         let cancelButton = UIAlertAction(title: cancelText, style: UIAlertActionStyle.Cancel, handler: nil) //cancels
         alert.addAction(cancelButton)
-        let okButton = UIAlertAction(title: okText, style: UIAlertActionStyle.Destructive, handler: reset) //calls
+        let okButton = UIAlertAction(title: okText, style: UIAlertActionStyle.Destructive) {
+            UIAlertAction in
+            //stop the timer for each runner incase the user decides to delete all events while an event is still running
+            for var i = 0 ; i < Global.events.count ; i++ {
+                Global.events[i].timer.invalidate()
+            }
+            Global.currentEvent = 0
+            Global.events = []
+            self.rows = 0
+            self.eventsTableView.reloadData()
+
+        }//calls
         alert.addAction(okButton)
         
         presentViewController(alert, animated: true, completion: nil)
