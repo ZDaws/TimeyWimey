@@ -41,6 +41,8 @@ class EditScreen: UIViewController {
     //Event textfield and label
     var eventTextField = CustomTextField(frame: CGRect(), 0)
     var eventLabel = UILabel()
+    //Max characters in the textfield
+    var maxChar = Int(10)
     
     
     /* Load View
@@ -59,7 +61,7 @@ class EditScreen: UIViewController {
 
         }
         
-        
+     
         
         
         
@@ -68,6 +70,13 @@ class EditScreen: UIViewController {
         height = screenSize.height
         eventH = (height - NavBar) / 10
         eventW = width / 2
+        labelH = (height - (eventH + NavBar + Vert * 3)) / 10
+        
+        
+        //Find the max characters can fit on the next screen
+        maxChar = Int(((width - (Horz * 2)) / ((labelH * 2 * 3) / (3 * 5))))
+        
+        
         
         //Create and display textfields with backgrounds
         if Global.events[event].isOpen == true  {
@@ -81,7 +90,7 @@ class EditScreen: UIViewController {
         }
         
         for x in 0...numRun {
-                labelH = (height - (eventH + NavBar + Vert * 3)) / 10
+                
                 frm = CGRect(x: Horz, y: (NavBar + (Vert * 2) + eventH) + (labelH * CGFloat(x)), width: width - 2 * Horz, height: labelH)
                 myLabels.append(UILabel(frame: frm ))
                 if x % 2 == 0   {
@@ -94,7 +103,8 @@ class EditScreen: UIViewController {
                 myTextFields.append(CustomTextField(frame: frm, x))
                 myTextFields[x].font = UIFont(name: "Courier New", size: (labelH * 2) / 3)
                 myTextFields[x].text = Global.events[event].RegisterArray[x].name
-            
+                myTextFields[x].clearsOnBeginEditing = true
+                myTextFields[x].addTarget(self, action: "textFieldUnselected:", forControlEvents: .EditingDidEnd)
             
                 self.view.addSubview(myTextFields[x])
         
@@ -118,18 +128,18 @@ class EditScreen: UIViewController {
     }
     
     
-    /*Text field Unselected
+    /*  Text field Unselected
     * This function will be called when the user unselects a certain text field
-    * the text inside should be saved to that runner's name.  If “New Runner” or “” is in the text field
-    * save that runner’s name as nil.  To link each text field to this function we need to call
-    * .addTarget(self, action: "textFieldUnselected:", forControlEvents: .EditingDidEnd)
-    *To find which textField was selected create a CustomTextField class and add one instance variable that represents which
-    * text field was selected.
-    * Then use sender.num to select where the text will be saved
-    * (ex: Global.events[currentEvent].runners[sender.num] = sender.text
+    * If the text extends past the text field length cut the excess string off
     */
     
     func textFieldUnselected(sender: UITextField) {
+        
+        if sender.text?.characters.count >= maxChar + 1  {
+            while sender.text?.characters.count >= maxChar + 1 {
+                sender.text!.removeAtIndex(sender.text!.endIndex.predecessor())
+            }
+        }
         
         
     }
@@ -167,8 +177,8 @@ class EditScreen: UIViewController {
 
     
     
-    /*
-    *
+    /* Segue to timer
+    * Before the segue each string in each text field will be saved into an array of runners
     * If open remove a runner from the Register array is their name is "New Event" or ""
     */
     
