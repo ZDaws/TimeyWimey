@@ -77,10 +77,9 @@ class TimerScreen: UIViewController {
         vert = horz
         
         
-        
-        
         labelH = (buttonL / 4) * (50.0 / 31.0) * (3.0 / 2.0)
         
+        //If the total space of the runner labels is to long make it fit according to the screen
         labelSpace = labelH * CGFloat(numRun)
         if labelSpace >= (height - ((vert * 4) + navBar + timerLabelH + startH))    {
             labelH = (height - ((vert * 4) + navBar + timerLabelH + startH)) / CGFloat(numRun)
