@@ -47,7 +47,8 @@ class TimerScreen: UIViewController {
     var startH = CGFloat()
     //Number of runners
     var numRun = Int()
-
+    //Runner Labels total space
+    var labelSpace = CGFloat()
     
     
     
@@ -74,10 +75,17 @@ class TimerScreen: UIViewController {
         buttonL = ( 1.25 * width) / 10
         horz = (width - (labelL + (buttonL * 2))) / 4
         vert = horz
-        labelH = (height - ((vert * 4) + navBar + timerLabelH + startH)) / CGFloat(numRun)
         
         
         
+        
+        labelH = (buttonL / 4) * (50.0 / 31.0) * (3.0 / 2.0)
+        
+        labelSpace = labelH * CGFloat(numRun)
+        if labelSpace >= (height - ((vert * 4) + navBar + timerLabelH + startH))    {
+            labelH = (height - ((vert * 4) + navBar + timerLabelH + startH)) / CGFloat(numRun)
+            
+        }
         //layout screen
         for (var x = 0 ; x < numRun ; x++) {
             //Layout runners
@@ -102,6 +110,7 @@ class TimerScreen: UIViewController {
                 lapButtons[x].layer.cornerRadius = 10.0
                 lapButtons[x].clipsToBounds = true
                 lapButtons[x].addTarget(self, action: "lap:", forControlEvents: .TouchUpInside)
+                
             
                 self.view.addSubview(lapButtons[x])
             
@@ -146,7 +155,7 @@ class TimerScreen: UIViewController {
         
         //Add start button that will disapear when pressed at the bottom
         if numRun > 0   {
-            startButton = UIButton(frame: CGRect(x: width / 4, y: navBar + (vert * 3) + timerLabelH + (labelH * CGFloat(numRun)), width: width / 2, height: startH))
+            startButton = UIButton(frame: CGRect(x: width / 4, y: height - (vert + startH), width: width / 2, height: startH))
             startButton.backgroundColor = UIColor.greenColor()
             startButton.setTitle("Start", forState: .Normal)
             startButton.layer.cornerRadius = 10.0
@@ -170,7 +179,7 @@ class TimerScreen: UIViewController {
     
     
     
-    /*Start Button
+    /*Start Button Action
     *
     */
     func start(button: UIButton)   {
