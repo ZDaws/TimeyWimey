@@ -9,6 +9,8 @@
 import Foundation
 
 struct Global {
+    //Events array that stores all of our data
     static var events: [Event] = []
+    //This is used to load data on the timer and edit screen
     static var currentEvent: Int = 0
 }
