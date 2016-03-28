@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EditScreen: UIViewController {
+class EditScreen: UIViewController{
     
     
     //Variables for finding the screen size

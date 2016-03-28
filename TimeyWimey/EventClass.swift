@@ -41,4 +41,34 @@ class Event {
         }
     }
     
+    init(coder aDecoder: NSCoder!){
+        self.EventName = aDecoder.decodeObjectForKey("eventname") as! String
+        self.isOpen = aDecoder.decodeBoolForKey("isopen")
+        self.isTiming = aDecoder.decodeBoolForKey("istiming")
+        self.isDone = aDecoder.decodeBoolForKey("isdone")
+        self.finalTime = aDecoder.decodeObjectForKey("finaltime") as! String
+    }
+    
+    func initWithCoder(coder aDecoder: NSCoder) -> Event {
+        self.EventName = aDecoder.decodeObjectForKey("eventname") as! String
+        self.isOpen = aDecoder.decodeBoolForKey("isopen")
+        self.isTiming = aDecoder.decodeBoolForKey("istiming")
+        self.isDone = aDecoder.decodeBoolForKey("isdone")
+        self.finalTime = aDecoder.decodeObjectForKey("finaltime") as! String
+        return self
+    }
+    
+    func encodeWithCoder(aCoder: NSCoder!) {
+        aCoder.encodeObject(EventName, forKey: "eventname")
+        aCoder.encodeObject(RegisterArray, forKey: "registerarray")
+        aCoder.encodeObject(isOpen, forKey: "isopen")
+        aCoder.encodeObject(isTiming, forKey: "istiming")
+        aCoder.encodeObject(isDone, forKey: "isdone")
+        aCoder.encodeObject(finalTime, forKey: "finaltime")
+        aCoder.encodeObject(timer, forKey: "timer")
+        aCoder.encodeObject(displayTimeLabel, forKey: "displaytimelabel")
+        
+    }
+    
 }
+

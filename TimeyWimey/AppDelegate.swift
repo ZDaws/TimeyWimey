@@ -15,9 +15,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        //Override point for customization after application launch.
+        //Load the events that were saved when application was terminated
+        Global.events = retrieveEventArray("events")
         return true
-    }
+    }   
 
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -27,6 +29,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        storeEventArray("events", valArray: Global.events)
+        
+        
+        
+//        let defaults = NSUserDefaults.standardUserDefaults()
+//        for var i = 0 ; i < Global.events.count ; i++ {
+//            let encodedEventName = NSKeyedArchiver.archivedDataWithRootObject(Global.events[i].EventName)
+//            let encodedRegisterArray = NSKeyedArchiver.archivedDataWithRootObject(Global.events[i].RegisterArray)
+//            let encodedisOpen = NSKeyedArchiver.archivedDataWithRootObject(Global.events[i].isOpen)
+//            let encodedisTiming = NSKeyedArchiver.archivedDataWithRootObject(Global.events[i].isTiming)
+//            let encodedisDone = NSKeyedArchiver.archivedDataWithRootObject(Global.events[i].isDone)
+//            let encodedfinalTime = NSKeyedArchiver.archivedDataWithRootObject(Global.events[i].finalTime)
+//            let encodedtimer = NSKeyedArchiver.archivedDataWithRootObject(Global.events[i].timer)
+//            let encodeddisplayTimeLabel = NSKeyedArchiver.archivedDataWithRootObject(Global.events[i].displayTimeLabel)
+//            var encodedArray : [NSData] = [encodedEventName, encodedRegisterArray, encodedisOpen, encodedisTiming,encodedisDone, encodedfinalTime, encodedtimer, encodeddisplayTimeLabel]
+//            defaults.setObject(encodedArray, forKey: "eventItem")
+//            defaults.synchronize()
+//        }
     }
 
     func applicationWillEnterForeground(application: UIApplication) {

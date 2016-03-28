@@ -21,6 +21,7 @@
 		AB651EF11C4E9D760037AA33 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB651EEF1C4E9D760037AA33 /* LaunchScreen.storyboard */; };
 		AB651EFC1C4E9D760037AA33 /* TimeyWimeyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB651EFB1C4E9D760037AA33 /* TimeyWimeyTests.swift */; };
 		AB651F071C4E9D760037AA33 /* TimeyWimeyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB651F061C4E9D760037AA33 /* TimeyWimeyUITests.swift */; };
+		AB6968F21C9713AC00FF8AE3 /* DataProcessing.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6968F11C9713AC00FF8AE3 /* DataProcessing.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		AB651F021C4E9D760037AA33 /* TimeyWimeyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TimeyWimeyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB651F061C4E9D760037AA33 /* TimeyWimeyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeyWimeyUITests.swift; sourceTree = "<group>"; };
 		AB651F081C4E9D760037AA33 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AB6968F11C9713AC00FF8AE3 /* DataProcessing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataProcessing.swift; sourceTree = "<group>"; };
 		ABCE3C491C4FEDE40022B62C /* RunnerClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunnerClass.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -124,6 +126,7 @@
 				560A1FE41C6503E00083F017 /* CustomTextField.swift */,
 				567FFAAD1C777A97007B74A2 /* CustomButton.swift */,
 				5610700C1C5FBDFE00219F77 /* GlobalData.swift */,
+				AB6968F11C9713AC00FF8AE3 /* DataProcessing.swift */,
 			);
 			path = TimeyWimey;
 			sourceTree = "<group>";
@@ -289,6 +292,7 @@
 				5610700D1C5FBDFE00219F77 /* GlobalData.swift in Sources */,
 				AB651EE71C4E9D760037AA33 /* AppDelegate.swift in Sources */,
 				44FE81391C4FEE1D005FF1AD /* EventClass.swift in Sources */,
+				AB6968F21C9713AC00FF8AE3 /* DataProcessing.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

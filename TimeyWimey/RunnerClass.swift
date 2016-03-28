@@ -41,7 +41,24 @@ class Runner {
         endTime = "00:00:00"
     }
     
+//    required init(coder aDecoder: NSCoder){
+//        self.name = aDecoder.decodeObjectForKey("name") as! String
+//        self.endTime = aDecoder.decodeObjectForKey("endtime") as! String
+//        self.lapArray = aDecoder.decodeObjectForKey("laparray") as! [String]
+//        self.fLapArray = aDecoder.decodeObjectForKey("flaparray") as! [String]
+//        self.csv = aDecoder.decodeObjectForKey("csv") as! String
+//    }
+//    
+//    func encodeWithCoder(aCoder: NSCoder!) {
+//        aCoder.encodeObject(name, forKey: "name")
+//        aCoder.encodeObject(endTime, forKey: "endtime")
+//        aCoder.encodeObject(lapArray, forKey: "laparray")
+//        aCoder.encodeObject(fLapArray, forKey: "flaparray")
+//        aCoder.encodeObject(csv, forKey: "csv")
+//    }
     
+    //let myRunner = NSKeyedArchiver.archivedDataWithRootObject(Runner)
+
     
     
     

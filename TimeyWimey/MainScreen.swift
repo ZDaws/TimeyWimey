@@ -25,6 +25,7 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     
     override func viewDidLoad() {
+
         //Set current # of rows to the number of current events
         rows = Global.events.count
         print("\(Global.events.count)")
