@@ -17,7 +17,6 @@ class EditScreen: UIViewController {
     var height: CGFloat = 0.0
     //var currentEvent: Int
     var myTextFields: [CustomTextField] = []
-    var myLabels: [UILabel] = []
     //Navigaiton bar height
     let NavBar: CGFloat = 60
     //horizontal spacing between nav bar and text fields
@@ -40,7 +39,6 @@ class EditScreen: UIViewController {
     var eventW: CGFloat = 0
     //Event textfield and label
     var eventTextField = CustomTextField(frame: CGRect(), 0)
-    var eventLabel = UILabel()
     //Max characters in the textfield
     var maxChar = Int(10)
     
@@ -89,16 +87,20 @@ class EditScreen: UIViewController {
             
         }
         
+        //Background layer
+        if Global.events[event].isOpen == true {
+            let background = UILabel(frame: CGRect(x: Horz - 1, y: eventH + NavBar + (Vert * 2) - 0.5, width: width - (2 * Horz) + 2, height: (labelH * 10) + 1))
+            background.backgroundColor = UIColor.blackColor()
+            self.view.addSubview(background)
+        }   else    {
+            let background = UILabel(frame: CGRect(x: Horz - 1, y: eventH + NavBar + (Vert * 2) - 0.5, width: width - (2 * Horz) + 2, height: (labelH * 4) + 1))
+            background.backgroundColor = UIColor.blackColor()
+            self.view.addSubview(background)
+            
+        }
         for x in 0...numRun {
                 
-                frm = CGRect(x: Horz, y: (NavBar + (Vert * 2) + eventH) + (labelH * CGFloat(x)), width: width - 2 * Horz, height: labelH)
-                myLabels.append(UILabel(frame: frm ))
-                if x % 2 == 0   {
-                    myLabels[x].backgroundColor = UIColor.blueColor()
-                } else {
-                    myLabels[x].backgroundColor = UIColor.greenColor()
-                }
-                self.view.addSubview(myLabels[x])
+                frm = CGRect(x: Horz, y: (NavBar + (Vert * 2) + eventH) + (labelH * CGFloat(x)) + 1, width: width - 2 * Horz, height: labelH - 2)
             
                 myTextFields.append(CustomTextField(frame: frm, x))
                 myTextFields[x].font = UIFont(name: "Courier New", size: (labelH * 2) / 3)
@@ -106,9 +108,18 @@ class EditScreen: UIViewController {
                 myTextFields[x].clearsOnBeginEditing = true
                 myTextFields[x].addTarget(self, action: "textFieldUnselected:", forControlEvents: .EditingDidEnd)
             
+            
+                if x % 2 == 0   {
+                    myTextFields[x].backgroundColor = UIColor(red: 0, green: 0.4157, blue: 1, alpha: 1.0)
+                } else {
+                    myTextFields[x].backgroundColor = UIColor(red: 0, green: 0.898, blue: 0.0118, alpha: 1.0)
+                }
+            
                 self.view.addSubview(myTextFields[x])
         
         }
+        
+        
         
         //Create the event name textfield
         
@@ -116,9 +127,11 @@ class EditScreen: UIViewController {
         eventTextField = CustomTextField(frame: frm , 20)
         eventTextField.font = UIFont(name: "Courier New", size: (eventH * 2) / 3)
         eventTextField.text = Global.events[event].EventName
-        eventLabel = UILabel(frame: frm)
-        eventLabel.backgroundColor = UIColor.grayColor()
-        self.view.addSubview(eventLabel)
+        eventTextField.textAlignment = .Center
+        eventTextField.backgroundColor = UIColor.blackColor()
+        eventTextField.textColor = UIColor.whiteColor()
+        eventTextField.layer.cornerRadius = 20.0
+        eventTextField.clipsToBounds = true
         self.view.addSubview(eventTextField)
         
         

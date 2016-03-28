@@ -98,14 +98,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="texture_blue_background_patterns_50462_2560x1440.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="PII-4U-drd">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
                             <navigationBar contentMode="scaleToFill" placeholderIntrinsicWidth="600" placeholderIntrinsicHeight="60" translatesAutoresizingMaskIntoConstraints="NO" id="pDV-a6-jeY">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="fAP-hh-5oG"/>
                                 </constraints>
+                                <color key="barTintColor" red="0.36793533099999998" green="0.64035926529999998" blue="0.67791193179999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <items>
                                     <navigationItem title="Edit Event" id="w94-sc-HgD">
                                         <barButtonItem key="rightBarButtonItem" title="Save" id="txP-dX-yxX">
+                                            <color key="tintColor" red="0.00013663255830000001" green="0.26790067080000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
                                                 <action selector="saveButton:" destination="XuH-lM-FOg" id="5nS-OU-nIU"/>
                                             </connections>
@@ -117,8 +122,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="pDV-a6-jeY" secondAttribute="trailing" constant="-20" id="2uZ-hP-Ree"/>
+                            <constraint firstItem="PII-4U-drd" firstAttribute="top" secondItem="FU1-sg-fUX" secondAttribute="topMargin" id="M5f-uI-bTP"/>
                             <constraint firstItem="pDV-a6-jeY" firstAttribute="top" secondItem="FU1-sg-fUX" secondAttribute="topMargin" id="Nsm-uP-jIR"/>
+                            <constraint firstItem="PII-4U-drd" firstAttribute="leading" secondItem="FU1-sg-fUX" secondAttribute="leadingMargin" constant="-20" id="fhz-Eh-KHv"/>
+                            <constraint firstItem="f2P-Ti-OZj" firstAttribute="top" secondItem="PII-4U-drd" secondAttribute="bottom" id="jfQ-8v-BhT"/>
                             <constraint firstItem="pDV-a6-jeY" firstAttribute="leading" secondItem="FU1-sg-fUX" secondAttribute="leadingMargin" constant="-20" id="kQk-9m-2Fj"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="PII-4U-drd" secondAttribute="trailing" constant="-20" id="xN2-jC-hg2"/>
                         </constraints>
                     </view>
                     <connections>
@@ -141,19 +150,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="texture_blue_background_patterns_50462_2560x1440.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="5Au-WY-cr5">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
                             <navigationBar contentMode="scaleToFill" placeholderIntrinsicWidth="600" placeholderIntrinsicHeight="60" translatesAutoresizingMaskIntoConstraints="NO" id="oYr-1w-DHn">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="Stt-uL-WBj"/>
                                 </constraints>
+                                <color key="barTintColor" red="0.36793533099482045" green="0.64035926530438381" blue="0.67791193181818188" alpha="1" colorSpace="calibratedRGB"/>
                                 <items>
                                     <navigationItem title="Event Name" id="y9Q-Ci-VLk">
                                         <barButtonItem key="leftBarButtonItem" title="Back" id="7BU-Tg-sAt">
+                                            <color key="tintColor" red="0.00013663255830000001" green="0.26790067080000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
                                                 <action selector="backToMain:" destination="Fax-HM-afL" id="uCu-du-uKB"/>
                                             </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="Edit" id="RGK-0a-Blm">
+                                            <color key="tintColor" red="0.00013663255830000001" green="0.26790067080000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
                                                 <action selector="editButton:" destination="Fax-HM-afL" id="uN3-aD-QFe"/>
                                             </connections>
@@ -166,7 +181,11 @@
                         <constraints>
                             <constraint firstItem="oYr-1w-DHn" firstAttribute="leading" secondItem="2gr-9t-m99" secondAttribute="leadingMargin" constant="-20" id="2oG-eJ-25E"/>
                             <constraint firstAttribute="trailingMargin" secondItem="oYr-1w-DHn" secondAttribute="trailing" constant="-20" id="Rxs-Qy-IZS"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="5Au-WY-cr5" secondAttribute="trailing" constant="-20" id="ezR-0B-RhW"/>
+                            <constraint firstItem="8hK-O5-PGa" firstAttribute="top" secondItem="5Au-WY-cr5" secondAttribute="bottom" id="jmW-jV-3Fn"/>
+                            <constraint firstItem="5Au-WY-cr5" firstAttribute="top" secondItem="2gr-9t-m99" secondAttribute="topMargin" id="nBj-qC-upE"/>
                             <constraint firstItem="oYr-1w-DHn" firstAttribute="top" secondItem="2gr-9t-m99" secondAttribute="topMargin" id="q16-A2-I28"/>
+                            <constraint firstItem="5Au-WY-cr5" firstAttribute="leading" secondItem="2gr-9t-m99" secondAttribute="leadingMargin" constant="-20" id="yf5-RU-uGc"/>
                         </constraints>
                     </view>
                     <connections>
@@ -179,8 +198,11 @@
             <point key="canvasLocation" x="1178" y="1263"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="texture_blue_background_patterns_50462_2560x1440.jpg" width="2560" height="1440"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Y9k-0b-uFL"/>
-        <segue reference="uSv-D6-srO"/>
+        <segue reference="9uF-68-anw"/>
     </inferredMetricsTieBreakers>
 </document>
