@@ -86,18 +86,12 @@ class EditScreen: UIViewController {
             numRun = 3
             
         }
-        
         //Background layer
-        if Global.events[event].isOpen == true {
-            let background = UILabel(frame: CGRect(x: Horz - 1, y: eventH + NavBar + (Vert * 2) - 0.5, width: width - (2 * Horz) + 2, height: (labelH * 10) + 1))
-            background.backgroundColor = UIColor.blackColor()
-            self.view.addSubview(background)
-        }   else    {
-            let background = UILabel(frame: CGRect(x: Horz - 1, y: eventH + NavBar + (Vert * 2) - 0.5, width: width - (2 * Horz) + 2, height: (labelH * 4) + 1))
-            background.backgroundColor = UIColor.blackColor()
-            self.view.addSubview(background)
-            
-        }
+        let background = UILabel(frame: CGRect(x: Horz - 1, y: eventH + NavBar + (Vert * 2) - 0.5, width: width - (2 * Horz) + 2, height: (labelH * CGFloat(numRun + 1)) + 1))
+        background.backgroundColor = UIColor.blackColor()
+        self.view.addSubview(background)
+      
+        //Textfields
         for x in 0...numRun {
                 
                 frm = CGRect(x: Horz, y: (NavBar + (Vert * 2) + eventH) + (labelH * CGFloat(x)) + 1, width: width - 2 * Horz, height: labelH - 2)
@@ -122,7 +116,6 @@ class EditScreen: UIViewController {
         
         
         //Create the event name textfield
-        
         frm = CGRect(x: width / 4 , y: NavBar + Vert, width: eventW, height: eventH)
         eventTextField = CustomTextField(frame: frm , 20)
         eventTextField.font = UIFont(name: "Courier New", size: (eventH * 2) / 3)

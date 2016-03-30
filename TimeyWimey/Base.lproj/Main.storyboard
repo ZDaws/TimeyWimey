@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1605" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1713" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -98,7 +98,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="texture_blue_background_patterns_50462_2560x1440.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="PII-4U-drd">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="texture_blue_background_patterns_50462_2560x1440" translatesAutoresizingMaskIntoConstraints="NO" id="PII-4U-drd">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
                             <navigationBar contentMode="scaleToFill" placeholderIntrinsicWidth="600" placeholderIntrinsicHeight="60" translatesAutoresizingMaskIntoConstraints="NO" id="pDV-a6-jeY">
@@ -150,7 +150,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="texture_blue_background_patterns_50462_2560x1440.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="5Au-WY-cr5">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="texture_blue_background_patterns_50462_2560x1440" translatesAutoresizingMaskIntoConstraints="NO" id="5Au-WY-cr5">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
                             <navigationBar contentMode="scaleToFill" placeholderIntrinsicWidth="600" placeholderIntrinsicHeight="60" translatesAutoresizingMaskIntoConstraints="NO" id="oYr-1w-DHn">
@@ -189,6 +189,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="eventTitle" destination="y9Q-Ci-VLk" id="ky1-9T-tFQ"/>
                         <segue destination="XuH-lM-FOg" kind="show" identifier="timerToSaveSegue" animates="NO" id="uSv-D6-srO"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="timerToMainSegue" animates="NO" id="AW6-hy-2IV"/>
                     </connections>
@@ -199,10 +200,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="texture_blue_background_patterns_50462_2560x1440.jpg" width="2560" height="1440"/>
+        <image name="texture_blue_background_patterns_50462_2560x1440" width="2560" height="1440"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Y9k-0b-uFL"/>
-        <segue reference="9uF-68-anw"/>
+        <segue reference="uSv-D6-srO"/>
+        <segue reference="gkk-wx-I9P"/>
     </inferredMetricsTieBreakers>
 </document>
