@@ -9,9 +9,11 @@
 import Foundation
 import UIKit
 
-class Event {
+
+
+class Event: NSObject, NSCoding {
+    //MARK: Properties
     
-    //instance variables
     var EventName: String = ""
     var RegisterArray: [Runner] = []
     var isOpen: Bool //if this boolean is read in as a true boolean then the event is an open race
@@ -21,9 +23,27 @@ class Event {
     var timer: NSTimer = NSTimer()
     var displayTimeLabel = UILabel()
     
-    //functions
+    // MARK: Archiving Paths
     
-    init(name: String, typeOpen: Bool ) {
+    static let DocumentsDirectory = NSFileManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
+    static let ArchiveURL = DocumentsDirectory.URLByAppendingPathComponent("events")
+
+    //MARK: Types
+    
+    struct PropertyKey {
+        static let eventNameKey = "eventname"
+        static let isOpenKey = "isopen"
+        static let isTimingKey = "istiming"
+        static let isDoneKey = "isdone"
+        static let finalTimeKey = "finaltime"
+        static let registerArrayKey = "registerarray"
+        static let timerKey = "timer"
+        static let displayTimeLabelKey = "displaytimelabel"
+    }
+    
+    //MARK: Initialization
+    
+    init(var EventName: String, typeOpen: Bool, var isTiming: Bool, var isDone: Bool, var finalTime: String ) {
         EventName = "New Event"
         isOpen = typeOpen
         isDone = false
@@ -39,36 +59,47 @@ class Event {
                 RegisterArray.append(Runner(n: "New Runner"))
             }
         }
+        
+        super.init()
     }
     
-    init(coder aDecoder: NSCoder!){
-        self.EventName = aDecoder.decodeObjectForKey("eventname") as! String
-        self.isOpen = aDecoder.decodeBoolForKey("isopen")
-        self.isTiming = aDecoder.decodeBoolForKey("istiming")
-        self.isDone = aDecoder.decodeBoolForKey("isdone")
-        self.finalTime = aDecoder.decodeObjectForKey("finaltime") as! String
-    }
-    
-    func initWithCoder(coder aDecoder: NSCoder) -> Event {
-        self.EventName = aDecoder.decodeObjectForKey("eventname") as! String
-        self.isOpen = aDecoder.decodeBoolForKey("isopen")
-        self.isTiming = aDecoder.decodeBoolForKey("istiming")
-        self.isDone = aDecoder.decodeBoolForKey("isdone")
-        self.finalTime = aDecoder.decodeObjectForKey("finaltime") as! String
-        return self
-    }
-    
-    func encodeWithCoder(aCoder: NSCoder!) {
-        aCoder.encodeObject(EventName, forKey: "eventname")
-        aCoder.encodeObject(RegisterArray, forKey: "registerarray")
-        aCoder.encodeObject(isOpen, forKey: "isopen")
-        aCoder.encodeObject(isTiming, forKey: "istiming")
-        aCoder.encodeObject(isDone, forKey: "isdone")
-        aCoder.encodeObject(finalTime, forKey: "finaltime")
-        aCoder.encodeObject(timer, forKey: "timer")
-        aCoder.encodeObject(displayTimeLabel, forKey: "displaytimelabel")
+    //MARK: NSCoding
+    func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeObject(EventName, forKey: PropertyKey.eventNameKey)
+        aCoder.encodeObject(RegisterArray, forKey: PropertyKey.registerArrayKey)
+        aCoder.encodeObject(isOpen, forKey: PropertyKey.isOpenKey)
+        aCoder.encodeObject(isTiming, forKey: PropertyKey.isTimingKey)
+        aCoder.encodeObject(isDone, forKey: PropertyKey.isDoneKey)
+        aCoder.encodeObject(finalTime, forKey: PropertyKey.finalTimeKey)
+        aCoder.encodeObject(timer, forKey: PropertyKey.timerKey)
+        aCoder.encodeObject(displayTimeLabel, forKey: PropertyKey.displayTimeLabelKey)
         
     }
+    
+//    func initWithCoder(coder aDecoder: NSCoder) -> Event {
+//        self.EventName = aDecoder.decodeObjectForKey("eventname") as! String
+//        self.isOpen = aDecoder.decodeBoolForKey("isopen")
+//        self.isTiming = aDecoder.decodeBoolForKey("istiming")
+//        self.isDone = aDecoder.decodeBoolForKey("isdone")
+//        self.finalTime = aDecoder.decodeObjectForKey("finaltime") as! String
+//        return self
+//    }
+    
+    
+    required convenience init?(coder aDecoder: NSCoder){
+        let EventName = aDecoder.decodeObjectForKey(PropertyKey.eventNameKey) as! String
+        
+        let isOpen = aDecoder.decodeBoolForKey(PropertyKey.isOpenKey)
+        
+        let isTiming = aDecoder.decodeBoolForKey(PropertyKey.isTimingKey)
+        
+        let isDone = aDecoder.decodeBoolForKey(PropertyKey.isDoneKey)
+        
+        let finalTime = aDecoder.decodeObjectForKey(PropertyKey.finalTimeKey) as! String
+        
+        self.init(EventName: EventName, typeOpen: isOpen, isTiming: isTiming, isDone: isDone, finalTime: finalTime)
+    }
+    
     
 }
 
