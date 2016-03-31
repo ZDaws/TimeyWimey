@@ -25,7 +25,9 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     
     override func viewDidLoad() {
-
+        if NSKeyedUnarchiver.unarchiveObjectWithFile(Event.ArchiveURL.path!) as? [Event] != nil {
+        Global.events = (NSKeyedUnarchiver.unarchiveObjectWithFile(Event.ArchiveURL.path!) as? [Event])!
+        }
         //Set current # of rows to the number of current events
         rows = Global.events.count
         print("\(Global.events.count)")

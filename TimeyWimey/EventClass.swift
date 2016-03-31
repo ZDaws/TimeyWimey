@@ -76,16 +76,6 @@ class Event: NSObject, NSCoding {
         
     }
     
-//    func initWithCoder(coder aDecoder: NSCoder) -> Event {
-//        self.EventName = aDecoder.decodeObjectForKey("eventname") as! String
-//        self.isOpen = aDecoder.decodeBoolForKey("isopen")
-//        self.isTiming = aDecoder.decodeBoolForKey("istiming")
-//        self.isDone = aDecoder.decodeBoolForKey("isdone")
-//        self.finalTime = aDecoder.decodeObjectForKey("finaltime") as! String
-//        return self
-//    }
-    
-    
     required convenience init?(coder aDecoder: NSCoder){
         let EventName = aDecoder.decodeObjectForKey(PropertyKey.eventNameKey) as! String
         
