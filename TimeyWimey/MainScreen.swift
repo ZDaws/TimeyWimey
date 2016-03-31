@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import MessageUI
 
-class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate, MFMailComposeViewControllerDelegate {
     
     //Represents the number of current events
     var rows:Int = 0
@@ -101,7 +102,7 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate {
         presentViewController(alert, animated: true, completion: nil)
     }
     
-   
+    //start of zachs exporting code
     
     /* Export Bar Button
     * Export all the files
@@ -109,27 +110,100 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate {
     * Pull out each Runner and organize their times and names into a single string
     * add up all the Runner’s strings into one single string and export to google docs
     */
+    
+    
+    
+    
     @IBAction func export(sender: UIBarButtonItem) {
         
         
+        // If the view controller can send the email.
+        // This will show an email-style popup that allows you to enter
+        // Who to send the email to, the subject, the cc's and the message.
+        // As the .CSV is already attached, you can simply add an email
+        // and press send.
         
+        
+        //check if there even events to export
+        if Global.events.count > 0 {
+            let emailViewController = configuredMailComposeViewController()
+            if MFMailComposeViewController.canSendMail() {
+                self.presentViewController(emailViewController, animated: true, completion: nil)
+            }
+        }
     }
     
-    //File creation for the exported file 
     
     //variables necessary to createFile()
     let fileName = "Events.csv"
-    let StartString = "Name,End Time,Lap\n,"
+    let StartString = "Name,End Time,Lap\n"
     let tmpDir: NSString = NSTemporaryDirectory()
-    let contentsOfFile: String = ""
     
-    func createFile() {
+    
+    
+    
+    
+    //configures the email capabilites and is called in the main export function
+    func configuredMailComposeViewController() -> MFMailComposeViewController {
+        
+        var Contents = StartString
+        
+        //need to add block if no events are made if i == 0 ... -- done
+        
+        if Global.events.count > 0 {
+            
+            
+            //for loops - (event  ( runner ( name and endtime and (laps) ))
+            
+            // Global (  events[]  (  RegisterArray[] ( runner instance varibales) )  )
+            // Global.event[i].RegisterArray[c].
+            
+            
+            
+            
+            // Done
+            for var i = 0 ; i < Global.events.count ; i++ {
+                
+                for var c = 0 ; c < Global.events[i].RegisterArray.count ; c++ {
+                    
+                    Contents += Global.events[i].RegisterArray[c].name + ","
+                    Contents += Global.events[i].RegisterArray[c].endTime + ","
+                    
+                    Global.events[i].RegisterArray[c].lapDur()
+                    
+                    //check if there are laps and if not will add a line break after endTime
+                    if Global.events[i].RegisterArray[c].laps.count > 0  {
+                        
+                        for var d = 0 ; d < Global.events[i].RegisterArray[c].laps.count ; d++ {
+                            
+                            if d == (Global.events[i].RegisterArray[c].laps.count - 1) {
+                                Contents += Global.events[i].RegisterArray[c].laps[d] + "\n"
+                            }
+                            else {
+                                Contents += Global.events[i].RegisterArray[c].laps[d] + ","
+                            }
+                            
+                        }
+                    }
+                    else {
+                        Contents += "\n"
+                    }
+                    
+                    
+                }
+                
+            }
+            
+            
+        }
+        
+        print(Contents)
         
         let path = tmpDir.stringByAppendingPathComponent(fileName)
         
         
         do {
-            try contentsOfFile.writeToFile(path, atomically: true, encoding: NSUTF8StringEncoding)
+            try Contents.writeToFile(path, atomically: true, encoding: NSUTF8StringEncoding)
             print("File Events.csv created at tmp directory")
         } catch {
             
@@ -138,10 +212,23 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate {
         }
         
         
+        let emailController = MFMailComposeViewController()
+        emailController.mailComposeDelegate = self
+        emailController.setSubject("CSV File")
+        emailController.setMessageBody("", isHTML: false)
+        
+        // Attaching the .CSV file to the email.
+        
+        emailController.addAttachmentData(NSData(contentsOfFile: path)!, mimeType: "text/csv", fileName: "Events.csv")
+        
+        
+        
+        return emailController
     }
-
     
     
+    
+    //end of zachs email code
     
     /* Delete All Bar Button
     * Remove all events from the event object
