@@ -26,7 +26,7 @@ class Event: NSObject, NSCoding {
     // MARK: Archiving Paths
     
     static let DocumentsDirectory = NSFileManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
-    static let ArchiveURL = DocumentsDirectory.URLByAppendingPathComponent("events")
+    static let ArchiveURL = DocumentsDirectory.URLByAppendingPathComponent("Global.events")
 
     //MARK: Types
     
@@ -43,20 +43,20 @@ class Event: NSObject, NSCoding {
     
     //MARK: Initialization
     
-    init(var EventName: String, typeOpen: Bool, var isTiming: Bool, var isDone: Bool, var finalTime: String ) {
-        EventName = "New Event"
-        isOpen = typeOpen
-        isDone = false
-        isTiming = false
-        finalTime = "00:00:00"
+    init( EventName: String, typeOpen: Bool, isTiming: Bool, isDone: Bool, finalTime: String ) {
+        self.EventName = EventName
+        self.isOpen = typeOpen
+        self.isDone = isDone
+        self.isTiming = isTiming
+        self.finalTime = finalTime
         if isOpen == true {
             for var i = 0 ; i < 10 ; i++ {
-                RegisterArray.append(Runner(n: "New Runner"))
+                self.RegisterArray.append(Runner(n: "New Runner"))
             }
         }
         else {
             for var a = 0 ; a < 4 ; a++ {
-                RegisterArray.append(Runner(n: "New Runner"))
+                self.RegisterArray.append(Runner(n: "New Runner"))
             }
         }
         

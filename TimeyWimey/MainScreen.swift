@@ -86,14 +86,14 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate {
         let alert = UIAlertController(title: alertTitle1, message: message1, preferredStyle: UIAlertControllerStyle.Alert)
         let openButton = UIAlertAction(title: openText, style: UIAlertActionStyle.Default, handler: {
             action in
-            Global.events.append(Event(name: "New Event", typeOpen: true))
+            Global.events.append(Event(EventName: "New Event", typeOpen: true, isTiming: false, isDone: false, finalTime: "00:00:00"))
             Global.currentEvent = self.rows
             self.performSegueWithIdentifier("addNewEventSegue", sender: self)
         })
         alert.addAction(openButton)
         let relayButton = UIAlertAction(title: relayText, style: UIAlertActionStyle.Default, handler: {
             action in
-            Global.events.append(Event(name: "New Event", typeOpen: false))
+            Global.events.append(Event(EventName: "New Event", typeOpen: false, isTiming: false, isDone: false, finalTime: "00:00:00"))
             Global.currentEvent = self.rows
             self.performSegueWithIdentifier("addNewEventSegue", sender: self)
         })
