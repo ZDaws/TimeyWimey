@@ -10,13 +10,12 @@ import Foundation
 import UIKit
 
 class Runner {
-    //Instance Variables 
-    var name: String
+    //Instance Variables
+    var name: String = ""
     var endTime: String
     var lapArray: [String] = []
-    var fLapArray: [String] = [] //the final array with all the proper time duration values, use in toCsv function
-    var csv: String = ""   //Single string used to export into CSV file
-
+    var laps: [String] = []
+    
     
     //This is the function that I use to change the strings that we get from the stopwatch to change them into NSDates
     func toDate(time: String) -> NSDate{
@@ -54,70 +53,51 @@ class Runner {
     //-to do the math u will need to change the lap of strings into dates to do the arithmatic and make sure to change them back to strings once you've finished
     
     //-test to see how many laps are in the array
-        //if more than one entry in lapArray then take each value and subtract it by the previous to get the difference in duration
+    //if more than one entry in lapArray then take each value and subtract it by the previous to get the difference in duration
     //remember that the last lap in the array will need to use the final end time in order to find its duration
-   
+    
     
     
     
     
     
     func lapDur() {
-        //necessary variables for the NSDate and NSDateComponents arithmetic 
+        //necessary variables for the NSDate and NSDateComponents arithmetic
         let userCalendar = NSCalendar.currentCalendar()
         let minCalendarUnit: NSCalendarUnit = [.Minute]
-
-        var laps: [String] = []
         
-        //loop to go through the array to allow us to do arithmetic with it 
-        for var i = 0 ; i < lapArray.count - 1; i++ {
-            if i == 0 {
-                laps[i] = lapArray[i]
-            }
-                //for the indexes in the array that will do the subractions with other elements of the array
-            else if i < lapArray.count - 2 {
+        laps = lapArray
+        
+        //loop to go through the array to allow us to do arithmetic with it
+        for var i = 1 ; i < lapArray.count; i++ {
+            
+            //for the indexes in the array that will do the subractions with other elements of the array
+            if i < lapArray.count - 1 && i > 0 {
                 let newTime = toDate(laps[i])
                 let lastTime = toDate(laps[i+1])
                 
-                //this does the arithmetic to find the time in minutes followed by seconds between the two variables and 
+                //this does the arithmetic to find the time in minutes followed by seconds between the two variables and
                 //adjusting for sign difference to keep it positive even with the backwards order
                 let lap = userCalendar.components(minCalendarUnit, fromDate: newTime, toDate: lastTime, options: [])
                 let finalDate = userCalendar.dateFromComponents(lap)
                 
-                fLapArray[i] = toString(finalDate!)
+                laps[i] = toString(finalDate!)
             }
                 //does the subtraction for the last index and the final end time to get the last indexes difference in time
             else {
-                let lastTime = toDate(laps[i+1])
+                let lastTime = toDate(lapArray[i])
                 let finalTime = toDate(endTime)
                 let lap = userCalendar.components(minCalendarUnit, fromDate: lastTime, toDate: finalTime, options: [])
                 let finalDate = userCalendar.dateFromComponents(lap)
-                fLapArray[i] = toString(finalDate!)
+                laps[i] = toString(finalDate!)
             }
+            
         }
         
         
         
     }
     
-    func toCsv(){
-        csv = name + "," + endTime + ","
-        
-        if fLapArray.count > 1 {
-            csv = csv + lapArray[0] + ","
-            
-            for var i = 1 ; i < fLapArray.count - 1 ; i++ {
-                csv = csv + fLapArray[i] + ","
-            }
-            
-            
-        }
-    }
-    
-    
-    //Notes about toCsv
-    //This is for only the individual runner object will be used to prep the data to be entered into a single string that is 
-    //csv compatible
     
     
     
