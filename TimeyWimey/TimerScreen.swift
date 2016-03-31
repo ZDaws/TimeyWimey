@@ -53,16 +53,18 @@ class TimerScreen: UIViewController {
     var count = 0
     
     //var timer: NSTimer = NSTimer()    //Make these global but through event class, each event will have its own timer
-    var startTime = NSTimeInterval()            
+    var startTime = NSTimeInterval()
     
     
     
+    @IBOutlet weak var eventTitle: UINavigationItem!
     
     
     
     
     
     override func viewDidLoad() {
+        eventTitle.title = Global.events[event].EventName
         numRun = Global.events[Global.currentEvent].RegisterArray.count
         //Set the screen size using variables screenSize, width, height
         width = screenSize.width
@@ -76,7 +78,7 @@ class TimerScreen: UIViewController {
         horz = (width - (labelL + (buttonL * 2))) / 4
         vert = horz
         
-        
+        //These weird numbers are just calculating how tall the label can be to fit in the string
         labelH = (buttonL / 4) * (50.0 / 31.0) * (3.0 / 2.0)
         
         //If the total space of the runner labels is to long make it fit according to the screen
@@ -85,14 +87,26 @@ class TimerScreen: UIViewController {
             labelH = (height - ((vert * 4) + navBar + timerLabelH + startH)) / CGFloat(numRun)
             
         }
-        //layout screen
+        
+        
+        //Background layer
+        let background = UILabel(frame: CGRect(x: (horz * 3) + (buttonL * 2) - 1, y: navBar + (vert * 2) + timerLabelH, width: labelL + 2, height: labelH * CGFloat(numRun)))
+        background.backgroundColor = UIColor.blackColor()
+        self.view.addSubview(background)
+        
+        //          Work on background layer specs
+        
+        
+        
+        
+        //layout screen labels and buttons
         for (var x = 0 ; x < numRun ; x++) {
             //Layout runners
-            labels.append(UILabel(frame: CGRect(x: 3 * horz + buttonL * 2, y: (vert * 2) + timerLabelH + navBar + (CGFloat(x) * labelH), width: labelL, height: labelH)))
+            labels.append(UILabel(frame: CGRect(x: 3 * horz + buttonL * 2, y: ((vert * 2) + timerLabelH + navBar + (CGFloat(x) * labelH)) + 1, width: labelL, height: labelH - 2)))
             if x % 2 == 0   {
-                labels[x].backgroundColor = UIColor.blueColor()
+                labels[x].backgroundColor = UIColor(red: 0, green: 0.4157, blue: 1, alpha: 1.0)
             } else {
-                labels[x].backgroundColor = UIColor.greenColor()
+                labels[x].backgroundColor = UIColor(red: 0, green: 0.898, blue: 0.0118, alpha: 1.0)
             }
             labels[x].text = Global.events[event].RegisterArray[x].name
             labels[x].font = UIFont(name: "Courier New", size: (labelH * 2) / 3)
@@ -175,6 +189,8 @@ class TimerScreen: UIViewController {
         Global.events[event].displayTimeLabel.font = UIFont(name: "Courier New", size: (timerLabelH * 2) / 3)
         Global.events[event].displayTimeLabel.text = Global.events[event].finalTime
         Global.events[event].displayTimeLabel.textAlignment = .Center
+        Global.events[event].displayTimeLabel.layer.cornerRadius = 20.0
+        Global.events[event].displayTimeLabel.clipsToBounds = true
         self.view.addSubview(Global.events[event].displayTimeLabel)
         
         //Add start button that will disapear when pressed at the bottom
@@ -221,10 +237,18 @@ class TimerScreen: UIViewController {
     *
     */
     func lap(button: CustomButton)  {
+        if Global.events[event].isTiming {
         
-        print("\(Global.events[event].displayTimeLabel.text!)")
-        Global.events[event].RegisterArray[button.numRunner].lapArray.append(Global.events[event].displayTimeLabel.text!)
-        
+            print("\(Global.events[event].displayTimeLabel.text!)")
+            Global.events[event].RegisterArray[button.numRunner].lapArray.append(Global.events[event].displayTimeLabel.text!)
+            //Animate the button for like half a second
+            UIView.animateWithDuration( 1 , animations: {
+                self.lapButtons[button.numRunner].backgroundColor = UIColor.whiteColor()
+            })
+            UIView.animateWithDuration( 1 , animations: {
+                self.lapButtons[button.numRunner].backgroundColor = UIColor.blueColor()
+            })
+        }
         
     }
     
@@ -234,32 +258,32 @@ class TimerScreen: UIViewController {
     */
     
     func stop(button: CustomButton){
-        count++
-        print("Stoped runner #\(button.numRunner)")
-        print(Global.events[event].RegisterArray[button.numRunner].lapArray)
-        
-        //lay a label over the stop and lap buttons
-        let coverLabel = UILabel(frame: CGRect(x: horz, y: navBar + (vert * 2) + timerLabelH + (labelH * CGFloat(button.numRunner)), width: (buttonL * 2) + horz, height: labelH))
-        coverLabel.backgroundColor = UIColor.greenColor()
-        coverLabel.text = "\(Global.events[event].displayTimeLabel.text!)"
-        coverLabel.font = UIFont(name: "Courier New", size: (timerLabelH * 2) / 3)
-        coverLabel.textAlignment = .Center
-        
-        self.view.addSubview(coverLabel)
-        
-        stopButtons[button.numRunner].removeFromSuperview()
-        lapButtons[button.numRunner].removeFromSuperview()
-        
-        //When count is equal to the number of runners when the stop button is pressed, the timer stops.
-        if(count == numRun){
-            Global.events[event].timer.invalidate()
-            Global.events[event].isDone = true
-            Global.events[event].isTiming = false
-            Global.events[event].finalTime = Global.events[event].displayTimeLabel.text!
-        }
-        
-        Global.events[event].RegisterArray[button.numRunner].endTime = "\(Global.events[event].displayTimeLabel.text!)"
 
+        if Global.events[event].isTiming    {
+            count++
+        
+            //lay a label over the stop and lap buttons
+            let coverLabel = UILabel(frame: CGRect(x: horz, y: navBar + (vert * 2) + timerLabelH + (labelH * CGFloat(button.numRunner)), width: (buttonL * 2) + horz, height: labelH))
+            coverLabel.backgroundColor = UIColor.greenColor()
+            coverLabel.text = "\(Global.events[event].displayTimeLabel.text!)"
+            coverLabel.font = UIFont(name: "Courier New", size: (timerLabelH * 2) / 3)
+            coverLabel.textAlignment = .Center
+        
+            self.view.addSubview(coverLabel)
+        
+            stopButtons[button.numRunner].removeFromSuperview()
+            lapButtons[button.numRunner].removeFromSuperview()
+        
+            //When count is equal to the number of runners when the stop button is pressed, the timer stops.
+            if(count == numRun){
+                Global.events[event].timer.invalidate()
+                Global.events[event].isDone = true
+                Global.events[event].isTiming = false
+                Global.events[event].finalTime = Global.events[event].displayTimeLabel.text!
+            }
+        
+            Global.events[event].RegisterArray[button.numRunner].endTime = "\(Global.events[event].displayTimeLabel.text!)"
+        }
     }
     
     
@@ -292,7 +316,7 @@ class TimerScreen: UIViewController {
         //concatenate minuets, seconds and milliseconds as assign it to the UILabel
         
         Global.events[event].displayTimeLabel.text = "\(strMinutes):\(strSeconds):\(strFraction)"
-        print("\(Global.events[event].displayTimeLabel.text)")
+
         
         
     }
