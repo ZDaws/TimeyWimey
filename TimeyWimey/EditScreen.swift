@@ -52,7 +52,7 @@ class EditScreen: UIViewController {
     override func viewDidLoad() {
         
         //If open add new runners to the register array with names of "New Runner" until there are 10 runnners
-        if Global.events[event].isOpen {
+        if Global.events[event].isOpen && Global.events[event].isDone == false {
             while Global.events[event].RegisterArray.count < 10    {
                 Global.events[event].RegisterArray.append(Runner(n: "New Runner"))
             }
@@ -78,15 +78,19 @@ class EditScreen: UIViewController {
         
         //Create and display textfields with backgrounds
         if Global.events[event].isOpen == true  {
-            //Set number of runners to 10 - 1
-            numRun = 9
+            if Global.events[event].isDone == false {
+                //Set number of runners to 10 - 1
+                numRun = 9
+            } else {
+                numRun = Global.events[event].RegisterArray.count - 1
+            }
         }
         else    {
             //Set number of runners to 4 - 1
             numRun = 3
             
         }
-        //Background layer
+        //Background layer for runners
         let background = UILabel(frame: CGRect(x: Horz - 1, y: eventH + NavBar + (Vert * 2) - 0.5, width: width - (2 * Horz) + 2, height: (labelH * CGFloat(numRun + 1)) + 1))
         background.backgroundColor = UIColor.blackColor()
         self.view.addSubview(background)
@@ -132,6 +136,11 @@ class EditScreen: UIViewController {
         
         
     }
+    //End of viewDidLoad()
+    
+    
+    
+    
     
     
     /*  Text field Unselected
@@ -200,7 +209,7 @@ class EditScreen: UIViewController {
         }
         //If a new runner hasn't been put in, remove that runner
         
-        if Global.events[event].isOpen {
+        if Global.events[event].isOpen && Global.events[event].isDone == false {
             while y >= 0    {
             
                 if  Global.events[event].RegisterArray[y].name == "" ||
@@ -218,19 +227,8 @@ class EditScreen: UIViewController {
         
         performSegueWithIdentifier("saveToTimerSegue", sender: self)
     
-    
+     
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
