@@ -126,9 +126,18 @@ class EditScreen: UIViewController {
         eventTextField.text = Global.events[event].EventName
         eventTextField.textAlignment = .Center
         eventTextField.backgroundColor = UIColor.blackColor()
-        eventTextField.textColor = UIColor.whiteColor()
+        if Global.events[event].EventName == "New Event" || Global.events[event].EventName == ""    {
+            eventTextField.textColor = UIColor.grayColor()
+            eventTextField.text = "New Event"
+        } else {
+            eventTextField.textColor = UIColor.whiteColor()
+        }
         eventTextField.layer.cornerRadius = 20.0
         eventTextField.clipsToBounds = true
+        if Global.events[event].EventName == "New Event"    {
+            eventTextField.clearsOnBeginEditing = true
+        }
+        eventTextField.addTarget(self, action: "eventTextFieldUnselected:", forControlEvents: .EditingDidBegin)
         self.view.addSubview(eventTextField)
         
         
@@ -140,6 +149,15 @@ class EditScreen: UIViewController {
     
     
     
+    
+    
+    
+    func eventTextFieldUnselected(sender: UITextField)  {
+        
+        sender.clearsOnBeginEditing = false
+        sender.textColor = UIColor.whiteColor()
+        
+    }
     
     
     
