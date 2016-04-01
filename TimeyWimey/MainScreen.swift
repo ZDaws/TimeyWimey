@@ -133,6 +133,11 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate, 
         }
     }
     
+    //should dismiss the view controller for email once something is sent or cancelled
+    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
+        controller.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     
     //variables necessary to createFile()
     let fileName = "Events.csv"
