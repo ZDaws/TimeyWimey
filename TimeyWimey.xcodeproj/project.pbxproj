@@ -50,7 +50,7 @@
 		563540731C4E9F980070F43E /* MainScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
 		567FFAAD1C777A97007B74A2 /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		56D26B251CAC2791001079CB /* Image.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Image.xcassets; sourceTree = "<group>"; };
-		AB651EE31C4E9D760037AA33 /* TimeyWimey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeyWimey.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB651EE31C4E9D760037AA33 /* Team Stopwatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Team Stopwatch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB651EE61C4E9D760037AA33 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AB651EEB1C4E9D760037AA33 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AB651EED1C4E9D760037AA33 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -103,7 +103,7 @@
 		AB651EE41C4E9D760037AA33 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AB651EE31C4E9D760037AA33 /* TimeyWimey.app */,
+				AB651EE31C4E9D760037AA33 /* Team Stopwatch.app */,
 				AB651EF71C4E9D760037AA33 /* TimeyWimeyTests.xctest */,
 				AB651F021C4E9D760037AA33 /* TimeyWimeyUITests.xctest */,
 			);
@@ -166,7 +166,7 @@
 			);
 			name = TimeyWimey;
 			productName = TimeyWimey;
-			productReference = AB651EE31C4E9D760037AA33 /* TimeyWimey.app */;
+			productReference = AB651EE31C4E9D760037AA33 /* Team Stopwatch.app */;
 			productType = "com.apple.product-type.application";
 		};
 		AB651EF61C4E9D760037AA33 /* TimeyWimeyTests */ = {
@@ -439,7 +439,7 @@
 				INFOPLIST_FILE = TimeyWimey/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Frands.TimeyWimey.Zach;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Team Stopwatch";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -454,7 +454,7 @@
 				INFOPLIST_FILE = TimeyWimey/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Frands.TimeyWimey.Zach;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Team Stopwatch";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
