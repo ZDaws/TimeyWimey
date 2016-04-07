@@ -9,13 +9,19 @@
 import Foundation
 import UIKit
 
-class Runner {
-    //Instance Variables
-    var name: String = ""
+class Runner: NSObject, NSCoding {
+    //Instance Variables 
+    var name: String
     var endTime: String
     var lapArray: [String] = []
     var laps: [String] = []
     
+    struct PropertyKey {
+        static let runnerNameKey = "runnerNameKey"
+        static let endTimeKey = "endTimeKey"
+        static let lapArrayKey = "lapArrayKey"
+        static let lapsKey = "fLapArrayKey"
+    }
     
     //This is the function that I use to change the strings that we get from the stopwatch to change them into NSDates
     func toDate(time: String) -> NSDate{
@@ -35,7 +41,7 @@ class Runner {
     }
     
     
-    init(n: String, endTime: String, lapArray: [String], fLapArray: [String]) {
+    init(n: String, endTime: String, lapArray: [String], laps: [String]) {
         name = n
         self.endTime = "00:00:00"
     }
@@ -45,7 +51,7 @@ class Runner {
         aCoder.encodeObject(name, forKey: PropertyKey.runnerNameKey)
         aCoder.encodeObject(endTime, forKey: PropertyKey.endTimeKey)
         aCoder.encodeObject(lapArray, forKey: PropertyKey.lapArrayKey)
-        aCoder.encodeObject(fLapArray, forKey: PropertyKey.fLapArrayKey)
+        aCoder.encodeObject(laps, forKey: PropertyKey.lapsKey)
         print("runner encoding works")
     }
     
@@ -53,9 +59,9 @@ class Runner {
         let name = aDecoder.decodeObjectForKey(PropertyKey.runnerNameKey) as! String
         let endTime = aDecoder.decodeObjectForKey(PropertyKey.endTimeKey) as! String
         let lapArray = aDecoder.decodeObjectForKey(PropertyKey.lapArrayKey) as! [String]
-        let fLapArray = aDecoder.decodeObjectForKey(PropertyKey.fLapArrayKey) as! [String]
+        let laps = aDecoder.decodeObjectForKey(PropertyKey.lapsKey) as! [String]
         
-        self.init(n: name, endTime: endTime, lapArray: lapArray, fLapArray: fLapArray)
+        self.init(n: name, endTime: endTime, lapArray: lapArray, laps: laps)
     }
 
     

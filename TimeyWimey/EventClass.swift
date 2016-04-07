@@ -53,12 +53,12 @@ class Event: NSObject, NSCoding {
         if RegisterArray.isEmpty {
             if isOpen == true {
                 for var i = 0 ; i < 10 ; i++ {
-                    self.RegisterArray.append(Runner(n: "New Runner", endTime: "", lapArray: [], fLapArray: []))
+                    self.RegisterArray.append(Runner(n: "New Runner", endTime: "", lapArray: [], laps: []))
                 }
             }
             else {
                 for var a = 0 ; a < 4 ; a++ {
-                    self.RegisterArray.append(Runner(n: "New Runner", endTime: "", lapArray: [], fLapArray: []))
+                    self.RegisterArray.append(Runner(n: "New Runner", endTime: "", lapArray: [], laps: []))
                 }
             }
         }
@@ -77,7 +77,7 @@ class Event: NSObject, NSCoding {
         aCoder.encodeBool(isDone, forKey: PropertyKey.isDoneKey)
         aCoder.encodeObject(finalTime, forKey: PropertyKey.finalTimeKey)
         aCoder.encodeObject(displayTimeLabel, forKey: PropertyKey.displayTimeLabelKey)
-        print("encoding works")
+        print("event encoding works")
     }
     
     required convenience init?(coder aDecoder: NSCoder){
