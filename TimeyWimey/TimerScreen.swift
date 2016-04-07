@@ -63,6 +63,7 @@ class TimerScreen: UIViewController {
     
     override func viewDidLoad() {
         numRun = Global.events[Global.currentEvent].RegisterArray.count
+        print("This is numRun", numRun)
         //Set the screen size using variables screenSize, width, height
         width = screenSize.width
         height = screenSize.height

@@ -9,14 +9,20 @@
 import Foundation
 import UIKit
 
-class Runner {
+class Runner: NSObject, NSCoding {
     //Instance Variables 
     var name: String
     var endTime: String
     var lapArray: [String] = []
     var fLapArray: [String] = [] //the final array with all the proper time duration values, use in toCsv function
     var csv: String = ""   //Single string used to export into CSV file
-
+    
+    struct PropertyKey {
+        static let runnerNameKey = "runnerNameKey"
+        static let endTimeKey = "endTimeKey"
+        static let lapArrayKey = "lapArrayKey"
+        static let fLapArrayKey = "fLapArrayKey"
+    }
     
     //This is the function that I use to change the strings that we get from the stopwatch to change them into NSDates
     func toDate(time: String) -> NSDate{
@@ -36,28 +42,28 @@ class Runner {
     }
     
     
-    init(n: String)  {
+    init(n: String, endTime: String, lapArray: [String], fLapArray: [String]) {
         name = n
-        endTime = "00:00:00"
+        self.endTime = "00:00:00"
     }
     
-//    required init(coder aDecoder: NSCoder){
-//        self.name = aDecoder.decodeObjectForKey("name") as! String
-//        self.endTime = aDecoder.decodeObjectForKey("endtime") as! String
-//        self.lapArray = aDecoder.decodeObjectForKey("laparray") as! [String]
-//        self.fLapArray = aDecoder.decodeObjectForKey("flaparray") as! [String]
-//        self.csv = aDecoder.decodeObjectForKey("csv") as! String
-//    }
-//    
-//    func encodeWithCoder(aCoder: NSCoder!) {
-//        aCoder.encodeObject(name, forKey: "name")
-//        aCoder.encodeObject(endTime, forKey: "endtime")
-//        aCoder.encodeObject(lapArray, forKey: "laparray")
-//        aCoder.encodeObject(fLapArray, forKey: "flaparray")
-//        aCoder.encodeObject(csv, forKey: "csv")
-//    }
+    //MARK: NSCoding
+    func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeObject(name, forKey: PropertyKey.runnerNameKey)
+        aCoder.encodeObject(endTime, forKey: PropertyKey.endTimeKey)
+        aCoder.encodeObject(lapArray, forKey: PropertyKey.lapArrayKey)
+        aCoder.encodeObject(fLapArray, forKey: PropertyKey.fLapArrayKey)
+        print("runner encoding works")
+    }
     
-    //let myRunner = NSKeyedArchiver.archivedDataWithRootObject(Runner)
+    required convenience init?(coder aDecoder: NSCoder){
+        let name = aDecoder.decodeObjectForKey(PropertyKey.runnerNameKey) as! String
+        let endTime = aDecoder.decodeObjectForKey(PropertyKey.endTimeKey) as! String
+        let lapArray = aDecoder.decodeObjectForKey(PropertyKey.lapArrayKey) as! [String]
+        let fLapArray = aDecoder.decodeObjectForKey(PropertyKey.fLapArrayKey) as! [String]
+        
+        self.init(n: name, endTime: endTime, lapArray: lapArray, fLapArray: fLapArray)
+    }
 
     
     

@@ -25,9 +25,7 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     
     override func viewDidLoad() {
-        if NSKeyedUnarchiver.unarchiveObjectWithFile(Event.ArchiveURL.path!) as? [Event] != nil {
-        Global.events = (NSKeyedUnarchiver.unarchiveObjectWithFile(Event.ArchiveURL.path!) as? [Event])!
-        }
+        
         //Set current # of rows to the number of current events
         rows = Global.events.count
         print("\(Global.events.count)")
@@ -88,14 +86,14 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate {
         let alert = UIAlertController(title: alertTitle1, message: message1, preferredStyle: UIAlertControllerStyle.Alert)
         let openButton = UIAlertAction(title: openText, style: UIAlertActionStyle.Default, handler: {
             action in
-            Global.events.append(Event(EventName: "New Event", typeOpen: true, isTiming: false, isDone: false, finalTime: "00:00:00"))
+            Global.events.append(Event(EventName: "New Event", RegisterArray: [], typeOpen: true, isTiming: false, isDone: false, finalTime: "00:00:00", displayTimeLabel: UILabel()))
             Global.currentEvent = self.rows
             self.performSegueWithIdentifier("addNewEventSegue", sender: self)
         })
         alert.addAction(openButton)
         let relayButton = UIAlertAction(title: relayText, style: UIAlertActionStyle.Default, handler: {
             action in
-            Global.events.append(Event(EventName: "New Event", typeOpen: false, isTiming: false, isDone: false, finalTime: "00:00:00"))
+            Global.events.append(Event(EventName: "New Event", RegisterArray: [], typeOpen: false, isTiming: false, isDone: false, finalTime: "00:00:00", displayTimeLabel: UILabel()))
             Global.currentEvent = self.rows
             self.performSegueWithIdentifier("addNewEventSegue", sender: self)
         })

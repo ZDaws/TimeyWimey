@@ -56,7 +56,7 @@ class EditScreen: UIViewController{
         //If open add new runners to the register array with names of "New Runner" until there are 10 runnners
         if Global.events[event].isOpen {
             while Global.events[event].RegisterArray.count < 10    {
-                Global.events[event].RegisterArray.append(Runner(n: "New Runner"))
+                Global.events[event].RegisterArray.append(Runner(n: "New Runner", endTime: "", lapArray: [], fLapArray: []))
             }
 
         }
