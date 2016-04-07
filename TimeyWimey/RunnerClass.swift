@@ -87,17 +87,17 @@ class Runner: NSObject, NSCoding {
     func lapDur() {
         //necessary variables for the NSDate and NSDateComponents arithmetic
         let userCalendar = NSCalendar.currentCalendar()
-        let minCalendarUnit: NSCalendarUnit = [.Minute]
+        let minCalendarUnit: NSCalendarUnit = [.Minute, .Second, .Nanosecond]
         
         laps = lapArray
         
         //loop to go through the array to allow us to do arithmetic with it
-        for var i = 1 ; i < lapArray.count; i++ {
+        for var i = 0 ; i < lapArray.count; i++ {
             
             //for the indexes in the array that will do the subractions with other elements of the array
-            if i < lapArray.count - 1 && i > 0 {
-                let newTime = toDate(laps[i])
-                let lastTime = toDate(laps[i+1])
+            if i < lapArray.count && i > 0 {
+                let newTime = toDate(laps[i - 1])
+                let lastTime = toDate(laps[i])
                 
                 //this does the arithmetic to find the time in minutes followed by seconds between the two variables and
                 //adjusting for sign difference to keep it positive even with the backwards order
@@ -107,12 +107,12 @@ class Runner: NSObject, NSCoding {
                 laps[i] = toString(finalDate!)
             }
                 //does the subtraction for the last index and the final end time to get the last indexes difference in time
-            else {
+            else if i == lapArray.count - 1 {
                 let lastTime = toDate(lapArray[i])
                 let finalTime = toDate(endTime)
                 let lap = userCalendar.components(minCalendarUnit, fromDate: lastTime, toDate: finalTime, options: [])
                 let finalDate = userCalendar.dateFromComponents(lap)
-                laps[i] = toString(finalDate!)
+                laps.append(toString(finalDate!))
             }
             
         }
@@ -120,6 +120,7 @@ class Runner: NSObject, NSCoding {
         
         
     }
+    
     
     
     

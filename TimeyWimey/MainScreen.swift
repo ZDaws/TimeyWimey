@@ -106,11 +106,11 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     //start of zachs exporting code
     
     /* Export Bar Button
-    * Export all the files
-    * Take a for loop through all the events
-    * Pull out each Runner and organize their times and names into a single string
-    * add up all the Runner’s strings into one single string and export to google docs
-    */
+     * Export all the files
+     * Take a for loop through all the events
+     * Pull out each Runner and organize their times and names into a single string
+     * add up all the Runner’s strings into one single string and export to google docs
+     */
     
     
     
@@ -142,7 +142,7 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     
     //variables necessary to createFile()
     let fileName = "Events.csv"
-    let StartString = "Name,End Time,Lap\n"
+    let StartString = "Event Name, Name,End Time,Splits\n"
     let tmpDir: NSString = NSTemporaryDirectory()
     
     
@@ -172,6 +172,7 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate, 
                 
                 for var c = 0 ; c < Global.events[i].RegisterArray.count ; c++ {
                     
+                    Contents += Global.events[i].EventName + ","
                     Contents += Global.events[i].RegisterArray[c].name + ","
                     Contents += Global.events[i].RegisterArray[c].endTime + ","
                     
@@ -195,6 +196,12 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate, 
                         Contents += "\n"
                     }
                     
+                    if Global.events[i].isOpen == false {
+                        
+                        Contents += Global.events[i].EventName + ",," + Global.events[i].finalTime + "\n"
+                        
+                        
+                    }
                     
                 }
                 
@@ -235,6 +242,9 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     
     
     //end of zachs email code
+    
+    
+
     
     /* Delete All Bar Button
     * Remove all events from the event object
