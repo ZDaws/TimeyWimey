@@ -20,7 +20,7 @@ class Runner: NSObject, NSCoding {
         static let runnerNameKey = "runnerNameKey"
         static let endTimeKey = "endTimeKey"
         static let lapArrayKey = "lapArrayKey"
-        static let lapsKey = "fLapArrayKey"
+        static let lapsKey = "lapsKey"
     }
     
     //This is the function that I use to change the strings that we get from the stopwatch to change them into NSDates
