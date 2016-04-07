@@ -35,12 +35,29 @@ class Runner {
     }
     
     
-    init(n: String)  {
+    init(n: String, endTime: String, lapArray: [String], fLapArray: [String]) {
         name = n
-        endTime = "00:00:00"
+        self.endTime = "00:00:00"
     }
     
+    //MARK: NSCoding
+    func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeObject(name, forKey: PropertyKey.runnerNameKey)
+        aCoder.encodeObject(endTime, forKey: PropertyKey.endTimeKey)
+        aCoder.encodeObject(lapArray, forKey: PropertyKey.lapArrayKey)
+        aCoder.encodeObject(fLapArray, forKey: PropertyKey.fLapArrayKey)
+        print("runner encoding works")
+    }
     
+    required convenience init?(coder aDecoder: NSCoder){
+        let name = aDecoder.decodeObjectForKey(PropertyKey.runnerNameKey) as! String
+        let endTime = aDecoder.decodeObjectForKey(PropertyKey.endTimeKey) as! String
+        let lapArray = aDecoder.decodeObjectForKey(PropertyKey.lapArrayKey) as! [String]
+        let fLapArray = aDecoder.decodeObjectForKey(PropertyKey.fLapArrayKey) as! [String]
+        
+        self.init(n: name, endTime: endTime, lapArray: lapArray, fLapArray: fLapArray)
+    }
+
     
     
     
