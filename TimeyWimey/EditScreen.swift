@@ -126,18 +126,18 @@ class EditScreen: UIViewController {
         eventTextField.text = Global.events[event].EventName
         eventTextField.textAlignment = .Center
         eventTextField.backgroundColor = UIColor.blackColor()
-        if Global.events[event].EventName == "New Event" || Global.events[event].EventName == ""    {
+        if Global.events[event].EventName == "New Event"   {
             eventTextField.textColor = UIColor.grayColor()
             eventTextField.text = "New Event"
+            eventTextField.clearsOnBeginEditing = true
         } else {
             eventTextField.textColor = UIColor.whiteColor()
+            eventTextField.clearsOnBeginEditing = false
         }
         eventTextField.layer.cornerRadius = 20.0
         eventTextField.clipsToBounds = true
-        if Global.events[event].EventName == "New Event"    {
-            eventTextField.clearsOnBeginEditing = true
-        }
-        eventTextField.addTarget(self, action: "eventTextFieldUnselected:", forControlEvents: .EditingDidBegin)
+        eventTextField.addTarget(self, action: "eventTextFieldSelected:", forControlEvents: .EditingDidBegin)
+        eventTextField.addTarget(self, action: "eventTextFieldUnselected:", forControlEvents: .EditingDidEnd)
         self.view.addSubview(eventTextField)
         
         
@@ -151,14 +151,25 @@ class EditScreen: UIViewController {
     
     
     
-    
-    func eventTextFieldUnselected(sender: UITextField)  {
+    //Fires when event text field is selected
+    func eventTextFieldSelected(sender: UITextField)  {
         
-        sender.clearsOnBeginEditing = false
+        if sender.text != "New Event"   {
+            sender.clearsOnBeginEditing = false
+        } else {
+            sender.text = ""
+        }
         sender.textColor = UIColor.whiteColor()
         
     }
     
+    func eventTextFieldUnselected(sender: UITextField)  {
+        if sender.text == ""    {
+            sender.text = "New Event"
+            sender.textColor = UIColor.grayColor()
+        }
+        
+    }
     
     
     /*  Text field Unselected
@@ -173,6 +184,7 @@ class EditScreen: UIViewController {
                 sender.text!.removeAtIndex(sender.text!.endIndex.predecessor())
             }
         }
+        
         
         
     }
