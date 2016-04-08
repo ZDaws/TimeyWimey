@@ -51,10 +51,10 @@ class TimerScreen: UIViewController {
     var labelSpace = CGFloat()
     //Varibale used in stop to count the number of runners stoped to know when to end the clock
     var count = 0
-    
     //var timer: NSTimer = NSTimer()    //Make these global but through event class, each event will have its own timer
     var startTime = NSTimeInterval()
-    
+    //Used to do timer stuff in stop function for relay events
+    var sum = "00:00:00"
     
     
     @IBOutlet weak var eventTitle: UINavigationItem!
@@ -204,66 +204,50 @@ class TimerScreen: UIViewController {
                 
             } else {
                 
-                if Global.events[event].isDone == false {
                     /* If the event is ongoing, based on what count is place the green end
                     *  times over finished runners and one set of lap and stop buttons over the current runner ( count + 1 )
                     */
                     
-                    //find count    HTRYU$%#@^&*()_&^%$#&*(^%$#%^&*(&()^%$#%^&*^(&^$*^%#^%$@#*&^%$&%$#(&%#%$(^$#(*^$*^%$*&%
-                    for ( var i = 0 ; i < numRun ; i++) {
+                    for ( var i = 0 ; i < numRun ; i++)  {
                         
-                        
-                        
-                        
-                        
-                    }
-                    
-                    
-                    for ( var i = 0 ; i < count ; i++)  {
-                        let coverLabel = UILabel(frame: CGRect(x: horz, y: navBar + (vert * 2) + timerLabelH + (labelH * CGFloat(i)), width: (buttonL * 2) + horz, height: labelH))
-                        coverLabel.backgroundColor = UIColor.greenColor()
-                        coverLabel.text = "\(Global.events[event].RegisterArray[i].endTime)"
-                        coverLabel.font = UIFont(name: "Courier New", size: (timerLabelH * 2) / 3)
-                        coverLabel.textAlignment = .Center
-                        
-                        self.view.addSubview(coverLabel)
-                        
-                        
+                        if Global.events[event].RegisterArray[i].endTime != "00:00:00"  {
+                            let coverLabel = UILabel(frame: CGRect(x: horz, y: navBar + (vert * 2) + timerLabelH + (labelH * CGFloat(i)), width: (buttonL * 2) + horz, height: labelH))
+                            coverLabel.backgroundColor = UIColor.greenColor()
+                            coverLabel.text = "\(Global.events[event].RegisterArray[i].endTime)"
+                            coverLabel.font = UIFont(name: "Courier New", size: (timerLabelH * 2) / 3)
+                            coverLabel.textAlignment = .Center
+                            
+                            self.view.addSubview(coverLabel)
+                            
+                            count++
+                        }
                         
                     }
                     
+                    if count < numRun  {
+                        stopButtons.append(CustomButton(frame: CGRect(x: (horz ) , y: (vert / CGFloat(1 + numRun)) + (vert * 2) + timerLabelH + navBar + (labelH * CGFloat(count)), width: buttonL, height: labelH - ((vert * 2) / CGFloat(1 + numRun))), 0, true))
+                        stopButtons[0].backgroundColor = UIColor.redColor()
+                        stopButtons[0].titleLabel!.font = UIFont(name: labels[0].font!.fontName, size: (labelH * 2) / 3)
+                        stopButtons[0].setTitle("Stop", forState: .Normal)
+                        stopButtons[0].layer.cornerRadius = 10.0
+                        stopButtons[0].clipsToBounds = true
+                        stopButtons[0].addTarget(self, action: "stop:", forControlEvents: .TouchUpInside)
+                        
+                        self.view.addSubview(stopButtons[0])
+                        
+                        lapButtons.append(CustomButton(frame: CGRect(x: (horz * 2) + buttonL , y: (vert / CGFloat(1 + numRun)) + (vert * 2) + timerLabelH + navBar + (labelH * CGFloat(count)), width: buttonL, height: labelH - ((vert * 2) / CGFloat(1 + numRun))), 0, false))
+                        lapButtons[0].backgroundColor = UIColor.blueColor()
+                        lapButtons[0].titleLabel!.font = UIFont(name: "Courier New", size: (labelH * 2) / 3)
+                        lapButtons[0].setTitle("Lap", forState: .Normal)
+                        lapButtons[0].layer.cornerRadius = 10.0
+                        lapButtons[0].clipsToBounds = true
+                        lapButtons[0].addTarget(self, action: "lap:", forControlEvents: .TouchUpInside)
+                        
+                        self.view.addSubview(lapButtons[0])
                     
-                    stopButtons.append(CustomButton(frame: CGRect(x: (horz ) , y: (vert / CGFloat(1 + numRun)) + (vert * 2) + timerLabelH + navBar + (labelH * CGFloat(count)), width: buttonL, height: labelH - ((vert * 2) / CGFloat(1 + numRun))), 0, true))
-                    stopButtons[0].backgroundColor = UIColor.redColor()
-                    stopButtons[0].titleLabel!.font = UIFont(name: labels[0].font!.fontName, size: (labelH * 2) / 3)
-                    stopButtons[0].setTitle("Stop", forState: .Normal)
-                    stopButtons[0].layer.cornerRadius = 10.0
-                    stopButtons[0].clipsToBounds = true
-                    stopButtons[0].addTarget(self, action: "stop:", forControlEvents: .TouchUpInside)
+                    }
                     
-                    self.view.addSubview(stopButtons[0])
-                    
-                    lapButtons.append(CustomButton(frame: CGRect(x: (horz * 2) + buttonL , y: (vert / CGFloat(1 + numRun)) + (vert * 2) + timerLabelH + navBar + (labelH * CGFloat(count)), width: buttonL, height: labelH - ((vert * 2) / CGFloat(1 + numRun))), 0, false))
-                    lapButtons[0].backgroundColor = UIColor.blueColor()
-                    lapButtons[0].titleLabel!.font = UIFont(name: "Courier New", size: (labelH * 2) / 3)
-                    lapButtons[0].setTitle("Lap", forState: .Normal)
-                    lapButtons[0].layer.cornerRadius = 10.0
-                    lapButtons[0].clipsToBounds = true
-                    lapButtons[0].addTarget(self, action: "lap:", forControlEvents: .TouchUpInside)
-                    
-                    self.view.addSubview(lapButtons[0])
-                    
-                    
-                    
-                    
-                    
-                } else  {
-                    // If the event is done place all green final labels over
-                    
-                    
-                    
-                    
-                }
+                
             
             }
             
@@ -387,8 +371,33 @@ class TimerScreen: UIViewController {
                 lapButtons[0].removeFromSuperview()
                 lapButtons.removeAtIndex(0)
                 
-                //Set the time on the timer label to the green end time label
-                Global.events[event].RegisterArray[count - 1].endTime = Global.events[event].displayTimeLabel.text!
+                //Set the green final time to their own time not what is on the top timer
+                //So take the top time minus the sum of all times underneath that runner
+                //Global.events[event].RegisterArray[count - 1].endTime = Global.events[event].displayTimeLabel.text!
+                
+                let userCalendar = NSCalendar.currentCalendar()
+                sum = Global.events[event].displayTimeLabel.text!
+                
+                let minCalUnit: NSCalendarUnit = [.Minute, .Second, .Nanosecond]
+                
+                for ( var i = 0 ; i < count - 1 ; i++ )    {
+                    let tmpSum = toDate(sum)
+                    let tmpEnd = toDate(Global.events[event].RegisterArray[i].endTime)
+                    
+                    let interval = userCalendar.components(minCalUnit, fromDate: tmpEnd, toDate: tmpSum, options:[])
+                    let finalDate = userCalendar.dateFromComponents(interval)
+
+                    sum = toString(finalDate!)
+
+                }
+                
+                
+                Global.events[event].RegisterArray[count - 1].endTime = sum
+                
+                
+                
+                
+
                 
                 let coverLabel = UILabel(frame: CGRect(x: horz, y: navBar + (vert * 2) + timerLabelH + (labelH * CGFloat(count - 1)), width: (buttonL * 2) + horz, height: labelH))
                 coverLabel.backgroundColor = UIColor.greenColor()
@@ -431,8 +440,23 @@ class TimerScreen: UIViewController {
     }
     
     
+    func toDate(time: String) -> NSDate{
+        let DateFormatter = NSDateFormatter()
+        DateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+        DateFormatter.timeZone = NSTimeZone (name: "Central")
+        DateFormatter.dateFormat = "mm:ss:SS"
+        return DateFormatter.dateFromString(time)!
+    }
     
-    
+    func toString(date: NSDate) -> String{
+        let DateFormatter = NSDateFormatter()
+        DateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+        DateFormatter.timeZone = NSTimeZone (name: "Central")
+        DateFormatter.dateFormat = "mm:ss:SS"
+        return DateFormatter.stringFromDate(date)
+    }
+
+
     
     func updateTime() {
         let currentTime = NSDate.timeIntervalSinceReferenceDate()
