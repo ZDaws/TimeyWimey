@@ -96,8 +96,8 @@ class Runner: NSObject, NSCoding {
             
             //for the indexes in the array that will do the subractions with other elements of the array
             if i < lapArray.count && i > 0 {
-                let newTime = toDate(laps[i - 1])
-                let lastTime = toDate(laps[i])
+                let newTime = toDate(lapArray[i - 1])
+                let lastTime = toDate(lapArray[i])
                 
                 //this does the arithmetic to find the time in minutes followed by seconds between the two variables and
                 //adjusting for sign difference to keep it positive even with the backwards order
