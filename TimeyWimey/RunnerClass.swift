@@ -107,7 +107,7 @@ class Runner: NSObject, NSCoding {
                 laps[i] = toString(finalDate!)
             }
                 //does the subtraction for the last index and the final end time to get the last indexes difference in time
-            else if i == lapArray.count - 1 {
+            if i == lapArray.count - 1 {
                 let lastTime = toDate(lapArray[i])
                 let finalTime = toDate(endTime)
                 let lap = userCalendar.components(minCalendarUnit, fromDate: lastTime, toDate: finalTime, options: [])
