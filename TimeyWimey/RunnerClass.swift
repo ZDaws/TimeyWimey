@@ -9,13 +9,19 @@
 import Foundation
 import UIKit
 
-class Runner {
-    //Instance Variables
-    var name: String = ""
+class Runner: NSObject, NSCoding {
+    //Instance Variables 
+    var name: String
     var endTime: String
     var lapArray: [String] = []
     var laps: [String] = []
     
+    struct PropertyKey {
+        static let runnerNameKey = "runnerNameKey"
+        static let endTimeKey = "endTimeKey"
+        static let lapArrayKey = "lapArrayKey"
+        static let lapsKey = "lapsKey"
+    }
     
     //This is the function that I use to change the strings that we get from the stopwatch to change them into NSDates
     func toDate(time: String) -> NSDate{
@@ -35,12 +41,29 @@ class Runner {
     }
     
     
-    init(n: String)  {
+    init(n: String, endTime: String, lapArray: [String], laps: [String]) {
         name = n
-        endTime = "00:00:00"
+        self.endTime = "00:00:00"
     }
     
+    //MARK: NSCoding
+    func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeObject(name, forKey: PropertyKey.runnerNameKey)
+        aCoder.encodeObject(endTime, forKey: PropertyKey.endTimeKey)
+        aCoder.encodeObject(lapArray, forKey: PropertyKey.lapArrayKey)
+        aCoder.encodeObject(laps, forKey: PropertyKey.lapsKey)
+        print("runner encoding works")
+    }
     
+    required convenience init?(coder aDecoder: NSCoder){
+        let name = aDecoder.decodeObjectForKey(PropertyKey.runnerNameKey) as! String
+        let endTime = aDecoder.decodeObjectForKey(PropertyKey.endTimeKey) as! String
+        let lapArray = aDecoder.decodeObjectForKey(PropertyKey.lapArrayKey) as! [String]
+        let laps = aDecoder.decodeObjectForKey(PropertyKey.lapsKey) as! [String]
+        
+        self.init(n: name, endTime: endTime, lapArray: lapArray, laps: laps)
+    }
+
     
     
     
@@ -64,17 +87,17 @@ class Runner {
     func lapDur() {
         //necessary variables for the NSDate and NSDateComponents arithmetic
         let userCalendar = NSCalendar.currentCalendar()
-        let minCalendarUnit: NSCalendarUnit = [.Minute]
+        let minCalendarUnit: NSCalendarUnit = [.Minute, .Second, .Nanosecond]
         
         laps = lapArray
         
         //loop to go through the array to allow us to do arithmetic with it
-        for var i = 1 ; i < lapArray.count; i++ {
+        for var i = 0 ; i < lapArray.count; i++ {
             
             //for the indexes in the array that will do the subractions with other elements of the array
-            if i < lapArray.count - 1 && i > 0 {
-                let newTime = toDate(laps[i])
-                let lastTime = toDate(laps[i+1])
+            if i < lapArray.count && i > 0 {
+                let newTime = toDate(laps[i - 1])
+                let lastTime = toDate(laps[i])
                 
                 //this does the arithmetic to find the time in minutes followed by seconds between the two variables and
                 //adjusting for sign difference to keep it positive even with the backwards order
@@ -84,12 +107,12 @@ class Runner {
                 laps[i] = toString(finalDate!)
             }
                 //does the subtraction for the last index and the final end time to get the last indexes difference in time
-            else {
+            else if i == lapArray.count - 1 {
                 let lastTime = toDate(lapArray[i])
                 let finalTime = toDate(endTime)
                 let lap = userCalendar.components(minCalendarUnit, fromDate: lastTime, toDate: finalTime, options: [])
                 let finalDate = userCalendar.dateFromComponents(lap)
-                laps[i] = toString(finalDate!)
+                laps.append(toString(finalDate!))
             }
             
         }
@@ -97,6 +120,7 @@ class Runner {
         
         
     }
+    
     
     
     

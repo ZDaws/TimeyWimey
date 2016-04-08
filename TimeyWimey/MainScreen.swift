@@ -26,6 +26,7 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     
     
     override func viewDidLoad() {
+        
         //Set current # of rows to the number of current events
         rows = Global.events.count
         print("\(Global.events.count)")
@@ -86,14 +87,14 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate, 
         let alert = UIAlertController(title: alertTitle1, message: message1, preferredStyle: UIAlertControllerStyle.Alert)
         let openButton = UIAlertAction(title: openText, style: UIAlertActionStyle.Default, handler: {
             action in
-            Global.events.append(Event(name: "New Event", typeOpen: true))
+            Global.events.append(Event(EventName: "New Event", RegisterArray: [], typeOpen: true, isTiming: false, isDone: false, finalTime: "00:00:00", displayTimeLabel: UILabel()))
             Global.currentEvent = self.rows
             self.performSegueWithIdentifier("addNewEventSegue", sender: self)
         })
         alert.addAction(openButton)
         let relayButton = UIAlertAction(title: relayText, style: UIAlertActionStyle.Default, handler: {
             action in
-            Global.events.append(Event(name: "New Event", typeOpen: false))
+            Global.events.append(Event(EventName: "New Event", RegisterArray: [], typeOpen: false, isTiming: false, isDone: false, finalTime: "00:00:00", displayTimeLabel: UILabel()))
             Global.currentEvent = self.rows
             self.performSegueWithIdentifier("addNewEventSegue", sender: self)
         })
@@ -105,11 +106,11 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     //start of zachs exporting code
     
     /* Export Bar Button
-    * Export all the files
-    * Take a for loop through all the events
-    * Pull out each Runner and organize their times and names into a single string
-    * add up all the Runner’s strings into one single string and export to google docs
-    */
+     * Export all the files
+     * Take a for loop through all the events
+     * Pull out each Runner and organize their times and names into a single string
+     * add up all the Runner’s strings into one single string and export to google docs
+     */
     
     
     
@@ -141,7 +142,7 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     
     //variables necessary to createFile()
     let fileName = "Events.csv"
-    let StartString = "Name,End Time,Lap\n"
+    let StartString = "Event Name, Name,End Time,Splits\n"
     let tmpDir: NSString = NSTemporaryDirectory()
     
     
@@ -171,6 +172,7 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate, 
                 
                 for var c = 0 ; c < Global.events[i].RegisterArray.count ; c++ {
                     
+                    Contents += Global.events[i].EventName + ","
                     Contents += Global.events[i].RegisterArray[c].name + ","
                     Contents += Global.events[i].RegisterArray[c].endTime + ","
                     
@@ -194,6 +196,12 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate, 
                         Contents += "\n"
                     }
                     
+                    if Global.events[i].isOpen == false {
+                        
+                        Contents += Global.events[i].EventName + ",," + Global.events[i].finalTime + "\n"
+                        
+                        
+                    }
                     
                 }
                 
@@ -234,6 +242,9 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     
     
     //end of zachs email code
+    
+    
+
     
     /* Delete All Bar Button
     * Remove all events from the event object

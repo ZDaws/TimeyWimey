@@ -13,4 +13,5 @@ struct Global {
     static var events: [Event] = []
     //This is used to load data on the timer and edit screen
     static var currentEvent: Int = 0
+    static var eventsSaved: Bool = false
 }

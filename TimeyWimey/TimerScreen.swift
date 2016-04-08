@@ -2,7 +2,7 @@
 //  TimerScreen.swift
 //  TimeyWimey
 //
-//  Created by KUSKE, JOEL on 1/25/16.
+//  Created by HOLM, JOEL on 1/25/16.
 //  Copyright © 2016 Frands. All rights reserved.
 //
 
@@ -97,9 +97,9 @@ class TimerScreen: UIViewController {
         
         
         /*layout screen labels and buttons
-        * For both open and relay set the runner labels on the screen 
-        * However only for open place the buttons
-        */
+         * For both open and relay set the runner labels on the screen
+         * However only for open place the buttons
+         */
         for (var x = 0 ; x < numRun ; x++) {
             //Layout runners,  Will always be fired
             labels.append(UILabel(frame: CGRect(x: 3 * horz + buttonL * 2, y: ((vert * 2) + timerLabelH + navBar + (CGFloat(x) * labelH)) + 1, width: labelL, height: labelH - 2)))
@@ -115,7 +115,7 @@ class TimerScreen: UIViewController {
             if Global.events[event].isOpen  {
                 //If the event is not done, so either not started or ongoing
                 if Global.events[event].isDone == false {
-                
+                    
                     //Layout lap buttons
                     lapButtons.append(CustomButton(frame: CGRect(x: (horz * 2) + buttonL , y: (vert / CGFloat(1 + numRun)) + (vert * 2) + timerLabelH + navBar + (CGFloat(x)    * labelH), width: buttonL, height: labelH - ((vert * 2) / CGFloat(1 + numRun))), x, false))
                     lapButtons[x].backgroundColor = UIColor.blueColor()
@@ -124,10 +124,10 @@ class TimerScreen: UIViewController {
                     lapButtons[x].layer.cornerRadius = 10.0
                     lapButtons[x].clipsToBounds = true
                     lapButtons[x].addTarget(self, action: "lap:", forControlEvents: .TouchUpInside)
-                        
-                        
+                    
+                    
                     self.view.addSubview(lapButtons[x])
-                
+                    
                     //Layout stop buttons
                     stopButtons.append(CustomButton(frame: CGRect(x: (horz ) , y: (vert / CGFloat(1 + numRun)) + (vert * 2) + timerLabelH + navBar +    (CGFloat(x) * labelH), width: buttonL, height: labelH - ((vert * 2) / CGFloat(1 + numRun))), x, true))
                     stopButtons[x].backgroundColor = UIColor.redColor()
@@ -136,7 +136,7 @@ class TimerScreen: UIViewController {
                     stopButtons[x].layer.cornerRadius = 10.0
                     stopButtons[x].clipsToBounds = true
                     stopButtons[x].addTarget(self, action: "stop:", forControlEvents: .TouchUpInside)
-                        
+                    
                     self.view.addSubview(stopButtons[x])
                     
                     //If the runner has an endtime put the green bar over and remove lap and stop buttons
@@ -149,7 +149,7 @@ class TimerScreen: UIViewController {
                         coverLabel.textAlignment = .Center
                         
                         self.view.addSubview(coverLabel)
-                    
+                        
                         stopButtons[x].removeFromSuperview()
                         lapButtons[x].removeFromSuperview()
                         
@@ -170,7 +170,7 @@ class TimerScreen: UIViewController {
                     
                 }
             }
-
+            
         }
         //End of for-loop
         
@@ -252,7 +252,7 @@ class TimerScreen: UIViewController {
             }
             
         }
-
+        
         //Add a master clock at the top
         Global.events[event].displayTimeLabel = UILabel(frame: CGRect(x: width / 4, y: navBar + vert, width: width / 2, height: timerLabelH))
         Global.events[event].displayTimeLabel.backgroundColor = UIColor.blackColor()
@@ -275,7 +275,7 @@ class TimerScreen: UIViewController {
             startButton.addTarget(self, action: "start:", forControlEvents: .TouchUpInside)
             self.view.addSubview(startButton)
         }
-
+        
     }
     //End of viewDidLoad
     
@@ -286,8 +286,8 @@ class TimerScreen: UIViewController {
     
     
     /*Start Button Action
-    *
-    */
+     *
+     */
     func start(button: UIButton)   {
         if Global.events[event].isTiming == false && Global.events[event].isDone == false  {
             let aSelector : Selector = "updateTime"
@@ -300,11 +300,11 @@ class TimerScreen: UIViewController {
     }
     
     /*Lap Button
-    *
-    */
+     *
+     */
     func lap(button: CustomButton)  {
         if Global.events[event].isTiming {
-        
+            
             Global.events[event].RegisterArray[button.numRunner].lapArray.append(Global.events[event].displayTimeLabel.text!)
             //Animate the button for like half a second
             UIView.animateWithDuration( 1 , animations: {
@@ -319,14 +319,14 @@ class TimerScreen: UIViewController {
     
     
     /*Stop Button
-    *
-    */
+     *
+     */
     func stop(button: CustomButton){
-
+        
         
         if Global.events[event].isTiming    {
             count++
-        
+            
             
             
             
@@ -343,12 +343,12 @@ class TimerScreen: UIViewController {
                 coverLabel.text = "\(Global.events[event].displayTimeLabel.text!)"
                 coverLabel.font = UIFont(name: "Courier New", size: (timerLabelH * 2) / 3)
                 coverLabel.textAlignment = .Center
-            
+                
                 self.view.addSubview(coverLabel)
-            
+                
                 stopButtons[button.numRunner].removeFromSuperview()
                 lapButtons[button.numRunner].removeFromSuperview()
-            
+                
             }
             
             //When count is equal to the number of runners when the stop button is pressed, the timer stops.
@@ -358,7 +358,7 @@ class TimerScreen: UIViewController {
                 Global.events[event].isTiming = false
                 Global.events[event].finalTime = Global.events[event].displayTimeLabel.text!
             }
-        
+            
             
             
             
@@ -406,7 +406,7 @@ class TimerScreen: UIViewController {
                 coverLabel.textAlignment = .Center
                 
                 self.view.addSubview(coverLabel)
-
+                
                 
                 
                 //If count <= numRun place a new lap and stop buttons down
@@ -430,13 +430,13 @@ class TimerScreen: UIViewController {
                     lapButtons[0].addTarget(self, action: "lap:", forControlEvents: .TouchUpInside)
                     
                     self.view.addSubview(lapButtons[0])
-
+                    
                 }
                 
             }
-
+            
         }
-    
+        
     }
     
     
@@ -484,12 +484,12 @@ class TimerScreen: UIViewController {
         //concatenate minuets, seconds and milliseconds as assign it to the UILabel
         
         Global.events[event].displayTimeLabel.text = "\(strMinutes):\(strSeconds):\(strFraction)"
-
+        
         
         
     }
     
-  
+    
     
     
     @IBAction func backToMain(sender: UIBarButtonItem) {
@@ -497,7 +497,7 @@ class TimerScreen: UIViewController {
         
         
         performSegueWithIdentifier("timerToMainSegue", sender: self)
-            
+        
     }
     
     
@@ -516,5 +516,5 @@ class TimerScreen: UIViewController {
     
     
     
-
+    
 }

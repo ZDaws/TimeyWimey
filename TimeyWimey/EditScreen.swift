@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EditScreen: UIViewController {
+class EditScreen: UIViewController{
     
     
     //Variables for finding the screen size
@@ -54,7 +54,7 @@ class EditScreen: UIViewController {
         //If open add new runners to the register array with names of "New Runner" until there are 10 runnners
         if Global.events[event].isOpen && Global.events[event].isDone == false {
             while Global.events[event].RegisterArray.count < 10    {
-                Global.events[event].RegisterArray.append(Runner(n: "New Runner"))
+                Global.events[event].RegisterArray.append(Runner(n: "New Runner", endTime: "", lapArray: [], laps: []))
             }
 
         }
