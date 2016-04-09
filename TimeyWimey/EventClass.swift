@@ -53,12 +53,12 @@ class Event: NSObject, NSCoding {
         if RegisterArray.isEmpty {
             if isOpen == true {
                 for var i = 0 ; i < 10 ; i++ {
-                    self.RegisterArray.append(Runner(n: "New Runner", endTime: "", lapArray: [], laps: []))
+                    self.RegisterArray.append(Runner(n: "New Runner", endTime: "00:00:00", lapArray: [], laps: []))
                 }
             }
             else {
                 for var a = 0 ; a < 4 ; a++ {
-                    self.RegisterArray.append(Runner(n: "New Runner", endTime: "", lapArray: [], laps: []))
+                    self.RegisterArray.append(Runner(n: "New Runner", endTime: "00:00:00", lapArray: [], laps: []))
                 }
             }
         }
@@ -88,7 +88,7 @@ class Event: NSObject, NSCoding {
         let isDone = aDecoder.decodeBoolForKey(PropertyKey.isDoneKey)
         let finalTime = aDecoder.decodeObjectForKey(PropertyKey.finalTimeKey) as! String
         let displayTimeLabel = aDecoder.decodeObjectForKey(PropertyKey.displayTimeLabelKey) as! UILabel
-        
+        print("event decoding works")
         self.init(EventName: EventName, RegisterArray: RegisterArray, typeOpen: isOpen, isTiming: isTiming, isDone: isDone, finalTime: finalTime, displayTimeLabel: displayTimeLabel)
     }
     

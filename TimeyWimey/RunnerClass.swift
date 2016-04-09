@@ -42,8 +42,10 @@ class Runner: NSObject, NSCoding {
     
     
     init(n: String, endTime: String, lapArray: [String], laps: [String]) {
-        name = n
-        self.endTime = "00:00:00"
+        self.name = n
+        self.endTime = endTime
+        self.lapArray = lapArray
+        self.laps = laps
     }
     
     //MARK: NSCoding
@@ -60,7 +62,7 @@ class Runner: NSObject, NSCoding {
         let endTime = aDecoder.decodeObjectForKey(PropertyKey.endTimeKey) as! String
         let lapArray = aDecoder.decodeObjectForKey(PropertyKey.lapArrayKey) as! [String]
         let laps = aDecoder.decodeObjectForKey(PropertyKey.lapsKey) as! [String]
-        
+        print("runner decoding works")
         self.init(n: name, endTime: endTime, lapArray: lapArray, laps: laps)
     }
 

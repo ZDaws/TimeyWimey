@@ -29,10 +29,7 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate, 
         
         //Set current # of rows to the number of current events
         rows = Global.events.count
-        print("\(Global.events.count)")
-        
-        
-        
+
     }
     
  

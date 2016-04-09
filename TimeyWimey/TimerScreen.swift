@@ -115,7 +115,7 @@ class TimerScreen: UIViewController {
             if Global.events[event].isOpen  {
                 //If the event is not done, so either not started or ongoing
                 if Global.events[event].isDone == false {
-                    
+                    print("event is not recognized as done")
                     //Layout lap buttons
                     lapButtons.append(CustomButton(frame: CGRect(x: (horz * 2) + buttonL , y: (vert / CGFloat(1 + numRun)) + (vert * 2) + timerLabelH + navBar + (CGFloat(x)    * labelH), width: buttonL, height: labelH - ((vert * 2) / CGFloat(1 + numRun))), x, false))
                     lapButtons[x].backgroundColor = UIColor.blueColor()
@@ -159,7 +159,7 @@ class TimerScreen: UIViewController {
                 } else {
                     //If the event is done
                     //Lay out green final time buttons
-                    
+                    print("event is recognized as done", Global.events[event].RegisterArray[x].endTime)
                     let coverLabel = UILabel(frame: CGRect(x: horz, y: navBar + (vert * 2) + timerLabelH + (labelH * CGFloat(x)), width: (buttonL * 2) + horz, height: labelH))
                     coverLabel.backgroundColor = UIColor.greenColor()
                     coverLabel.text = "\(Global.events[event].RegisterArray[x].endTime)"
@@ -211,6 +211,7 @@ class TimerScreen: UIViewController {
                 for ( var i = 0 ; i < numRun ; i++)  {
                     
                     if Global.events[event].RegisterArray[i].endTime != "00:00:00"  {
+                        print("endTime is not 00:00:00")
                         let coverLabel = UILabel(frame: CGRect(x: horz, y: navBar + (vert * 2) + timerLabelH + (labelH * CGFloat(i)), width: (buttonL * 2) + horz, height: labelH))
                         coverLabel.backgroundColor = UIColor.greenColor()
                         coverLabel.text = "\(Global.events[event].RegisterArray[i].endTime)"
