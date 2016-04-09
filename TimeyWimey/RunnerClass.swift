@@ -40,6 +40,12 @@ class Runner: NSObject, NSCoding {
         return DateFormatter.stringFromDate(date)
     }
     
+    init(n: String) {
+        self.name = n
+        self.endTime = "00:00:00"
+        self.lapArray = []
+        self.laps = []
+    }
     
     init(n: String, endTime: String, lapArray: [String], laps: [String]) {
         self.name = n
@@ -54,7 +60,6 @@ class Runner: NSObject, NSCoding {
         aCoder.encodeObject(endTime, forKey: PropertyKey.endTimeKey)
         aCoder.encodeObject(lapArray, forKey: PropertyKey.lapArrayKey)
         aCoder.encodeObject(laps, forKey: PropertyKey.lapsKey)
-        print("runner encoding works")
     }
     
     required convenience init?(coder aDecoder: NSCoder){
@@ -62,15 +67,10 @@ class Runner: NSObject, NSCoding {
         let endTime = aDecoder.decodeObjectForKey(PropertyKey.endTimeKey) as! String
         let lapArray = aDecoder.decodeObjectForKey(PropertyKey.lapArrayKey) as! [String]
         let laps = aDecoder.decodeObjectForKey(PropertyKey.lapsKey) as! [String]
-        print("runner decoding works")
+
         self.init(n: name, endTime: endTime, lapArray: lapArray, laps: laps)
     }
 
-    
-    
-    
-    
-    
     //INTRUCTIONS
     //changes each lap from a time stamp to its proper duration for that lap
     //to reference this modified array it will be in its normal array format just with the new values in their appropriate indexes
@@ -80,11 +80,6 @@ class Runner: NSObject, NSCoding {
     //-test to see how many laps are in the array
     //if more than one entry in lapArray then take each value and subtract it by the previous to get the difference in duration
     //remember that the last lap in the array will need to use the final end time in order to find its duration
-    
-    
-    
-    
-    
     
     func lapDur() {
         //necessary variables for the NSDate and NSDateComponents arithmetic
@@ -122,10 +117,6 @@ class Runner: NSObject, NSCoding {
         
         
     }
-    
-    
-    
-    
     
     //Csv headings
     //Name, End Time, Lap

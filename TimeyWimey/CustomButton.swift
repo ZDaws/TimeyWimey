@@ -16,7 +16,6 @@ class CustomButton: UIButton {
     var frm: CGRect
     var isStop: Bool
     
-    
     init( frame: CGRect, _ num: Int, _ isStopButton: Bool )	{
         numRunner = num
         frm = frame
@@ -27,10 +26,5 @@ class CustomButton: UIButton {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-
-
-    
-    
 
 }

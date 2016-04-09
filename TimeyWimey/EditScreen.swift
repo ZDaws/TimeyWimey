@@ -10,7 +10,6 @@ import UIKit
 
 class EditScreen: UIViewController{
     
-    
     //Variables for finding the screen size
     var screenSize: CGRect = UIScreen.mainScreen().bounds
     var width: CGFloat = 0.0
@@ -42,7 +41,6 @@ class EditScreen: UIViewController{
     //Max characters in the textfield
     var maxChar = Int(10)
     
-    
     /* Load View
     * The area in which the labels and buttons for runners will go will be in the bottom of the screen
     * At the top of the view place a text field with placeholder text of that events name
@@ -54,14 +52,10 @@ class EditScreen: UIViewController{
         //If open add new runners to the register array with names of "New Runner" until there are 10 runnners
         if Global.events[event].isOpen && Global.events[event].isDone == false {
             while Global.events[event].RegisterArray.count < 10    {
-                Global.events[event].RegisterArray.append(Runner(n: "New Runner", endTime: "00:00:00", lapArray: [], laps: []))
+                Global.events[event].RegisterArray.append(Runner(n: "New Runner"))
             }
 
         }
-        
-     
-        
-        
         
         //Set the screen size using variables screenSize, width, height
         width = screenSize.width
@@ -70,11 +64,8 @@ class EditScreen: UIViewController{
         eventW = width / 2
         labelH = (height - (eventH + NavBar + Vert * 3)) / 10
         
-        
         //Find the max characters can fit on the next screen
         maxChar = Int(((width - (Horz * 2)) / ((labelH * 2 * 3) / (3 * 5))))
-        
-        
         
         //Create and display textfields with backgrounds
         if Global.events[event].isOpen == true  {
@@ -90,6 +81,7 @@ class EditScreen: UIViewController{
             numRun = 3
             
         }
+        
         //Background layer for runners
         let background = UILabel(frame: CGRect(x: Horz - 1, y: eventH + NavBar + (Vert * 2) - 0.5, width: width - (2 * Horz) + 2, height: (labelH * CGFloat(numRun + 1)) + 1))
         background.backgroundColor = UIColor.blackColor()
@@ -117,8 +109,6 @@ class EditScreen: UIViewController{
         
         }
         
-        
-        
         //Create the event name textfield
         frm = CGRect(x: width / 4 , y: NavBar + Vert, width: eventW, height: eventH)
         eventTextField = CustomTextField(frame: frm , 20)
@@ -140,16 +130,8 @@ class EditScreen: UIViewController{
         eventTextField.addTarget(self, action: "eventTextFieldUnselected:", forControlEvents: .EditingDidEnd)
         self.view.addSubview(eventTextField)
         
-        
-        
-        
-        
     }
     //End of viewDidLoad()
-    
-    
-    
-    
     
     //Fires when event text field is selected
     func eventTextFieldSelected(sender: UITextField)  {
@@ -171,7 +153,6 @@ class EditScreen: UIViewController{
         
     }
     
-    
     /*  Text field Unselected
     * This function will be called when the user unselects a certain text field
     * If the text extends past the text field length cut the excess string off
@@ -185,16 +166,7 @@ class EditScreen: UIViewController{
             }
         }
         
-        
-        
     }
-    
-    
-    
-    
-    
-    
-    
     
     /*Touch to remove keyboard
     * When the keyboard is up this function will be called when the user touches outside of the
@@ -207,9 +179,6 @@ class EditScreen: UIViewController{
         super.touchesBegan(touches, withEvent: event )
     }
     
-    
-    
-    
     /* Return to remove keyboard
     * When the keyboard is up this function will be called when the user presses return
     * and the keyboard will disappear.
@@ -220,8 +189,6 @@ class EditScreen: UIViewController{
         return true
     }
 
-    
-    
     /* Segue to timer
     * Before the segue each string in each text field will be saved into an array of runners
     * If open remove a runner from the Register array is their name is "New Event" or ""
@@ -257,10 +224,6 @@ class EditScreen: UIViewController{
         
         performSegueWithIdentifier("saveToTimerSegue", sender: self)
     
-     
     }
     
-    
-    
-
 }

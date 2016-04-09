@@ -14,16 +14,8 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     //Represents the number of current events
     var rows:Int = 0
     
-    
-    
-    
     //Our tableview
     @IBOutlet weak var eventsTableView: UITableView!
-    
-    
-    
-    
-    
     
     override func viewDidLoad() {
         
@@ -31,9 +23,6 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate, 
         rows = Global.events.count
 
     }
-    
- 
-    
     
     /* Table Cell Function
     * This returns what will be in each individual table cell.   The row is indicated by indexPath.row.
@@ -50,7 +39,6 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     }
     
     
-    
     /* Table Rows
     * This returns the number of rows in our table.
     * We need to return the number of events that we currently have in our event object array
@@ -62,8 +50,6 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate, 
         //return Global.events.count
         return rows
     }
-    
-    
     
     
     /* Add Event Bar Button
@@ -84,14 +70,14 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate, 
         let alert = UIAlertController(title: alertTitle1, message: message1, preferredStyle: UIAlertControllerStyle.Alert)
         let openButton = UIAlertAction(title: openText, style: UIAlertActionStyle.Default, handler: {
             action in
-            Global.events.append(Event(EventName: "New Event", RegisterArray: [], typeOpen: true, isTiming: false, isDone: false, finalTime: "00:00:00", displayTimeLabel: UILabel()))
+            Global.events.append(Event(EventName: "New Event", isOpen: true))
             Global.currentEvent = self.rows
             self.performSegueWithIdentifier("addNewEventSegue", sender: self)
         })
         alert.addAction(openButton)
         let relayButton = UIAlertAction(title: relayText, style: UIAlertActionStyle.Default, handler: {
             action in
-            Global.events.append(Event(EventName: "New Event", RegisterArray: [], typeOpen: false, isTiming: false, isDone: false, finalTime: "00:00:00", displayTimeLabel: UILabel()))
+            Global.events.append(Event(EventName: "New Event", isOpen: false))
             Global.currentEvent = self.rows
             self.performSegueWithIdentifier("addNewEventSegue", sender: self)
         })
@@ -108,10 +94,6 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate, 
      * Pull out each Runner and organize their times and names into a single string
      * add up all the Runner’s strings into one single string and export to google docs
      */
-    
-    
-    
-    
     @IBAction func export(sender: UIBarButtonItem) {
         
         
@@ -136,15 +118,10 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate, 
         controller.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    
     //variables necessary to createFile()
     let fileName = "Events.csv"
     let StartString = "Event Name, Name,End Time,Splits\n"
     let tmpDir: NSString = NSTemporaryDirectory()
-    
-    
-    
-    
     
     //configures the email capabilites and is called in the main export function
     func configuredMailComposeViewController() -> MFMailComposeViewController {
@@ -155,16 +132,8 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate, 
         
         if Global.events.count > 0 {
             
-            
             //for loops - (event  ( runner ( name and endtime and (laps) ))
             
-            // Global (  events[]  (  RegisterArray[] ( runner instance varibales) )  )
-            // Global.event[i].RegisterArray[c].
-            
-            
-            
-            
-            // Done
             for var i = 0 ; i < Global.events.count ; i++ {
                 
                 for var c = 0 ; c < Global.events[i].RegisterArray.count ; c++ {
@@ -236,18 +205,14 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate, 
         return emailController
     }
     
-    
-    
     //end of zachs email code
     
     
-
     
     /* Delete All Bar Button
     * Remove all events from the event object
     * Have a popup window that asks the user if they are sure they want to delete all events
     */
-    
     let alertTitle2 = "Are you sure you want to delete all events?"
     let message2 = "All ongoing events will be stopped"
     let okText = "OK"
@@ -274,8 +239,6 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate, 
         
         presentViewController(alert, animated: true, completion: nil)
     }
-
-    
     
     /* Editable table
     * Makes table editable, return true
@@ -283,8 +246,6 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return true
     }
-    
-
     
     /* Swipe to delete
     * Create an editing style that allows the user to swipe and delete an event
@@ -302,12 +263,4 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate, 
         self.performSegueWithIdentifier("mainToTimerSegue", sender: self)
     }
     
-    
-    
-    
-    
-    
-    
-    
-
 }
