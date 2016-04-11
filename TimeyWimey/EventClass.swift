@@ -43,29 +43,42 @@ class Event: NSObject, NSCoding {
     
     //MARK: Initialization
     
-    init( EventName: String, RegisterArray: [Runner], typeOpen: Bool, isTiming: Bool, isDone: Bool, finalTime: String, displayTimeLabel: UILabel) {
-        self.EventName = EventName
-        self.isOpen = typeOpen
-        self.isDone = isDone
-        self.isTiming = isTiming
-        self.finalTime = finalTime
-        self.displayTimeLabel = displayTimeLabel
+    func initRunnerArray() {
         if RegisterArray.isEmpty {
             if isOpen == true {
                 for var i = 0 ; i < 10 ; i++ {
-                    self.RegisterArray.append(Runner(n: "New Runner", endTime: "", lapArray: [], laps: []))
+                    self.RegisterArray.append(Runner(n: "New Runner"))
                 }
             }
             else {
                 for var a = 0 ; a < 4 ; a++ {
-                    self.RegisterArray.append(Runner(n: "New Runner", endTime: "", lapArray: [], laps: []))
+                    self.RegisterArray.append(Runner(n: "New Runner"))
                 }
             }
         }
-        else {
-            self.RegisterArray = RegisterArray
-        }
+    }
+    
+    init(EventName: String, isOpen: Bool) {
+        self.EventName = EventName
+        self.RegisterArray = []
+        self.isOpen = isOpen
+        self.isTiming = false
+        self.isDone = false
+        self.finalTime = "00:00:00"
         super.init()
+        initRunnerArray()
+    }
+    
+    init(EventName: String, RegisterArray: [Runner], isOpen: Bool, isTiming: Bool, isDone: Bool, finalTime: String, displayTimeLabel: UILabel) {
+        self.EventName = EventName
+        self.isOpen = isOpen
+        self.isDone = isDone
+        self.isTiming = isTiming
+        self.finalTime = finalTime
+        self.displayTimeLabel = displayTimeLabel
+        self.RegisterArray = RegisterArray
+        super.init()
+        initRunnerArray()
     }
     
     //MARK: NSCoding
@@ -77,7 +90,6 @@ class Event: NSObject, NSCoding {
         aCoder.encodeBool(isDone, forKey: PropertyKey.isDoneKey)
         aCoder.encodeObject(finalTime, forKey: PropertyKey.finalTimeKey)
         aCoder.encodeObject(displayTimeLabel, forKey: PropertyKey.displayTimeLabelKey)
-        print("event encoding works")
     }
     
     required convenience init?(coder aDecoder: NSCoder){
@@ -88,8 +100,8 @@ class Event: NSObject, NSCoding {
         let isDone = aDecoder.decodeBoolForKey(PropertyKey.isDoneKey)
         let finalTime = aDecoder.decodeObjectForKey(PropertyKey.finalTimeKey) as! String
         let displayTimeLabel = aDecoder.decodeObjectForKey(PropertyKey.displayTimeLabelKey) as! UILabel
-        
-        self.init(EventName: EventName, RegisterArray: RegisterArray, typeOpen: isOpen, isTiming: isTiming, isDone: isDone, finalTime: finalTime, displayTimeLabel: displayTimeLabel)
+
+        self.init(EventName: EventName, RegisterArray: RegisterArray, isOpen: isOpen, isTiming: isTiming, isDone: isDone, finalTime: finalTime, displayTimeLabel: displayTimeLabel)
     }
     
     

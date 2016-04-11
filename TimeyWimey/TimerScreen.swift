@@ -12,7 +12,6 @@ class TimerScreen: UIViewController {
     
     //need one of these for every Runner
     
-    
     //Variables for finding the screen size
     var screenSize: CGRect = UIScreen.mainScreen().bounds
     var width: CGFloat = 0.0
@@ -56,12 +55,7 @@ class TimerScreen: UIViewController {
     //Used to do timer stuff in stop function for relay events
     var sum = "00:00:00"
     
-    
     @IBOutlet weak var eventTitle: UINavigationItem!
-    
-    
-    
-    
     
     override func viewDidLoad() {
         eventTitle.title = Global.events[event].EventName
@@ -88,13 +82,10 @@ class TimerScreen: UIViewController {
             
         }
         
-        
         //Background layer
         let background = UILabel(frame: CGRect(x: (horz * 3) + (buttonL * 2) - 1, y: navBar + (vert * 2) + timerLabelH, width: labelL + 2, height: labelH * CGFloat(numRun)))
         background.backgroundColor = UIColor.blackColor()
         self.view.addSubview(background)
-        
-        
         
         /*layout screen labels and buttons
          * For both open and relay set the runner labels on the screen
@@ -115,7 +106,6 @@ class TimerScreen: UIViewController {
             if Global.events[event].isOpen  {
                 //If the event is not done, so either not started or ongoing
                 if Global.events[event].isDone == false {
-                    
                     //Layout lap buttons
                     lapButtons.append(CustomButton(frame: CGRect(x: (horz * 2) + buttonL , y: (vert / CGFloat(1 + numRun)) + (vert * 2) + timerLabelH + navBar + (CGFloat(x)    * labelH), width: buttonL, height: labelH - ((vert * 2) / CGFloat(1 + numRun))), x, false))
                     lapButtons[x].backgroundColor = UIColor.blueColor()
@@ -159,7 +149,6 @@ class TimerScreen: UIViewController {
                 } else {
                     //If the event is done
                     //Lay out green final time buttons
-                    
                     let coverLabel = UILabel(frame: CGRect(x: horz, y: navBar + (vert * 2) + timerLabelH + (labelH * CGFloat(x)), width: (buttonL * 2) + horz, height: labelH))
                     coverLabel.backgroundColor = UIColor.greenColor()
                     coverLabel.text = "\(Global.events[event].RegisterArray[x].endTime)"
@@ -173,8 +162,6 @@ class TimerScreen: UIViewController {
             
         }
         //End of for-loop
-        
-        
         
         //If relay place buttons
         if Global.events[event].isOpen == false {
@@ -279,12 +266,6 @@ class TimerScreen: UIViewController {
     }
     //End of viewDidLoad
     
-    
-    
-    
-    
-    
-    
     /*Start Button Action
      *
      */
@@ -317,19 +298,13 @@ class TimerScreen: UIViewController {
         
     }
     
-    
     /*Stop Button
      *
      */
     func stop(button: CustomButton){
         
-        
         if Global.events[event].isTiming    {
             count++
-            
-            
-            
-            
             
             //If open just simply place a green final time label over the buttons
             if Global.events[event].isOpen  {
@@ -359,9 +334,6 @@ class TimerScreen: UIViewController {
                 Global.events[event].finalTime = Global.events[event].displayTimeLabel.text!
             }
             
-            
-            
-            
             //If relay add next nunners lap and stop buttons and place green final time label over finished runner's buttons
             if Global.events[event].isOpen == false  {
                 
@@ -390,7 +362,6 @@ class TimerScreen: UIViewController {
                     sum = toString(finalDate!)
 
                 }
-                
                 
                 Global.events[event].RegisterArray[count - 1].endTime = sum
                 
@@ -485,22 +456,13 @@ class TimerScreen: UIViewController {
         
         Global.events[event].displayTimeLabel.text = "\(strMinutes):\(strSeconds):\(strFraction)"
         
-        
-        
     }
     
-    
-    
-    
     @IBAction func backToMain(sender: UIBarButtonItem) {
-        
-        
         
         performSegueWithIdentifier("timerToMainSegue", sender: self)
         
     }
-    
-    
     
     @IBAction func editButton(sender: UIBarButtonItem) {
         if Global.events[event].isTiming == false  {
@@ -509,12 +471,8 @@ class TimerScreen: UIViewController {
                 Global.events[event].EventName = "New Event"
             }
             
-            
             performSegueWithIdentifier("timerToSaveSegue", sender: self)
         }
     }
-    
-    
-    
     
 }

@@ -10,7 +10,6 @@ import UIKit
 
 class CustomTextField: UITextField {
     
-    
     var num: Int
     
     init( frame: CGRect, _ parnum: Int)	{
@@ -22,5 +21,4 @@ class CustomTextField: UITextField {
         fatalError("init(coder:) has not been implemented")
     }
     
-
 }
