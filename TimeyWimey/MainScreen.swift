@@ -161,15 +161,16 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate, 
                     else {
                         Contents += "\n"
                     }
-                    
-                    if Global.events[i].isOpen == false {
+                }
+                
+                if Global.events[i].isOpen == false {
                         
                         Contents += Global.events[i].EventName + ",," + Global.events[i].finalTime + "\n"
                         
                         
-                    }
-                    
                 }
+                    
+                
                 
             }
             
