@@ -12,7 +12,7 @@
 		560A1FE51C6503E00083F017 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560A1FE41C6503E00083F017 /* CustomTextField.swift */; };
 		5610700D1C5FBDFE00219F77 /* GlobalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5610700C1C5FBDFE00219F77 /* GlobalData.swift */; };
 		5610700F1C5FC56900219F77 /* EditScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5610700E1C5FC56900219F77 /* EditScreen.swift */; };
-		561A99F11C568AD300116701 /* TimerScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 561A99F01C568AD300116701 /* TimerScreen.swift */; };
+		561FD52B1CBBFA38002D7832 /* TimerScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 561A99F01C568AD300116701 /* TimerScreen.swift */; };
 		563540741C4E9F990070F43E /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563540731C4E9F980070F43E /* MainScreen.swift */; };
 		567FFAAE1C777A97007B74A2 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567FFAAD1C777A97007B74A2 /* CustomButton.swift */; };
 		56D26B261CAC2791001079CB /* Image.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 56D26B251CAC2791001079CB /* Image.xcassets */; };
@@ -287,8 +287,8 @@
 				44B0BAD41C51468E00ED5841 /* RunnerClass.swift in Sources */,
 				5610700F1C5FC56900219F77 /* EditScreen.swift in Sources */,
 				567FFAAE1C777A97007B74A2 /* CustomButton.swift in Sources */,
-				561A99F11C568AD300116701 /* TimerScreen.swift in Sources */,
 				563540741C4E9F990070F43E /* MainScreen.swift in Sources */,
+				561FD52B1CBBFA38002D7832 /* TimerScreen.swift in Sources */,
 				560A1FE51C6503E00083F017 /* CustomTextField.swift in Sources */,
 				5610700D1C5FBDFE00219F77 /* GlobalData.swift in Sources */,
 				AB651EE71C4E9D760037AA33 /* AppDelegate.swift in Sources */,

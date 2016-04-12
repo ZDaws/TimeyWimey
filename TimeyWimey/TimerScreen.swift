@@ -286,7 +286,44 @@ class TimerScreen: UIViewController {
     func lap(button: CustomButton)  {
         if Global.events[event].isTiming {
             
-            Global.events[event].RegisterArray[button.numRunner].lapArray.append(Global.events[event].displayTimeLabel.text!)
+            
+            
+            let userCalendar = NSCalendar.currentCalendar()
+            let minCalUnit: NSCalendarUnit = [.Minute, .Second, .Nanosecond]
+            sum = Global.events[event].displayTimeLabel.text!
+            
+            /* If Relay
+            * Take the timerlabel time and subtract all of the previous laps for the current runner
+            * so Global.events[event].displayTimeLabel - ( sum of previous end times  +  sum of laps for this runner  )
+            */
+            if Global.events[event].isOpen == false {
+                
+                
+                
+                //subtract end times from sum
+                for ( var i = 0 ; i < count ; i++ )    {
+                    
+                    let tmpSum = toDate(sum)
+                    let tmpEnd = toDate(Global.events[event].RegisterArray[i].endTime)
+                    
+                    let interval = userCalendar.components(minCalUnit, fromDate: tmpEnd, toDate: tmpSum, options:[])
+                    let finalDate = userCalendar.dateFromComponents(interval)
+                    
+                    sum = toString(finalDate!)
+                    
+                }
+                
+                
+                print(sum)
+                Global.events[event].RegisterArray[count].lapArray.append(sum)
+            } else  {
+                print(sum)
+                Global.events[event].RegisterArray[button.numRunner].lapArray.append(sum)
+
+            }
+            
+                        
+                
             //Animate the button for like half a second
             UIView.animateWithDuration( 1 , animations: {
                 self.lapButtons[button.numRunner].backgroundColor = UIColor.whiteColor()
@@ -346,12 +383,12 @@ class TimerScreen: UIViewController {
                 //Set the green final time to their own time not what is on the top timer
                 //So take the top time minus the sum of all times underneath that runner
                 //Global.events[event].RegisterArray[count - 1].endTime = Global.events[event].displayTimeLabel.text!
-                
                 let userCalendar = NSCalendar.currentCalendar()
+                let minCalUnit: NSCalendarUnit = [.Minute, .Second, .Nanosecond]
+
                 sum = Global.events[event].displayTimeLabel.text!
                 
-                let minCalUnit: NSCalendarUnit = [.Minute, .Second, .Nanosecond]
-                
+                                
                 for ( var i = 0 ; i < count - 1 ; i++ )    {
                     let tmpSum = toDate(sum)
                     let tmpEnd = toDate(Global.events[event].RegisterArray[i].endTime)
