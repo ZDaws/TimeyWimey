@@ -21,7 +21,7 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate, 
         
         //Set current # of rows to the number of current events
         rows = Global.events.count
-
+        
     }
     
     /* Table Cell Function
@@ -61,13 +61,17 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     * Then segue to the save screen and append a relay or open event object to our event array
     */
     
-    var alertTitle1 = "Select an Event"
-    var message1 = ""
     let openText = "Open"
     let relayText = "Relay"
     
+    let alert = UIAlertController(title: "Select an Event", message: "", preferredStyle: UIAlertControllerStyle.Alert)
+    
+    //dismiss the alert if the user click anywhere except the buttons
+    func alertClose(gesture: UITapGestureRecognizer) {
+        alert.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     @IBAction func addEvent(sender: UIBarButtonItem) {
-        let alert = UIAlertController(title: alertTitle1, message: message1, preferredStyle: UIAlertControllerStyle.Alert)
         let openButton = UIAlertAction(title: openText, style: UIAlertActionStyle.Default, handler: {
             action in
             Global.events.append(Event(EventName: "New Event", isOpen: true))
@@ -83,7 +87,17 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate, 
         })
         alert.addAction(relayButton)
         
-        presentViewController(alert, animated: true, completion: nil)
+        //Add gesture recognizer for alert ViewController when adding an event
+        self.presentViewController(alert, animated: true, completion:{
+            self.alert.view.superview?.userInteractionEnabled = true
+            self.alert.view.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.alertClose(_:))))
+        })
+        
+//        if alert.isBeingDismissed() == true {
+//            alert.delete(openButton)
+//            alert.delete(relayButton)
+//        }
+        
     }
     
     //start of zachs exporting code
