@@ -88,10 +88,11 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate, 
         alert.addAction(relayButton)
         
         //Add gesture recognizer for alert ViewController when adding an event
-        self.presentViewController(alert, animated: true, completion:{
-            self.alert.view.superview?.userInteractionEnabled = true
-            self.alert.view.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.alertClose(_:))))
-        })
+       self.presentViewController(alert, animated: true, completion: nil//{
+//            self.alert.view.superview?.userInteractionEnabled = true
+//            self.alert.view.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.alertClose(_:))))
+//        }
+        )
         
 //        if alert.isBeingDismissed() == true {
 //            alert.delete(openButton)
@@ -183,7 +184,7 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate, 
                         
                         
                 }
-                    
+                Contents += "\n"    
                 
                 
             }
