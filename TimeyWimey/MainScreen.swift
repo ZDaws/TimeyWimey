@@ -13,7 +13,8 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     
     //Represents the number of current events
     var rows:Int = 0
-    
+    //The alert that is shown when the user presses the addEvent button
+    var alert = UIAlertController()
     //Our tableview
     @IBOutlet weak var eventsTableView: UITableView!
     
@@ -61,17 +62,18 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     * Then segue to the save screen and append a relay or open event object to our event array
     */
     
-    let openText = "Open"
-    let relayText = "Relay"
-    
-    let alert = UIAlertController(title: "Select an Event", message: "", preferredStyle: UIAlertControllerStyle.Alert)
-    
     //dismiss the alert if the user click anywhere except the buttons
     func alertClose(gesture: UITapGestureRecognizer) {
         alert.dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction func addEvent(sender: UIBarButtonItem) {
+        //Create alert for adding events
+        //Alert contains two buttons. One for open events and one for relays
+        let openText = "Open"
+        let relayText = "Relay"
+        alert = UIAlertController(title: "Select an Event", message: "", preferredStyle: UIAlertControllerStyle.Alert)
+        
         let openButton = UIAlertAction(title: openText, style: UIAlertActionStyle.Default, handler: {
             action in
             Global.events.append(Event(EventName: "New Event", isOpen: true))
@@ -87,17 +89,11 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate, 
         })
         alert.addAction(relayButton)
         
-        //Add gesture recognizer for alert ViewController when adding an event
-        self.presentViewController(alert, animated: true, completion:{
+        //Add gesture recognizer for alert ViewController when adding an event while presenting alert
+        self.presentViewController(self.alert, animated: true, completion:{
             self.alert.view.superview?.userInteractionEnabled = true
             self.alert.view.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.alertClose(_:))))
         })
-        
-//        if alert.isBeingDismissed() == true {
-//            alert.delete(openButton)
-//            alert.delete(relayButton)
-//        }
-        
     }
     
     //start of zachs exporting code
