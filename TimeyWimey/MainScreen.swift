@@ -13,7 +13,8 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     
     //Represents the number of current events
     var rows:Int = 0
-    
+    //The alert that is shown when the user presses the addEvent button
+    var alert = UIAlertController()
     //Our tableview
     @IBOutlet weak var eventsTableView: UITableView!
     
@@ -21,7 +22,7 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate, 
         
         //Set current # of rows to the number of current events
         rows = Global.events.count
-
+        
     }
     
     /* Table Cell Function
@@ -61,13 +62,18 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     * Then segue to the save screen and append a relay or open event object to our event array
     */
     
-    var alertTitle1 = "Select an Event"
-    var message1 = ""
-    let openText = "Open"
-    let relayText = "Relay"
+    //dismiss the alert if the user click anywhere except the buttons
+    func alertClose(gesture: UITapGestureRecognizer) {
+        alert.dismissViewControllerAnimated(true, completion: nil)
+    }
     
     @IBAction func addEvent(sender: UIBarButtonItem) {
-        let alert = UIAlertController(title: alertTitle1, message: message1, preferredStyle: UIAlertControllerStyle.Alert)
+        //Create alert for adding events
+        //Alert contains two buttons. One for open events and one for relays
+        let openText = "Open"
+        let relayText = "Relay"
+        alert = UIAlertController(title: "Select an Event", message: "", preferredStyle: UIAlertControllerStyle.Alert)
+        
         let openButton = UIAlertAction(title: openText, style: UIAlertActionStyle.Default, handler: {
             action in
             Global.events.append(Event(EventName: "New Event", isOpen: true))
@@ -83,7 +89,11 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate, 
         })
         alert.addAction(relayButton)
         
-        presentViewController(alert, animated: true, completion: nil)
+        //Add gesture recognizer for alert ViewController when adding an event while presenting alert
+        self.presentViewController(self.alert, animated: true, completion:{
+            self.alert.view.superview?.userInteractionEnabled = true
+            self.alert.view.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.alertClose(_:))))
+        })
     }
     
     //start of zachs exporting code
@@ -169,7 +179,7 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate, 
                         
                         
                 }
-                    
+                Contents += "\n"    
                 
                 
             }

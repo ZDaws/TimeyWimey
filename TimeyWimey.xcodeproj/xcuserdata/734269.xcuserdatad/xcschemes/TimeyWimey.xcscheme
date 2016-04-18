@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "AB651EE21C4E9D760037AA33"
-               BuildableName = "TimeyWimey.app"
+               BuildableName = "Team Stopwatch.app"
                BlueprintName = "TimeyWimey"
                ReferencedContainer = "container:TimeyWimey.xcodeproj">
             </BuildableReference>
@@ -53,7 +53,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "AB651EE21C4E9D760037AA33"
-            BuildableName = "TimeyWimey.app"
+            BuildableName = "Team Stopwatch.app"
             BlueprintName = "TimeyWimey"
             ReferencedContainer = "container:TimeyWimey.xcodeproj">
          </BuildableReference>
@@ -76,7 +76,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "AB651EE21C4E9D760037AA33"
-            BuildableName = "TimeyWimey.app"
+            BuildableName = "Team Stopwatch.app"
             BlueprintName = "TimeyWimey"
             ReferencedContainer = "container:TimeyWimey.xcodeproj">
          </BuildableReference>
@@ -95,7 +95,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "AB651EE21C4E9D760037AA33"
-            BuildableName = "TimeyWimey.app"
+            BuildableName = "Team Stopwatch.app"
             BlueprintName = "TimeyWimey"
             ReferencedContainer = "container:TimeyWimey.xcodeproj">
          </BuildableReference>
