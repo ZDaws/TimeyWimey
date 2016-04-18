@@ -40,6 +40,9 @@ class EditScreen: UIViewController{
     var eventTextField = CustomTextField(frame: CGRect(), 0)
     //Max characters in the textfield
     var maxChar = Int(10)
+    //The scrollview
+    @IBOutlet weak var scrollView: UIScrollView!
+    
     
     /* Load View
     * The area in which the labels and buttons for runners will go will be in the bottom of the screen
@@ -64,6 +67,14 @@ class EditScreen: UIViewController{
         eventW = width / 2
         labelH = (height - (eventH + NavBar + Vert * 3)) / 10
         
+        //Set the scroll view length to 1.5 times larger than the regular view
+        if Global.events[event].isOpen  {
+            scrollView.contentSize.height = 3 * height / 2
+        } else  {
+            scrollView.contentSize.height = 15 * height / 14
+        }
+        scrollView.scrollEnabled = false
+        
         //Find the max characters can fit on the next screen
         maxChar = Int(((width - (Horz * 2)) / ((labelH * 2 * 3) / (3 * 5))))
         
@@ -85,7 +96,7 @@ class EditScreen: UIViewController{
         //Background layer for runners
         let background = UILabel(frame: CGRect(x: Horz - 1, y: eventH + NavBar + (Vert * 2) - 0.5, width: width - (2 * Horz) + 2, height: (labelH * CGFloat(numRun + 1)) + 1))
         background.backgroundColor = UIColor.blackColor()
-        self.view.addSubview(background)
+        self.scrollView.addSubview(background)
       
         //Textfields
         for x in 0...numRun {
@@ -97,6 +108,7 @@ class EditScreen: UIViewController{
                 myTextFields[x].text = Global.events[event].RegisterArray[x].name
                 myTextFields[x].clearsOnBeginEditing = true
                 myTextFields[x].addTarget(self, action: "textFieldUnselected:", forControlEvents: .EditingDidEnd)
+                myTextFields[x].addTarget(self, action: "textFieldSelected:", forControlEvents: .EditingDidBegin)
             
             
                 if x % 2 == 0   {
@@ -105,7 +117,7 @@ class EditScreen: UIViewController{
                     myTextFields[x].backgroundColor = UIColor(red: 0, green: 0.898, blue: 0.0118, alpha: 1.0)
                 }
             
-                self.view.addSubview(myTextFields[x])
+                self.scrollView.addSubview(myTextFields[x])
         
         }
         
@@ -128,13 +140,14 @@ class EditScreen: UIViewController{
         eventTextField.clipsToBounds = true
         eventTextField.addTarget(self, action: "eventTextFieldSelected:", forControlEvents: .EditingDidBegin)
         eventTextField.addTarget(self, action: "eventTextFieldUnselected:", forControlEvents: .EditingDidEnd)
-        self.view.addSubview(eventTextField)
+        self.scrollView.addSubview(eventTextField)
         
     }
     //End of viewDidLoad()
     
     //Fires when event text field is selected
     func eventTextFieldSelected(sender: UITextField)  {
+        
         
         if sender.text != "New Event"   {
             sender.clearsOnBeginEditing = false
@@ -153,19 +166,32 @@ class EditScreen: UIViewController{
         
     }
     
+    
+    
+    
+    
+    func textFieldSelected(sender: UITextField) {
+        scrollView.scrollEnabled = true
+        
+    }
+    
+    
+    
     /*  Text field Unselected
     * This function will be called when the user unselects a certain text field
     * If the text extends past the text field length cut the excess string off
     */
     
     func textFieldUnselected(sender: UITextField) {
+        scrollView.scrollEnabled = false
+        scrollView.contentOffset = CGPoint(x: 0, y:0)
         
         if sender.text?.characters.count >= maxChar + 1  {
             while sender.text?.characters.count >= maxChar + 1 {
                 sender.text!.removeAtIndex(sender.text!.endIndex.predecessor())
             }
         }
-        
+       
     }
     
     /*Touch to remove keyboard
@@ -175,8 +201,9 @@ class EditScreen: UIViewController{
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?)
     {
-        self.view.endEditing(true)
+        self.scrollView.endEditing(true)
         super.touchesBegan(touches, withEvent: event )
+        
     }
     
     /* Return to remove keyboard
@@ -189,6 +216,13 @@ class EditScreen: UIViewController{
         return true
     }
 
+    
+    
+    
+    
+    
+    
+    
     /* Segue to timer
     * Before the segue each string in each text field will be saved into an array of runners
     * If open remove a runner from the Register array is their name is "New Event" or ""

@@ -512,4 +512,16 @@ class TimerScreen: UIViewController {
         }
     }
     
+    
+    
+    @IBAction func previewButton(sender: UIBarButtonItem) {
+        
+        
+        performSegueWithIdentifier("timerToPreviewSegue", sender: self)
+        
+        
+    }
+    
+    
+    
 }

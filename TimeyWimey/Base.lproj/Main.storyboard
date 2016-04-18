@@ -10,7 +10,7 @@
         <!--Main Screen-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="MainScreen" customModule="TimeyWimey" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MainScreen" customModule="Team_Stopwatch" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -89,7 +89,7 @@
         <!--Edit Screen-->
         <scene sceneID="Bmn-Sv-sMT">
             <objects>
-                <viewController id="XuH-lM-FOg" customClass="EditScreen" customModule="TimeyWimey" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="XuH-lM-FOg" customClass="EditScreen" customModule="Team_Stopwatch" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="0at-lk-f1g"/>
                         <viewControllerLayoutGuide type="bottom" id="f2P-Ti-OZj"/>
@@ -101,6 +101,9 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="texture_blue_background_patterns_50462_2560x1440" translatesAutoresizingMaskIntoConstraints="NO" id="PII-4U-drd">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="88C-Yy-ZgW">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </scrollView>
                             <navigationBar contentMode="scaleToFill" placeholderIntrinsicWidth="600" placeholderIntrinsicHeight="60" translatesAutoresizingMaskIntoConstraints="NO" id="pDV-a6-jeY">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
                                 <constraints>
@@ -122,15 +125,20 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="pDV-a6-jeY" secondAttribute="trailing" constant="-20" id="2uZ-hP-Ree"/>
+                            <constraint firstItem="88C-Yy-ZgW" firstAttribute="bottom" secondItem="f2P-Ti-OZj" secondAttribute="top" id="Etm-vb-VnK"/>
                             <constraint firstItem="PII-4U-drd" firstAttribute="top" secondItem="FU1-sg-fUX" secondAttribute="topMargin" id="M5f-uI-bTP"/>
                             <constraint firstItem="pDV-a6-jeY" firstAttribute="top" secondItem="FU1-sg-fUX" secondAttribute="topMargin" id="Nsm-uP-jIR"/>
+                            <constraint firstItem="88C-Yy-ZgW" firstAttribute="top" secondItem="FU1-sg-fUX" secondAttribute="topMargin" id="X2K-H3-c8i"/>
                             <constraint firstItem="PII-4U-drd" firstAttribute="leading" secondItem="FU1-sg-fUX" secondAttribute="leadingMargin" constant="-20" id="fhz-Eh-KHv"/>
+                            <constraint firstItem="88C-Yy-ZgW" firstAttribute="trailing" secondItem="PII-4U-drd" secondAttribute="trailing" id="fk2-pt-5ch"/>
                             <constraint firstItem="f2P-Ti-OZj" firstAttribute="top" secondItem="PII-4U-drd" secondAttribute="bottom" id="jfQ-8v-BhT"/>
                             <constraint firstItem="pDV-a6-jeY" firstAttribute="leading" secondItem="FU1-sg-fUX" secondAttribute="leadingMargin" constant="-20" id="kQk-9m-2Fj"/>
                             <constraint firstAttribute="trailingMargin" secondItem="PII-4U-drd" secondAttribute="trailing" constant="-20" id="xN2-jC-hg2"/>
+                            <constraint firstItem="88C-Yy-ZgW" firstAttribute="leading" secondItem="PII-4U-drd" secondAttribute="leading" id="yoK-e3-cDB"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="scrollView" destination="88C-Yy-ZgW" id="D7o-VW-rPi"/>
                         <segue destination="Fax-HM-afL" kind="show" identifier="saveToTimerSegue" animates="NO" id="gkk-wx-I9P"/>
                     </connections>
                 </viewController>
@@ -138,10 +146,70 @@
             </objects>
             <point key="canvasLocation" x="319" y="1263"/>
         </scene>
+        <!--Preview-->
+        <scene sceneID="XtZ-WF-axd">
+            <objects>
+                <viewController id="naZ-aK-33c" customClass="Preview" customModule="Team_Stopwatch" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Xvt-zf-9zT"/>
+                        <viewControllerLayoutGuide type="bottom" id="naI-k2-Gz8"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="V6E-jK-YBa">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="texture_blue_background_patterns_50462_2560x1440" translatesAutoresizingMaskIntoConstraints="NO" id="qSd-wq-quh">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mXW-bw-df7">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </scrollView>
+                            <navigationBar contentMode="scaleToFill" placeholderIntrinsicWidth="600" placeholderIntrinsicHeight="60" translatesAutoresizingMaskIntoConstraints="NO" id="7Ls-gA-L8s">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="ndr-6h-eJp"/>
+                                </constraints>
+                                <color key="barTintColor" red="0.36793533099999998" green="0.64035926529999998" blue="0.67791193179999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <items>
+                                    <navigationItem title="Title" id="mgm-Jz-nAV">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="Vl4-FE-8en">
+                                            <color key="tintColor" red="0.00013663255830000001" green="0.26790067080000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="backButton:" destination="naZ-aK-33c" id="vMW-Nf-ujL"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="mXW-bw-df7" firstAttribute="trailing" secondItem="qSd-wq-quh" secondAttribute="trailing" id="2ct-L9-2fY"/>
+                            <constraint firstItem="7Ls-gA-L8s" firstAttribute="top" secondItem="V6E-jK-YBa" secondAttribute="topMargin" id="BhZ-Ct-0Wm"/>
+                            <constraint firstItem="qSd-wq-quh" firstAttribute="top" secondItem="V6E-jK-YBa" secondAttribute="top" id="CGa-zB-NkV"/>
+                            <constraint firstItem="mXW-bw-df7" firstAttribute="top" secondItem="7Ls-gA-L8s" secondAttribute="top" id="Rkt-10-i5K"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="7Ls-gA-L8s" secondAttribute="trailing" constant="-20" id="eQl-FG-VW6"/>
+                            <constraint firstItem="7Ls-gA-L8s" firstAttribute="leading" secondItem="V6E-jK-YBa" secondAttribute="leadingMargin" constant="-20" id="fdW-V6-XCR"/>
+                            <constraint firstItem="qSd-wq-quh" firstAttribute="bottom" secondItem="naI-k2-Gz8" secondAttribute="top" id="muw-cm-sWZ"/>
+                            <constraint firstAttribute="trailing" secondItem="qSd-wq-quh" secondAttribute="trailing" id="oEb-Le-F5N"/>
+                            <constraint firstItem="qSd-wq-quh" firstAttribute="leading" secondItem="V6E-jK-YBa" secondAttribute="leading" id="pg3-G6-rif"/>
+                            <constraint firstItem="mXW-bw-df7" firstAttribute="bottom" secondItem="naI-k2-Gz8" secondAttribute="top" id="umw-pD-wvh"/>
+                            <constraint firstItem="mXW-bw-df7" firstAttribute="leading" secondItem="7Ls-gA-L8s" secondAttribute="leading" id="uyF-NB-9E2"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="scrollView" destination="mXW-bw-df7" id="HCF-s6-LfS"/>
+                        <segue destination="Fax-HM-afL" kind="show" identifier="previewToTimerSegue" animates="NO" id="3dr-na-nUy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xGR-N0-W0h" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2006" y="1263"/>
+        </scene>
         <!--Timer Screen-->
         <scene sceneID="x2E-cV-SDs">
             <objects>
-                <viewController id="Fax-HM-afL" customClass="TimerScreen" customModule="TimeyWimey" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Fax-HM-afL" customClass="TimerScreen" customModule="Team_Stopwatch" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2Ku-jk-zJ4"/>
                         <viewControllerLayoutGuide type="bottom" id="8hK-O5-PGa"/>
@@ -167,12 +235,20 @@
                                                 <action selector="backToMain:" destination="Fax-HM-afL" id="uCu-du-uKB"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="Edit" id="RGK-0a-Blm">
-                                            <color key="tintColor" red="0.00013663255830000001" green="0.26790067080000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <connections>
-                                                <action selector="editButton:" destination="Fax-HM-afL" id="uN3-aD-QFe"/>
-                                            </connections>
-                                        </barButtonItem>
+                                        <rightBarButtonItems>
+                                            <barButtonItem title="Edit" id="RGK-0a-Blm">
+                                                <color key="tintColor" red="0.00013663255830000001" green="0.26790067080000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <connections>
+                                                    <action selector="editButton:" destination="Fax-HM-afL" id="uN3-aD-QFe"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem title="Preview" id="GYH-lY-SOV">
+                                                <color key="tintColor" red="0.00013663255830000001" green="0.26790067080000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <connections>
+                                                    <action selector="previewButton:" destination="Fax-HM-afL" id="0H5-lQ-Ecd"/>
+                                                </connections>
+                                            </barButtonItem>
+                                        </rightBarButtonItems>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -192,6 +268,7 @@
                         <outlet property="eventTitle" destination="y9Q-Ci-VLk" id="ky1-9T-tFQ"/>
                         <segue destination="XuH-lM-FOg" kind="show" identifier="timerToSaveSegue" animates="NO" id="uSv-D6-srO"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="timerToMainSegue" animates="NO" id="AW6-hy-2IV"/>
+                        <segue destination="naZ-aK-33c" kind="show" identifier="timerToPreviewSegue" animates="NO" id="Frg-Le-c0A"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lat-on-65B" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -203,7 +280,7 @@
         <image name="texture_blue_background_patterns_50462_2560x1440" width="2560" height="1440"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="uSv-D6-srO"/>
         <segue reference="gkk-wx-I9P"/>
+        <segue reference="uSv-D6-srO"/>
     </inferredMetricsTieBreakers>
 </document>
