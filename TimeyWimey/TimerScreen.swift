@@ -516,9 +516,9 @@ class TimerScreen: UIViewController {
     
     @IBAction func previewButton(sender: UIBarButtonItem) {
         
-        
-        performSegueWithIdentifier("timerToPreviewSegue", sender: self)
-        
+        if Global.events[event].isDone  {
+            performSegueWithIdentifier("timerToPreviewSegue", sender: self)
+        }
         
     }
     

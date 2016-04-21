@@ -242,7 +242,7 @@
                                                     <action selector="editButton:" destination="Fax-HM-afL" id="uN3-aD-QFe"/>
                                                 </connections>
                                             </barButtonItem>
-                                            <barButtonItem title="Preview" id="GYH-lY-SOV">
+                                            <barButtonItem title="Results" id="GYH-lY-SOV">
                                                 <color key="tintColor" red="0.00013663255830000001" green="0.26790067080000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <connections>
                                                     <action selector="previewButton:" destination="Fax-HM-afL" id="0H5-lQ-Ecd"/>
@@ -280,7 +280,7 @@
         <image name="texture_blue_background_patterns_50462_2560x1440" width="2560" height="1440"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="gkk-wx-I9P"/>
         <segue reference="uSv-D6-srO"/>
+        <segue reference="3dr-na-nUy"/>
     </inferredMetricsTieBreakers>
 </document>
