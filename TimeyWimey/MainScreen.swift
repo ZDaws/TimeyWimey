@@ -154,7 +154,7 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate, 
                     Contents += Global.events[i].RegisterArray[c].name + ","
                     Contents += Global.events[i].RegisterArray[c].endTime + ","
                     
-                    Global.events[i].RegisterArray[c].lapDur()
+                    //Global.events[i].RegisterArray[c].lapDur()
                     
                     //check if there are laps and if not will add a line break after endTime
                     if Global.events[i].RegisterArray[c].laps.count > 0  {

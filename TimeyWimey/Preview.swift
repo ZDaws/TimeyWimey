@@ -41,8 +41,8 @@ class Preview: UIViewController {
 
         //Find max num of lap times using maxLapNum
         for runner in Global.events[event].RegisterArray	{
-            if maxLaps < runner.lapArray.count	{
-                maxLaps = runner.lapArray.count
+            if maxLaps < runner.laps.count	{
+                maxLaps = runner.laps.count
             }
             if maxName < runner.name.characters.count	{
                 maxName = runner.name.characters.count
@@ -109,10 +109,10 @@ class Preview: UIViewController {
             self.scrollView.addSubview(label)
             
             //Layout all laps for this runnner even if it is under max laps
-            lapsForRunner = Global.events[event].RegisterArray[i].lapArray.count
+            lapsForRunner = Global.events[event].RegisterArray[i].laps.count
             for var k = 0 ; k < lapsForRunner ; k++   {
                 label = UILabel(frame: CGRect(x: space + charL * (CGFloat(maxName) + CGFloat(k) * 9 + 11) , y: navBar + space + labelH * CGFloat(i + 1), width: (9 * charL) - 1, height: labelH - 1))
-                label.text = Global.events[event].RegisterArray[i].lapArray[k]
+                label.text = Global.events[event].RegisterArray[i].laps[k]
                 label.backgroundColor = .whiteColor()
                 label.font = UIFont(name: "Courier New", size: (labelH * 3) / 4)
                 label.textAlignment = .Center
