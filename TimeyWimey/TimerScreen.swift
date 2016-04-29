@@ -92,6 +92,7 @@ class TimerScreen: UIViewController {
          * However only for open place the buttons
          */
         for (var x = 0 ; x < numRun ; x++) {
+            
             //Layout runners,  Will always be fired
             labels.append(UILabel(frame: CGRect(x: 3 * horz + buttonL * 2, y: ((vert * 2) + timerLabelH + navBar + (CGFloat(x) * labelH)) + 1, width: labelL, height: labelH - 2)))
             if x % 2 == 0   {
@@ -194,7 +195,8 @@ class TimerScreen: UIViewController {
                     /* If the event is ongoing, based on what count is place the green end
                     *  times over finished runners and one set of lap and stop buttons over the current runner ( count + 1 )
                     */
-                    
+                
+                    //See how many runners are finished to set count and set the coverLabels
                     for ( var i = 0 ; i < numRun ; i++)  {
                         
                         if Global.events[event].RegisterArray[i].endTime != "00:00:00"  {
@@ -342,11 +344,18 @@ class TimerScreen: UIViewController {
         
         if Global.events[event].isTiming    {
             count++
+           
+            
             
             //If open just simply place a green final time label over the buttons
             if Global.events[event].isOpen  {
                 
-                //Set the time on the timer to the corresponding label over the buttons
+                //get rid of buttons for open
+                stopButtons[button.numRunner].removeFromSuperview()
+                lapButtons[button.numRunner].removeFromSuperview()
+                
+                
+                //Store final time to global data
                 Global.events[event].RegisterArray[button.numRunner].endTime = Global.events[event].displayTimeLabel.text!
                 
                 //lay a label over the stop and lap buttons
@@ -358,27 +367,25 @@ class TimerScreen: UIViewController {
                 
                 self.view.addSubview(coverLabel)
                 
-                stopButtons[button.numRunner].removeFromSuperview()
-                lapButtons[button.numRunner].removeFromSuperview()
+                
                 
             } else {
-            //If relay add next runners lap and stop buttons and place green final time label over finished runner's buttons
-                //Place a green label over buttons and get rid of buttons
+                //If relay add next runners lap and stop buttons and place green final time label over finished runner's buttons
+                
+                //get rid of buttons
                 stopButtons[0].removeFromSuperview()
                 stopButtons.removeAtIndex(0)
                 lapButtons[0].removeFromSuperview()
                 lapButtons.removeAtIndex(0)
-                
-                
-                //Set the green final time to their own time not what is on the top timer
+  
                 //So take the top time minus the sum of all times underneath that runner
-                //Global.events[event].RegisterArray[count - 1].endTime = Global.events[event].displayTimeLabel.text!
+                //sum = Global.events[event].displayTimeLabel.text! - sum of previous runners
                 let userCalendar = NSCalendar.currentCalendar()
                 let minCalUnit: NSCalendarUnit = [.Minute, .Second, .Nanosecond]
 
                 sum = Global.events[event].displayTimeLabel.text!
                 
-                                
+                //Subtract the the previous runners final times from displayTime label
                 for ( var i = 0 ; i < count - 1 ; i++ )    {
                     let tmpSum = toDate(sum)
                     let tmpEnd = toDate(Global.events[event].RegisterArray[i].endTime)
@@ -387,15 +394,12 @@ class TimerScreen: UIViewController {
                     let finalDate = userCalendar.dateFromComponents(interval)
 
                     sum = toString(finalDate!)
-
                 }
-                
-                Global.events[event].RegisterArray[count - 1].endTime = sum
                 
                 //If count <= numRun place a new lap and stop buttons down
                 if count <= numRun - 1 {
                     
-                    stopButtons.append(CustomButton(frame: CGRect(x: (horz ) , y: (vert / CGFloat(1 + numRun)) + (vert * 2) + timerLabelH + navBar + (labelH * CGFloat(count)), width: buttonL, height: labelH - ((vert * 2) / CGFloat(1 + numRun))), 0, true))
+                    stopButtons.append(CustomButton(frame: CGRect(x: horz , y: (vert / CGFloat(1 + numRun)) + (vert * 2) + timerLabelH + navBar + (labelH * CGFloat(count)), width: buttonL, height: labelH - ((vert * 2) / CGFloat(1 + numRun))), 0, true))
                     stopButtons[0].backgroundColor = UIColor.redColor()
                     stopButtons[0].titleLabel!.font = UIFont(name: labels[0].font!.fontName, size: (labelH * 2) / 3)
                     stopButtons[0].setTitle("Stop", forState: .Normal)
@@ -415,10 +419,21 @@ class TimerScreen: UIViewController {
                     self.view.addSubview(lapButtons[0])
                     
                 }
+                //lay a label over the stop and lap buttons
+                let coverLabel = UILabel(frame: CGRect(x: horz, y: navBar + (vert * 2) + timerLabelH + (labelH * CGFloat(count - 1)), width: (buttonL * 2) + horz, height: labelH))
+                coverLabel.backgroundColor = UIColor.greenColor()
+                coverLabel.text = "\(sum)"
+                coverLabel.font = UIFont(name: "Courier New", size: (timerLabelH * 2) / 3)
+                coverLabel.textAlignment = .Center
                 
+                self.view.addSubview(coverLabel)
                 
+                //Store final time to global data
+                Global.events[event].RegisterArray[count - 1].endTime = sum
+                print("This is sum: \(sum)")
                 
             }
+            
             
             //When count is equal to the number of runners when the stop button is pressed, the timer stops.
             if(count == numRun) {
@@ -430,16 +445,7 @@ class TimerScreen: UIViewController {
                     runner.lapDur()
                 }
             }
-            
-            //Place coverlabel over pressed stop button
-            let coverLabel = UILabel(frame: CGRect(x: horz, y: navBar + (vert * 2) + timerLabelH + (labelH * CGFloat(count - 1)), width: (buttonL * 2) + horz, height: labelH))
-            coverLabel.backgroundColor = UIColor.greenColor()
-            coverLabel.text = Global.events[event].RegisterArray[count - 1].endTime
-            coverLabel.font = UIFont(name: "Courier New", size: (timerLabelH * 2) / 3)
-            coverLabel.textAlignment = .Center
-            
-            self.view.addSubview(coverLabel)
-
+        
         }
     }
     //end of stop

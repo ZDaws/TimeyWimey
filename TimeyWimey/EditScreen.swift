@@ -42,7 +42,10 @@ class EditScreen: UIViewController{
     var maxChar = Int(10)
     //The scrollview
     @IBOutlet weak var scrollView: UIScrollView!
-    
+    //To get rid of keyboard
+    var tap = UITapGestureRecognizer()
+    //Current textfield selected 0 = event name then 1-10 is each textfield
+    var currTextF: Int = 0
     
     /* Load View
     * The area in which the labels and buttons for runners will go will be in the bottom of the screen
@@ -51,6 +54,10 @@ class EditScreen: UIViewController{
     */
     
     override func viewDidLoad() {
+        
+        tap = UITapGestureRecognizer(target: self, action: #selector(EditScreen.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+        
         
         //If open add new runners to the register array with names of "New Runner" until there are 10 runnners
         if Global.events[event].isOpen && Global.events[event].isDone == false {
@@ -155,6 +162,7 @@ class EditScreen: UIViewController{
             sender.text = ""
         }
         sender.textColor = UIColor.whiteColor()
+        currTextF = 0
         
     }
     
@@ -170,8 +178,9 @@ class EditScreen: UIViewController{
     
     
     
-    func textFieldSelected(sender: UITextField) {
+    func textFieldSelected(sender: CustomTextField) {
         scrollView.scrollEnabled = true
+        currTextF = sender.num + 1
         
     }
     
@@ -191,6 +200,8 @@ class EditScreen: UIViewController{
                 sender.text!.removeAtIndex(sender.text!.endIndex.predecessor())
             }
         }
+        
+        
        
     }
     
@@ -201,6 +212,7 @@ class EditScreen: UIViewController{
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?)
     {
+        
         self.scrollView.endEditing(true)
         super.touchesBegan(touches, withEvent: event )
         
@@ -212,11 +224,21 @@ class EditScreen: UIViewController{
     */
     func textFieldShouldReturn(textField: UITextField) -> Bool
     {
-        //myTextFields[].resignFirstResponder()
+        
+        textField.resignFirstResponder()
         return true
+        
     }
 
-    
+    func dismissKeyboard()  {
+        print("Touch")
+        if currTextF == 0    {
+            eventTextField.resignFirstResponder()
+        } else {
+            myTextFields[currTextF - 1].resignFirstResponder()
+        }
+        
+    }
     
     
     
