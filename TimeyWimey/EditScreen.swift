@@ -14,7 +14,7 @@ class EditScreen: UIViewController{
     var screenSize: CGRect = UIScreen.mainScreen().bounds
     var width: CGFloat = 0.0
     var height: CGFloat = 0.0
-    //var currentEvent: Int
+    //Text fields used for the names of the runners
     var myTextFields: [CustomTextField] = []
     //Navigaiton bar height
     let NavBar: CGFloat = 60
@@ -24,7 +24,7 @@ class EditScreen: UIViewController{
     let Vert: CGFloat = 20
     //current event
     let event: Int = Global.currentEvent
-    //label height
+    //This represents the height of the textfields
     var labelH: CGFloat = 0
     //Tiny spacing
     var space: CGFloat = 1

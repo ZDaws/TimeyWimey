@@ -198,6 +198,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="navTitle" destination="mgm-Jz-nAV" id="JqJ-l7-0f1"/>
                         <outlet property="scrollView" destination="mXW-bw-df7" id="HCF-s6-LfS"/>
                         <segue destination="Fax-HM-afL" kind="show" identifier="previewToTimerSegue" animates="NO" id="3dr-na-nUy"/>
                     </connections>
@@ -280,7 +281,7 @@
         <image name="texture_blue_background_patterns_50462_2560x1440" width="2560" height="1440"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Y9k-0b-uFL"/>
+        <segue reference="3dr-na-nUy"/>
         <segue reference="9uF-68-anw"/>
     </inferredMetricsTieBreakers>
 </document>

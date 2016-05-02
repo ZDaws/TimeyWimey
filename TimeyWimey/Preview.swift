@@ -26,12 +26,15 @@ class Preview: UIViewController {
     
     @IBOutlet weak var scrollView: UIScrollView!
     
+    @IBOutlet weak var navTitle: UINavigationItem!
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        navTitle.title = Global.events[event].EventName
+        
         width = screenSize.width
         height = screenSize.height
         space = height / 12
