@@ -146,9 +146,9 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate, 
             
             //for loops - (event  ( runner ( name and endtime and (laps) ))
             
-            for var i = 0 ; i < Global.events.count ; i++ {
+            for i in 0  ..< Global.events.count  {
                 
-                for var c = 0 ; c < Global.events[i].RegisterArray.count ; c++ {
+                for c in 0  ..< Global.events[i].RegisterArray.count  {
                     
                     Contents += Global.events[i].EventName + ","
                     Contents += Global.events[i].RegisterArray[c].name + ","
@@ -157,7 +157,7 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate, 
                     //check if there are laps and if not will add a line break after endTime
                     if Global.events[i].RegisterArray[c].laps.count > 0  {
                         
-                        for var d = 0 ; d < Global.events[i].RegisterArray[c].laps.count ; d++ {
+                        for d in 0  ..< Global.events[i].RegisterArray[c].laps.count  {
                             
                             if d == (Global.events[i].RegisterArray[c].laps.count - 1) {
                                 Contents += Global.events[i].RegisterArray[c].laps[d] + "\n"
@@ -237,7 +237,7 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate, 
         let okButton = UIAlertAction(title: okText, style: UIAlertActionStyle.Destructive) {
             UIAlertAction in
             //stop the timer for each runner incase the user decides to delete all events while an event is still running
-            for var i = 0 ; i < Global.events.count ; i++ {
+            for i in 0  ..< Global.events.count  {
                 Global.events[i].timer.invalidate()
             }
             Global.currentEvent = 0

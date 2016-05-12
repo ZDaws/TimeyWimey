@@ -220,7 +220,7 @@
 				TargetAttributes = {
 					AB651EE21C4E9D760037AA33 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = SDCRRE9RQ9;
+						DevelopmentTeam = 4MKBZGWMDE;
 					};
 					AB651EF61C4E9D760037AA33 = {
 						CreatedOnToolsVersion = 7.2;
@@ -442,7 +442,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = TimeyWimey/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Frands.TimeyWimey.J1;
+				PRODUCT_BUNDLE_IDENTIFIER = "Frands.TimeyWimey.Braun-";
 				PRODUCT_NAME = "Team Stopwatch";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -457,7 +457,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = TimeyWimey/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Frands.TimeyWimey.J1;
+				PRODUCT_BUNDLE_IDENTIFIER = "Frands.TimeyWimey.Braun-";
 				PRODUCT_NAME = "Team Stopwatch";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -18,7 +18,7 @@ class EditScreen: UIViewController{
     var myTextFields: [CustomTextField] = []
     //Navigaiton bar height
     let NavBar: CGFloat = 60
-    //horizontal spacing between nav bar and text fields
+    //horizontal spacing between and text fields and the edge of the screen
     let Horz: CGFloat = 20
     //vertical spacing between nav bar and text fields
     let Vert: CGFloat = 20
@@ -26,20 +26,18 @@ class EditScreen: UIViewController{
     let event: Int = Global.currentEvent
     //This represents the height of the textfields
     var labelH: CGFloat = 0
-    //Tiny spacing
-    var space: CGFloat = 1
     //Useable frame
     var frm = CGRect()
     //Variable to represent the number of runners 4 for relay or 10 for open
     var numRun: Int = 0
-    //Height of Event name
+    //Height of Event name textfield
     var eventH: CGFloat = 0
     //Length of the event textfield
     var eventW: CGFloat = 0
-    //Event textfield and label
+    //Event textfield
     var eventTextField = CustomTextField(frame: CGRect(), 0)
     //Max characters in the textfield
-    var maxChar = Int(10)
+    var maxChar = Int(30)
     //The scrollview
     @IBOutlet weak var scrollView: UIScrollView!
     //To get rid of keyboard
@@ -52,9 +50,9 @@ class EditScreen: UIViewController{
     * At the top of the view place a text field with placeholder text of that events name
     * Each runner will have a place holder text of their name
     */
-    
     override func viewDidLoad() {
         
+        //This tap gesture allows the keyboard to be deselected when a user taps outside the textfield
         tap = UITapGestureRecognizer(target: self, action: #selector(EditScreen.dismissKeyboard))
         view.addGestureRecognizer(tap)
         
@@ -74,50 +72,65 @@ class EditScreen: UIViewController{
         eventW = width / 2
         labelH = (height - (eventH + NavBar + Vert * 3)) / 10
         
-        //Set the scroll view length to 1.5 times larger than the regular view
+        //Set the scroll view length a bit larger than the regular view so the keyboard can't cover up the runners
         if Global.events[event].isOpen  {
             scrollView.contentSize.height = 3 * height / 2
         } else  {
+            //not as much for relay though
             scrollView.contentSize.height = 15 * height / 14
         }
+        //Scroll view should only work when the keyboard is up
         scrollView.scrollEnabled = false
         
-        //Find the max characters can fit on the next screen
-        maxChar = Int(((width - (Horz * 2)) / ((labelH * 2 * 3) / (3 * 5))))
+        //Find the max characters can fit on the next screen  (Doesn't work because of different Horz and Verts)
+        //maxChar = Int(((width - (Horz * 2)) / ((labelH * 2 * 3) / (3 * 5))))
         
-        //Create and display textfields with backgrounds
+        //Set how many runners there should be 4 for relay and 10 for open
         if Global.events[event].isOpen == true  {
             if Global.events[event].isDone == false {
-                //Set number of runners to 10 - 1
+                //Set number of runners to 10 - 1 (for for-loop ease)
                 numRun = 9
             } else {
+                //If the event is done don't allow the user to add another runner
                 numRun = Global.events[event].RegisterArray.count - 1
             }
         }
         else    {
-            //Set number of runners to 4 - 1
+            //Set number of runners to 4 - 1 (for for-loop ease)
             numRun = 3
             
         }
         
-        //Background layer for runners
+        //Black background layer for runners
         let background = UILabel(frame: CGRect(x: Horz - 1, y: eventH + NavBar + (Vert * 2) - 0.5, width: width - (2 * Horz) + 2, height: (labelH * CGFloat(numRun + 1)) + 1))
         background.backgroundColor = UIColor.blackColor()
         self.scrollView.addSubview(background)
       
         //Textfields
         for x in 0...numRun {
-                
+            
+            
                 frm = CGRect(x: Horz, y: (NavBar + (Vert * 2) + eventH) + (labelH * CGFloat(x)) + 1, width: width - 2 * Horz, height: labelH - 2)
             
                 myTextFields.append(CustomTextField(frame: frm, x))
                 myTextFields[x].font = UIFont(name: "Courier New", size: (labelH * 2) / 3)
                 myTextFields[x].text = Global.events[event].RegisterArray[x].name
-                myTextFields[x].clearsOnBeginEditing = true
-                myTextFields[x].addTarget(self, action: "textFieldUnselected:", forControlEvents: .EditingDidEnd)
-                myTextFields[x].addTarget(self, action: "textFieldSelected:", forControlEvents: .EditingDidBegin)
+                if myTextFields[x].text == "New Runner" {
+                    myTextFields[x].clearsOnBeginEditing = true
+                } else{
+                    myTextFields[x].clearsOnBeginEditing = false
+                }
             
+                myTextFields[x].num = x
+                if myTextFields[x].text ==  "New Runner"  {
+                    myTextFields[x].textColor = UIColor.darkGrayColor()
+                } else {
+                    myTextFields[x].textColor = UIColor.blackColor()
+                }
+                myTextFields[x].addTarget(self, action: #selector(EditScreen.textFieldUnselected(_:)), forControlEvents: .EditingDidEnd)
+                myTextFields[x].addTarget(self, action: #selector(EditScreen.textFieldSelected(_:)), forControlEvents: .EditingDidBegin)
             
+                //Setting colors
                 if x % 2 == 0   {
                     myTextFields[x].backgroundColor = UIColor(red: 0, green: 0.4157, blue: 1, alpha: 1.0)
                 } else {
@@ -135,6 +148,7 @@ class EditScreen: UIViewController{
         eventTextField.text = Global.events[event].EventName
         eventTextField.textAlignment = .Center
         eventTextField.backgroundColor = UIColor.blackColor()
+        //This code makes it so the textfield works with placeholder text the way we want
         if Global.events[event].EventName == "New Event"   {
             eventTextField.textColor = UIColor.grayColor()
             eventTextField.text = "New Event"
@@ -145,14 +159,15 @@ class EditScreen: UIViewController{
         }
         eventTextField.layer.cornerRadius = 20.0
         eventTextField.clipsToBounds = true
-        eventTextField.addTarget(self, action: "eventTextFieldSelected:", forControlEvents: .EditingDidBegin)
-        eventTextField.addTarget(self, action: "eventTextFieldUnselected:", forControlEvents: .EditingDidEnd)
+        eventTextField.addTarget(self, action: #selector(EditScreen.eventTextFieldSelected(_:)), forControlEvents: .EditingDidBegin)
+        eventTextField.addTarget(self, action: #selector(EditScreen.eventTextFieldUnselected(_:)), forControlEvents: .EditingDidEnd)
         self.scrollView.addSubview(eventTextField)
         
     }
     //End of viewDidLoad()
     
-    //Fires when event text field is selected
+    
+    //Fires when the event text field is selected
     func eventTextFieldSelected(sender: UITextField)  {
         
         
@@ -166,6 +181,7 @@ class EditScreen: UIViewController{
         
     }
     
+    //Fires when the event text field is unselected
     func eventTextFieldUnselected(sender: UITextField)  {
         if sender.text == ""    {
             sender.text = "New Event"
@@ -173,24 +189,16 @@ class EditScreen: UIViewController{
         }
         
     }
-    
-    
-    
-    
-    
+
+    //Fires when any runner textfield is selected
     func textFieldSelected(sender: CustomTextField) {
         scrollView.scrollEnabled = true
         currTextF = sender.num + 1
-        
+        sender.textColor = UIColor.blackColor()
+    
     }
     
-    
-    
-    /*  Text field Unselected
-    * This function will be called when the user unselects a certain text field
-    * If the text extends past the text field length cut the excess string off
-    */
-    
+    //Fires when any runner textfield is unselected
     func textFieldUnselected(sender: UITextField) {
         scrollView.scrollEnabled = false
         scrollView.contentOffset = CGPoint(x: 0, y:0)
@@ -201,37 +209,42 @@ class EditScreen: UIViewController{
             }
         }
         
-        
+        if sender.text == "" || sender.text == "New Runner" {
+            sender.text = "New Runner"
+            sender.textColor = UIColor.darkGrayColor()
+        } else {
+            sender.clearsOnBeginEditing = false
+        }
        
     }
     
+    
+    //Probalby don't need but test more
     /*Touch to remove keyboard
     * When the keyboard is up this function will be called when the user touches outside of the
     * keyboard and the keyboard will disappear.
     */
+//    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?)
+//    {
+//        self.scrollView.endEditing(true)
+//        super.touchesBegan(touches, withEvent: event )
+//    }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?)
-    {
-        
-        self.scrollView.endEditing(true)
-        super.touchesBegan(touches, withEvent: event )
-        
-    }
-    
+    //Same thing idk if we need
     /* Return to remove keyboard
     * When the keyboard is up this function will be called when the user presses return
     * and the keyboard will disappear.
     */
-    func textFieldShouldReturn(textField: UITextField) -> Bool
-    {
-        
-        textField.resignFirstResponder()
-        return true
-        
-    }
+//    func textFieldShouldReturn(textField: UITextField) -> Bool
+//    {
+//        
+//        textField.resignFirstResponder()
+//        return true
+//        
+//    }
 
+    
     func dismissKeyboard()  {
-        print("Touch")
         if currTextF == 0    {
             eventTextField.resignFirstResponder()
         } else {
@@ -247,7 +260,7 @@ class EditScreen: UIViewController{
     
     /* Segue to timer
     * Before the segue each string in each text field will be saved into an array of runners
-    * If open remove a runner from the Register array is their name is "New Event" or ""
+    * If open, remove a runner from the Register array is their name is "New Event" or ""
     */
     
     var y: Int = 9
