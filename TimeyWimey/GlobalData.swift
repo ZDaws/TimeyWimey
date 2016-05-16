@@ -2,7 +2,7 @@
 //  GlobalData.swift
 //  TimeyWimey
 //
-//  Created by KUSKE, JOEL on 2/1/16.
+//  Created by HOLM, JOEL on 2/1/16.
 //  Copyright © 2016 Frands. All rights reserved.
 //
 

@@ -2,7 +2,7 @@
 //  Preview.swift
 //  TimeyWimey
 //
-//  Created by KUSKE, JOEL on 4/15/16.
+//  Created by HOLM, JOEL on 4/15/16.
 //  Copyright © 2016 Frands. All rights reserved.
 //
 
@@ -10,14 +10,21 @@ import UIKit
 
 class Preview: UIViewController {
 
+    //Screen sizing variables
     let event: Int = Global.currentEvent
     var screenSize: CGRect = UIScreen.mainScreen().bounds
     var width: CGFloat = 0.0
     var height: CGFloat = 0.0
-    //Int representing the max number of laps by any runner in this event
+    //Spacing between borders and labels
     var space: CGFloat = 0
+    /* Individual letter length
+    * This is the key to laying out the screen
+    * We use this * the number of characters before a label to place the label in the correct spot
+    */
     var charL: CGFloat = 0.0
+    //Label Height
     var labelH: CGFloat = 0.0
+    //Int representing the max number of laps by any runner in this event
     var maxLaps: Int = 0
     //This is 7 because if runners names are very small then have the size be 7 because of the "Runner" top label
     var maxName: Int = 7
@@ -39,10 +46,13 @@ class Preview: UIViewController {
         height = screenSize.height
         space = height / 12
         labelH = (height - (navBar + 2 * space)) / 11
+        
+        
+        //Just like in timer screen but this takes the labelH and finds how long each individual character should be
         charL = labelH * (3 / 4) * (31.0 / 50.0)
         
 
-        //Find max num of lap times using maxLapNum
+        //Find max num of lap times using maxLapNum and the maxChacters in the name
         for runner in Global.events[event].RegisterArray	{
             if maxLaps < runner.laps.count	{
                 maxLaps = runner.laps.count
@@ -51,6 +61,7 @@ class Preview: UIViewController {
                 maxName = runner.name.characters.count
             }
         }
+        //Add one to that so there is a bit of spaceing
         maxName = maxName + 1
         
         
@@ -83,7 +94,8 @@ class Preview: UIViewController {
         label.textAlignment = .Center
         self.scrollView.addSubview(label)
         
-        for var i = 0 ; i < maxLaps ; i++   {
+        //Lay out the lap label titles
+        for i in 0  ..< maxLaps    {
             label = UILabel(frame: CGRect(x: space + charL * (CGFloat(maxName) + CGFloat(i) * 9 + 11) , y: navBar + space, width: (9 * charL) - 1, height: labelH - 1))
             label.text = "Lap #\(i + 1)"
             label.backgroundColor = .whiteColor()
@@ -94,7 +106,7 @@ class Preview: UIViewController {
         
         
         //for loop through runners
-        for var i = 0 ; i < Global.events[event].RegisterArray.count ; i++ {
+        for i in 0  ..< Global.events[event].RegisterArray.count  {
             //layout runners
             label = UILabel(frame: CGRect(x: space , y: navBar + space + labelH * CGFloat(i + 1), width: CGFloat(maxName) * charL - 1, height: labelH - 1))
             label.text = Global.events[event].RegisterArray[i].name
@@ -113,7 +125,7 @@ class Preview: UIViewController {
             
             //Layout all laps for this runnner even if it is under max laps
             lapsForRunner = Global.events[event].RegisterArray[i].laps.count
-            for var k = 0 ; k < lapsForRunner ; k++   {
+            for k in 0 ..< lapsForRunner    {
                 label = UILabel(frame: CGRect(x: space + charL * (CGFloat(maxName) + CGFloat(k) * 9 + 11) , y: navBar + space + labelH * CGFloat(i + 1), width: (9 * charL) - 1, height: labelH - 1))
                 label.text = Global.events[event].RegisterArray[i].laps[k]
                 label.backgroundColor = .whiteColor()
@@ -121,8 +133,8 @@ class Preview: UIViewController {
                 label.textAlignment = .Center
                 self.scrollView.addSubview(label)
             }
-            //If there are missing labels inbetween lapArray.count and maxLaps fill in blank spaces
-            for var k = lapsForRunner ; k < maxLaps ; k++   {
+            //If there are missing labels inbetween lapArray.count and maxLaps fill in blank spaces with -
+            for k in lapsForRunner ..< maxLaps    {
                 label = UILabel(frame: CGRect(x: space + charL * (CGFloat(maxName) + CGFloat(k) * 9 + 11) , y: navBar + space + labelH * CGFloat(i + 1), width: (9 * charL) - 1, height: labelH - 1))
                 label.font = UIFont(name: "Courier New", size: (labelH * 3) / 4)
                 label.textAlignment = .Center
@@ -133,6 +145,7 @@ class Preview: UIViewController {
             
         }
         
+        //If the event is a relay place a final relay time label at the bottom
         if Global.events[event].isOpen == false {
             
             label = UILabel(frame: CGRect(x: space , y: navBar + space + labelH * CGFloat(Global.events[event].RegisterArray.count + 2), width: 11 * charL - 1, height: labelH - 1))
@@ -161,14 +174,17 @@ class Preview: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    func stop(sender: UIButton) {
-        if self.scrollView.scrollEnabled {
-            self.scrollView.scrollEnabled = false
-        } else {
-            self.scrollView.scrollEnabled = true
-        }
-    }
+    
+    
+    //Enables and disables scrollview
+    //I don't think we need this but I'm just keeping it just in case
+//    func stop(sender: UIButton) {
+//        if self.scrollView.scrollEnabled {
+//            self.scrollView.scrollEnabled = false
+//        } else {
+//            self.scrollView.scrollEnabled = true
+//        }
+//    }
     
     
     

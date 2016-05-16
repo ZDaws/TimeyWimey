@@ -35,7 +35,7 @@ class MainScreen: UIViewController, UITableViewDataSource, UITableViewDelegate, 
         
         //just a test what prints on each cell
         cell.textLabel?.text = Global.events[indexPath.row].EventName
-        
+        cell.textLabel?.font = UIFont(name: (cell.textLabel?.font.fontName)!, size: 50)
         return cell
     }
     

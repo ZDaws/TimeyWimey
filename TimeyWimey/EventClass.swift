@@ -46,12 +46,12 @@ class Event: NSObject, NSCoding {
     func initRunnerArray() {
         if RegisterArray.isEmpty {
             if isOpen == true {
-                for var i = 0 ; i < 10 ; i++ {
+                for _ in 0  ..< 10  {
                     self.RegisterArray.append(Runner(n: "New Runner"))
                 }
             }
             else {
-                for var a = 0 ; a < 4 ; a++ {
+                for _ in 0  ..< 4  {
                     self.RegisterArray.append(Runner(n: "New Runner"))
                 }
             }

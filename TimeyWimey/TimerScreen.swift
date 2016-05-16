@@ -269,6 +269,7 @@ class TimerScreen: UIViewController {
         if numRun > 0   {
             startButton = UIButton(frame: CGRect(x: width / 4, y: height - (vert + startH), width: width / 2, height: startH))
             startButton.backgroundColor = UIColor.greenColor()
+            startButton.setTitleColor(.blackColor(), forState: .Normal)
             startButton.setTitle("Start", forState: .Normal)
             startButton.layer.cornerRadius = 10.0
             startButton.titleLabel!.font = UIFont(name: "Courier New", size: (timerLabelH * 2) / 3)

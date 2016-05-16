@@ -89,7 +89,7 @@ class Runner: NSObject, NSCoding {
         laps = lapArray
         
         //loop to go through the array to allow us to do arithmetic with it
-        for var i = 0 ; i < lapArray.count; i++ {
+        for i in 0  ..< lapArray.count {
             
             //for the indexes in the array that will do the subractions with other elements of the array
             if i < lapArray.count && i > 0 {

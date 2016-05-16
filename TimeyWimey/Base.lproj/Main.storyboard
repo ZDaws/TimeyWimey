@@ -19,15 +19,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zc2-YH-9mY">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="125" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zc2-YH-9mY">
                                 <rect key="frame" x="0.0" y="60" width="600" height="540"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="prototype1" rowHeight="80" id="B8S-eE-YZy">
-                                        <rect key="frame" x="0.0" y="28" width="600" height="80"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="prototype1" rowHeight="125" id="B8S-eE-YZy">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="125"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="B8S-eE-YZy" id="Occ-jG-Kkh">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="79"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="124"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -281,7 +281,7 @@
         <image name="texture_blue_background_patterns_50462_2560x1440" width="2560" height="1440"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="3dr-na-nUy"/>
-        <segue reference="9uF-68-anw"/>
+        <segue reference="Y9k-0b-uFL"/>
+        <segue reference="uSv-D6-srO"/>
     </inferredMetricsTieBreakers>
 </document>
